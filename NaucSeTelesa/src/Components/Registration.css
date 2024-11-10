@@ -1,0 +1,66 @@
+/* Registration.css */
+
+body {
+  background-color: #1a1a2e;
+  font-family: "Roboto", sans-serif;
+}
+
+.auth-container {
+  min-height: 100vh;
+}
+
+.auth-box {
+  background: #16213e;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.8rem;
+  color: #00d2ff;
+}
+
+.custom-input {
+  background: #0f3460;
+  color: #e6e6e6;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.custom-input::placeholder {
+  color: #e6e6e6;
+}
+
+.custom-input:focus {
+  border: 1px solid #00d2ff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+}
+
+.btn-primary {
+  background-color: #00d2ff;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #00aaff;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #00d2ff;
+  cursor: pointer;
+}
+
+.toggle-button:hover {
+  color: #00aaff;
+  text-decoration: underline;
+}

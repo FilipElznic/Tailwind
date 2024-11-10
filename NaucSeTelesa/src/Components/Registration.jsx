@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { supabase } from "./supabaseClient";
+import { supabase } from "../supabaseClient";
+import "./Registration.css"; // Custom CSS for additional styling
 
 function Registration() {
   const [email, setEmail] = useState("");
@@ -37,32 +38,45 @@ function Registration() {
   };
 
   return (
-    <div>
-      <h2>{isRegistering ? "Register" : "Login"}</h2>
-      <form onSubmit={isRegistering ? handleRegister : handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">{isRegistering ? "Register" : "Login"}</button>
-      </form>
-      {error && <p>{error}</p>}
-      <p>
-        {isRegistering ? "Already have an account?" : "Don’t have an account?"}{" "}
-        <button onClick={() => setIsRegistering(!isRegistering)}>
-          {isRegistering ? "Login" : "Register"}
-        </button>
-      </p>
+    <div className="auth-container d-flex justify-content-center align-items-center">
+      <div className="auth-box text-center">
+        <h2 className="text-light mb-4">
+          {isRegistering ? "Register" : "Login"}
+        </h2>
+        <form onSubmit={isRegistering ? handleRegister : handleLogin}>
+          <input
+            type="email"
+            className="form-control mb-3 custom-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="form-control mb-3 custom-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn btn-primary btn-lg w-100">
+            {isRegistering ? "Register" : "Login"}
+          </button>
+        </form>
+        {error && <p className="text-danger mt-3">{error}</p>}
+        <p className="text-light mt-4">
+          {isRegistering
+            ? "Already have an account?"
+            : "Don’t have an account?"}{" "}
+          <button
+            className="toggle-button text-info"
+            onClick={() => setIsRegistering(!isRegistering)}
+          >
+            {isRegistering ? "Login" : "Register"}
+          </button>
+        </p>
+      </div>
     </div>
   );
 }
