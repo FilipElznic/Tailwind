@@ -5,10 +5,6 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.auth-container {
-  min-height: 100vh;
-}
-
 .auth-box {
   background: #16213e;
   border-radius: 10px;

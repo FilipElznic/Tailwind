@@ -2,7 +2,7 @@ import "../App.css";
 
 function Test2() {
   return (
-    <div className="parent">
+    <div className="parent flex-md-column">
       <div className="div1">1</div>
       <div className="div2">
         <div className="border-div"></div>

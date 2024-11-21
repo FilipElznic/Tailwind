@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import "./Registration.css"; // Custom CSS for additional styling
+import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
 
 function Registration() {
   const [email, setEmail] = useState("");
