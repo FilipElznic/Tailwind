@@ -1,17 +1,16 @@
 import "./App.css";
-import Registratiton from "./components/Registration";
-import Test from "./Components/test";
-import Test2 from "./Components/Test2";
-import Test3 from "./Components/Test3";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./pages/loginPage";
+import Success from "./pages/successPage";
 
 function App() {
   return (
-    <>
-      <Registratiton />
-      <Test />
-      <Test2 />
-      <Test3 />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/success" element={<Success />} />
+      </Routes>
+    </Router>
   );
 }
 
