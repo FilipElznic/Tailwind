@@ -46,7 +46,12 @@ function LoginPage() {
   return (
     <div>
       <h1>Login</h1>
-      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      <Auth
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        providers={[]}
+        languages={["cz"]}
+      />
     </div>
   );
 }

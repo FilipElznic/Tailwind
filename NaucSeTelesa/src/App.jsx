@@ -1,16 +1,37 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/loginPage";
-import Success from "./pages/successPage";
+import { AuthProvider } from "./AuthContext";
+import LoginPage from "./pages/loginPage";
+import SuccessPage from "./pages/successPage";
+import { ProtectedRoute, RedirectIfLoggedIn } from "./ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/success" element={<Success />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Protect the Success page */}
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute redirectTo="/">
+                <SuccessPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Redirect logged-in users from the Login page */}
+          <Route
+            path="/"
+            element={
+              <RedirectIfLoggedIn redirectTo="/success">
+                <LoginPage />
+              </RedirectIfLoggedIn>
+            }
+          />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
