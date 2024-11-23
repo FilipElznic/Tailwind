@@ -4,6 +4,7 @@ import { AuthProvider } from "./AuthContext";
 import LoginPage from "./pages/loginPage";
 import SuccessPage from "./pages/successPage";
 import { ProtectedRoute, RedirectIfLoggedIn } from "./ProtectedRoute";
+import TailwindTest from "./pages/TailwindTest";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             element={
               <RedirectIfLoggedIn redirectTo="/success">
                 <LoginPage />
+                <TailwindTest />
               </RedirectIfLoggedIn>
             }
           />
