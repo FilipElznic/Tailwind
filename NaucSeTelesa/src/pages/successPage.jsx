@@ -1,15 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const supabase = createClient(
   "https://bviuhriolcuvayzbgzum.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2aXVocmlvbGN1dmF5emJnenVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MDgyOTksImV4cCI6MjA0NTA4NDI5OX0.A5c9eHjNu37OaCt9DTCr-aKFHvyG8z1X_dHLpxl7aRc"
 );
+
 function SuccessPage() {
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch user data and log it to the console [ toto vypíše data uživatele do konzole z databáze ]
+  // Fetch user data and update state
   useEffect(() => {
     async function fetchData() {
       try {
@@ -21,6 +23,7 @@ function SuccessPage() {
           console.error("Error fetching data:", error);
         } else {
           console.log("User data:", data);
+          setUserData(data[0]); // Store the first user data object in the state
         }
       } catch (error) {
         console.error("Unexpected error:", error);
@@ -32,7 +35,6 @@ function SuccessPage() {
 
   // Sign-out function
   async function signOutUser() {
-    //[ toto odhlasi uzivatele ]
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
@@ -48,6 +50,21 @@ function SuccessPage() {
   return (
     <div>
       <h1>Registrace proběhla úspěšně</h1>
+
+      {/* Conditionally render user data */}
+      {userData ? (
+        <div>
+          <p>
+            <strong>Name:</strong> {userData.Name}
+          </p>
+          <p>
+            <strong>Admin:</strong> {userData.Admin ? "Yes" : "No"}
+          </p>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
+
       <button onClick={signOutUser}>Odhlásit se</button>
     </div>
   );
