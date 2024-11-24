@@ -30,8 +30,10 @@ function LoginPage() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
         navigate("/success");
+        console.log(subscription);
       } else if (event === "SIGNED_OUT") {
         navigate("/");
+        console.log(subscription);
       }
     });
 
