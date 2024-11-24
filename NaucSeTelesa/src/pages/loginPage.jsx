@@ -23,7 +23,6 @@ function LoginPage() {
         navigate("/success");
       }
     };
-
     checkSession();
 
     const {

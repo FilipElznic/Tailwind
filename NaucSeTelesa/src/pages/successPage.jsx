@@ -55,7 +55,15 @@ function SuccessPage() {
     <div>
       <h1>Registrace proběhla úspěšně</h1>
 
-      {/* Conditionally render user data */}
+      <button onClick={signOutUser}>Odhlásit se</button>
+    </div>
+  );
+}
+
+export default SuccessPage;
+
+/* 
+ 
       {userData ? (
         <div>
           <p>
@@ -69,9 +77,4 @@ function SuccessPage() {
         <p>Loading user data...</p>
       )}
 
-      <button onClick={signOutUser}>Odhlásit se</button>
-    </div>
-  );
-}
-
-export default SuccessPage;
+*/
