@@ -5,6 +5,7 @@ import LoginPage from "./pages/loginPage";
 import SuccessPage from "./pages/successPage";
 import { ProtectedRoute, RedirectIfLoggedIn } from "./ProtectedRoute";
 import TailwindTest from "./pages/TailwindTest";
+import UserPage from "./pages/userpage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <RedirectIfLoggedIn redirectTo="/success">
                 <LoginPage />
                 <TailwindTest />
+                <UserPage />
               </RedirectIfLoggedIn>
             }
           />
