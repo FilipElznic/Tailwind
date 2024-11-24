@@ -15,7 +15,7 @@ function SuccessPage() {
       try {
         const { data, error } = await supabase
           .from("user") // Replace 'user' with your actual table name if different
-          .select("");
+          .select("id, Admin, Name");
 
         if (error) {
           console.error("Error fetching data:", error);
