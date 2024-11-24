@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const supabase = createClient(
@@ -8,11 +8,14 @@ const supabase = createClient(
 );
 
 function SuccessPage() {
-  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch user data and update state
-  useEffect(() => {
+  /* 
+  // Basic select
+    const [userData, setUserData] = useState(null);
+
+
+   useEffect(() => {
     async function fetchData() {
       try {
         const { data, error } = await supabase
@@ -31,7 +34,8 @@ function SuccessPage() {
     }
 
     fetchData();
-  }, []);
+  }, []);*/
+  // Fetch user data and update state
 
   // Sign-out function
   async function signOutUser() {

@@ -13,27 +13,28 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check the initial session
+    // Check if a session exists
     const checkSession = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
       if (session) {
+        console.log("User session:", session);
         navigate("/success");
       }
     };
+
     checkSession();
 
-    // Listen for authentication state changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
+        console.log("User signed in:", session);
         navigate("/success");
-        console.log(subscription);
       } else if (event === "SIGNED_OUT") {
+        console.log("User signed out:", session);
         navigate("/");
-        console.log(subscription);
       }
     });
 
