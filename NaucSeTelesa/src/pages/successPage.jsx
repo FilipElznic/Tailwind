@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-//import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const supabase = createClient(
@@ -10,12 +10,10 @@ const supabase = createClient(
 function SuccessPage() {
   const navigate = useNavigate();
 
-  /* 
   // Basic select
-    const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
 
-
-   useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       try {
         const { data, error } = await supabase
@@ -34,7 +32,7 @@ function SuccessPage() {
     }
 
     fetchData();
-  }, []);*/
+  }, []);
   // Fetch user data and update state
 
   // Sign-out function
@@ -54,7 +52,18 @@ function SuccessPage() {
   return (
     <div>
       <h1>Registrace proběhla úspěšně</h1>
-
+      {userData ? (
+        <div>
+          <p>
+            <strong>Name:</strong> {userData.Name}
+          </p>
+          <p>
+            <strong>Admin:</strong> {userData.Admin ? "Yes" : "No"}
+          </p>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
       <button onClick={signOutUser}>Odhlásit se</button>
     </div>
   );
