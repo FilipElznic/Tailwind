@@ -17,8 +17,8 @@ function SuccessPage() {
     async function fetchData() {
       try {
         const { data, error } = await supabase
-          .from("user") // Replace 'user' with your actual table name if different
-          .select("id, Admin, Name");
+          .from("user") // Replace 'user' with your actual table name if different // select
+          .select("*");
 
         if (error) {
           console.error("Error fetching data:", error);
@@ -33,6 +33,7 @@ function SuccessPage() {
 
     fetchData();
   }, []);
+
   // Fetch user data and update state
 
   // Sign-out function
@@ -55,10 +56,10 @@ function SuccessPage() {
       {userData ? (
         <div>
           <p>
-            <strong>Name:</strong> {userData.Name}
+            <strong>Name:</strong> {userData.name}
           </p>
           <p>
-            <strong>Admin:</strong> {userData.Admin ? "Yes" : "No"}
+            <strong>Admin:</strong> {userData.admin ? "Yes" : "No"}
           </p>
         </div>
       ) : (

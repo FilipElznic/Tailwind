@@ -20,7 +20,25 @@ function LoginPage() {
       } = await supabase.auth.getSession();
       if (session) {
         console.log("User session:", session);
+        console.log("User id:", session.user.id);
         navigate("/success");
+
+        // Insert new user details into 'user' table after successful login
+        const { error } = await supabase.from("user").insert([
+          {
+            name: "John222", // Replace with dynamic data if necessary
+            surname: "Doe", // Replace with dynamic data if necessary
+            nickname: "johndoe", // Replace with dynamic data if necessary
+            admin: true, // Example boolean value
+            authid: session.user.id, // User ID from session
+          },
+        ]);
+
+        if (error) {
+          console.error("Error inserting user data:", error.message);
+        } else {
+          console.log("User data inserted successfully");
+        }
       }
     };
     checkSession();
