@@ -13,44 +13,51 @@ function LoginPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if a session exists
-
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        console.log("User signed in:", session);
-        const checkSession = async () => {
-          const {
-            data: { session },
-          } = await supabase.auth.getSession();
-          if (session) {
-            console.log("User session:", session);
-            console.log("User id:", session.user.id);
-            navigate("/success");
+      if (event === "SIGNED_IN" && session) {
+        const handleSignIn = async () => {
+          try {
+            // Check if user already exists in the 'user' table
+            const { data: existingUser } = await supabase
+              .from("user")
+              .select("authid")
+              .eq("authid", session.user.id)
+              .single();
 
-            // Insert new user details into 'user' table after successful login
-            const { error } = await supabase.from("user").insert([
-              {
-                name: "John222", // Replace with dynamic data if necessary
-                surname: "Doe", // Replace with dynamic data if necessary
-                nickname: "johndoe", // Replace with dynamic data if necessary
-                admin: true, // Example boolean value
-                authid: session.user.id, // User ID from session
-              },
-            ]);
+            if (!existingUser) {
+              // User does not exist, insert new user data
+              const { error: insertError } = await supabase
+                .from("user")
+                .insert([
+                  {
+                    authid: session.user.id, // User ID from session
+                  },
+                ]);
 
-            if (error) {
-              console.error("Error inserting user data:", error.message);
+              if (insertError) {
+                console.error(
+                  "Error inserting user data:",
+                  insertError.message
+                );
+              } else {
+                console.log("User data inserted successfully");
+              }
             } else {
-              console.log("User data inserted successfully");
+              console.log("User already exists, no data inserted");
             }
+
+            // Navigate to the success page after processing
+            navigate("/success");
+          } catch (err) {
+            console.error("Unexpected error:", err);
           }
         };
-        checkSession();
-        navigate("/success");
+
+        handleSignIn();
       } else if (event === "SIGNED_OUT") {
-        console.log("User signed out:", session);
+        console.log("User signed out");
         navigate("/");
       }
     });
