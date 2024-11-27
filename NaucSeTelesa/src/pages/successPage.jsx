@@ -9,22 +9,42 @@ const supabase = createClient(
 
 function SuccessPage() {
   const navigate = useNavigate();
-
-  // Basic select
-  const [userData, setUserData] = useState(null);
+  const [authUser, setAuthUser] = useState(null); // State for authenticated user
 
   useEffect(() => {
+    // Fetch authenticated user details
+    async function fetchAuthUser() {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Error fetching session:", error);
+      } else if (session) {
+        setAuthUser(session.user); // Set the authenticated user in state
+        console.log("Authenticated user:", session.user);
+      }
+    }
+
+    fetchAuthUser();
+  }, []);
+
+  useEffect(() => {
+    // Fetch additional user data from the database
     async function fetchData() {
       try {
-        const { data, error } = await supabase
-          .from("user") // Replace 'user' with your actual table name if different // select
-          .select("*");
+        if (authUser) {
+          const { data, error } = await supabase
+            .from("user") // Replace 'user' with your actual table name
+            .select("*")
+            .eq("authid", authUser.id); // Filter by authenticated user's ID
 
-        if (error) {
-          console.error("Error fetching data:", error);
-        } else {
-          console.log("User data:", data);
-          setUserData(data[0]); // Store the first user data object in the state
+          if (error) {
+            console.error("Error fetching data:", error);
+          } else if (data.length > 0) {
+            console.log("User data:", data[0]);
+          }
         }
       } catch (error) {
         console.error("Unexpected error:", error);
@@ -32,9 +52,7 @@ function SuccessPage() {
     }
 
     fetchData();
-  }, []);
-
-  // Fetch user data and update state
+  }, [authUser]);
 
   // Sign-out function
   async function signOutUser() {
@@ -53,18 +71,19 @@ function SuccessPage() {
   return (
     <div>
       <h1>Registrace proběhla úspěšně</h1>
-      {userData ? (
+      {authUser ? (
         <div>
           <p>
-            <strong>Name:</strong> {userData.name}
+            <strong>User ID:</strong> {authUser.id}
           </p>
           <p>
-            <strong>Admin:</strong> {userData.admin ? "Yes" : "No"}
+            <strong>Email:</strong> {authUser.email}
           </p>
         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p>Loading authenticated user...</p>
       )}
+
       <button onClick={signOutUser}>Odhlásit se</button>
     </div>
   );
