@@ -10,10 +10,9 @@ const supabase = createClient(
 
 function SuccessPage() {
   const navigate = useNavigate();
-  const [authUser, setAuthUser] = useState(null); // State for authenticated user
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
-    // Fetch authenticated user details
     async function fetchAuthUser() {
       const {
         data: { session },
@@ -23,23 +22,21 @@ function SuccessPage() {
       if (error) {
         console.error("Error fetching session:", error);
       } else if (session) {
-        setAuthUser(session.user); // Set the authenticated user in state
+        setAuthUser(session.user);
         console.log("Authenticated user:", session.user);
       }
     }
-
     fetchAuthUser();
   }, []);
 
   useEffect(() => {
-    // Fetch additional user data from the database
     async function fetchData() {
       try {
         if (authUser) {
           const { data, error } = await supabase
-            .from("user") // Replace 'user' with your actual table name
+            .from("user")
             .select("*")
-            .eq("authid", authUser.id); // Filter by authenticated user's ID
+            .eq("authid", authUser.id);
 
           if (error) {
             console.error("Error fetching data:", error);
@@ -51,18 +48,16 @@ function SuccessPage() {
         console.error("Unexpected error:", error);
       }
     }
-
     fetchData();
   }, [authUser]);
 
-  // Sign-out function
   async function signOutUser() {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error("Error signing out:", error);
       } else {
-        navigate("/"); // Redirect to the home page after successful sign-out
+        navigate("/");
       }
     } catch (error) {
       console.error("Unexpected error during sign-out:", error);
@@ -70,11 +65,11 @@ function SuccessPage() {
   }
 
   return (
-    <div>
-      <h1>Registrace proběhla úspěšně</h1>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      <h1 className="text-2xl font-bold mb-6">Registrace proběhla úspěšně</h1>
       {authUser ? (
-        <div>
-          <p>
+        <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center mb-6">
+          <p className="mb-2">
             <strong>User ID:</strong> {authUser.id}
           </p>
           <p>
@@ -84,28 +79,15 @@ function SuccessPage() {
       ) : (
         <p>Loading authenticated user...</p>
       )}
-
-      <button onClick={signOutUser}>Odhlásit se</button>
+      <button
+        onClick={signOutUser}
+        className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-500 hover:scale-105 transform transition-all duration-200 ease-in-out focus:ring-4 focus:ring-blue-300"
+      >
+        Odhlásit se
+      </button>
       <AdminPage />
     </div>
   );
 }
 
 export default SuccessPage;
-
-/* 
- 
-      {userData ? (
-        <div>
-          <p>
-            <strong>Name:</strong> {userData.Name}
-          </p>
-          <p>
-            <strong>Admin:</strong> {userData.Admin ? "Yes" : "No"}
-          </p>
-        </div>
-      ) : (
-        <p>Loading user data...</p>
-      )}
-
-*/

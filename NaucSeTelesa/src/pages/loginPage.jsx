@@ -19,7 +19,6 @@ function LoginPage() {
       if (event === "SIGNED_IN" && session) {
         const handleSignIn = async () => {
           try {
-            // Check if user already exists in the 'user' table
             const { data: existingUser } = await supabase
               .from("user")
               .select("authid")
@@ -27,14 +26,9 @@ function LoginPage() {
               .single();
 
             if (!existingUser) {
-              // User does not exist, insert new user data
               const { error: insertError } = await supabase
                 .from("user")
-                .insert([
-                  {
-                    authid: session.user.id, // User ID from session
-                  },
-                ]);
+                .insert([{ authid: session.user.id }]);
 
               if (insertError) {
                 console.error(
@@ -48,7 +42,6 @@ function LoginPage() {
               console.log("User already exists, no data inserted");
             }
 
-            // Navigate to the success page after processing
             navigate("/success");
           } catch (err) {
             console.error("Unexpected error:", err);
@@ -61,7 +54,6 @@ function LoginPage() {
       }
     });
 
-    // Cleanup listener on component unmount
     return () => {
       if (subscription) {
         subscription.unsubscribe();
@@ -70,14 +62,29 @@ function LoginPage() {
   }, [navigate]);
 
   return (
-    <div>
-      <h1>Login</h1>
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        providers={["google", "discord"]}
-        languages={["cz"]}
-      />
+    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-md text-center">
+        <h1 className="text-2xl font-bold mb-6">Přihlášení</h1>
+        <Auth
+          supabaseClient={supabase}
+          appearance={{
+            theme: ThemeSupa,
+            variables: {
+              default: {
+                colors: {
+                  brand: "#3b82f6", // Tailwind's blue-500
+                  brandAccent: "#2563eb", // Tailwind's blue-600
+                  defaultButtonText: "#fff",
+                  defaultButtonBackground: "#2563eb",
+                  defaultButtonHoverBackground: "#1e40af", // Tailwind's blue-800
+                },
+              },
+            },
+          }}
+          providers={["google", "discord"]}
+          localization={{ lang: "cz" }}
+        />
+      </div>
     </div>
   );
 }

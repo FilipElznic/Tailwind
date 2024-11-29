@@ -67,13 +67,8 @@ function AdminPage() {
 
   return (
     <div>
-      <h1>Admin Page</h1>
       {authUser ? (
         <div>
-          <p>
-            <strong>Admin:</strong>{" "}
-            {isAdmin === null ? "Loading..." : isAdmin ? "Yes" : "No"}
-          </p>
           {isAdmin && (
             <div>
               <button onClick={fetchAllUsers}>
