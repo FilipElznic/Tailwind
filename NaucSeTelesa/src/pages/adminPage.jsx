@@ -10,6 +10,7 @@ function AdminPage() {
   const [authUser, setAuthUser] = useState(null); // Authenticated user
   const [isAdmin, setIsAdmin] = useState(null); // Admin status
   const [users, setUsers] = useState([]); // All users list
+  const [showUsers, setShowUsers] = useState(false); // Toggle user visibility
 
   // Fetch authenticated user details
   useEffect(() => {
@@ -51,13 +52,17 @@ function AdminPage() {
 
   // Fetch all users
   const fetchAllUsers = async () => {
-    const { data, error } = await supabase.from("user").select("*");
+    if (!showUsers) {
+      const { data, error } = await supabase.from("user").select("*");
+      console.log("All users:", data);
 
-    if (error) {
-      console.error("Error fetching users:", error);
-    } else {
-      setUsers(data); // Set the users in state
+      if (error) {
+        console.error("Error fetching users:", error);
+      } else {
+        setUsers(data); // Set the users in state
+      }
     }
+    setShowUsers((prev) => !prev); // Toggle user visibility
   };
 
   return (
@@ -71,11 +76,13 @@ function AdminPage() {
           </p>
           {isAdmin && (
             <div>
-              <button onClick={fetchAllUsers}>Show All Users</button>
+              <button onClick={fetchAllUsers}>
+                {showUsers ? "Hide Users" : "Show All Users"}
+              </button>
               {/* Add other admin buttons as needed */}
             </div>
           )}
-          {users.length > 0 && (
+          {showUsers && users.length > 0 && (
             <div>
               <h2>All Users:</h2>
               <ul>
