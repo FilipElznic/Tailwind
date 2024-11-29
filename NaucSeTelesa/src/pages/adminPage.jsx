@@ -83,7 +83,8 @@ function AdminPage() {
               <ul>
                 {users.map((user) => (
                   <li key={user.id}>
-                    {user.name} {user.surname} ({user.nickname})
+                    User id: {user.id}, name: {user.name}, surname:{" "}
+                    {user.surname}, nickname: {user.nickname}
                   </li>
                 ))}
               </ul>
