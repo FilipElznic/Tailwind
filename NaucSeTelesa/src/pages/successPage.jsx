@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AdminPage from "./adminPage";
 
 const supabase = createClient(
   "https://bviuhriolcuvayzbgzum.supabase.co",
@@ -85,6 +86,7 @@ function SuccessPage() {
       )}
 
       <button onClick={signOutUser}>Odhlásit se</button>
+      <AdminPage />
     </div>
   );
 }

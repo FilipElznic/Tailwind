@@ -58,7 +58,6 @@ function LoginPage() {
         handleSignIn();
       } else if (event === "SIGNED_OUT") {
         console.log("User signed out");
-        navigate("/");
       }
     });
 
@@ -76,7 +75,7 @@ function LoginPage() {
       <Auth
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
-        providers={[]}
+        providers={["google", "discord"]}
         languages={["cz"]}
       />
     </div>
