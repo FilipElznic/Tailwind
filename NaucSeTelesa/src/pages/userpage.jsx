@@ -1,24 +1,21 @@
 import Navbar from "../Components/navbar";
+import "../App.css";
 
 function UserPage() {
   return (
     <>
-      <Navbar />
-      <div className="relative h-screen ">
-        {/* Video background */}
-        <video
-          className="absolute top-0 left-0 w-[80] h-full object-fit justify-center align-items-center"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source
-            src="https://cdn.discordapp.com/attachments/793807164291416064/1313042815583911978/aivideotest.mp4?ex=674eb1ea&is=674d606a&hm=8b8e647c8bed3b15883b5e3b1aec52f9e6a3b57db37df1598d89db8c1574ae8e&"
-            type="video/mp4"
+      <div className="relative h-screen bg-slate-600">
+        <Navbar />
+      </div>
+      <div className="relative h-screen bg-slate-600">
+        {/* Centered GIF */}
+        <div className="flex justify-center items-center h-full">
+          <img
+            className="w-full h-auto"
+            src="https://cdn.discordapp.com/attachments/793807164291416064/1313218308581101618/robotai-1--unscreen.gif?ex=674f555b&is=674e03db&hm=1c895cb9b396dd7479c8cc777eb2a7b12efbc8bcb6f0aac54bfb7d214ec0bf57&"
+            alt="video/mp4"
           />
-          Your browser does not support the video tag.
-        </video>
+        </div>
 
         {/* Grid container */}
         <div
@@ -30,19 +27,17 @@ function UserPage() {
           "
         >
           {/* Div 1 */}
-          <div className="bg-red-500 sm:col-start-1 sm:col-end-3 sm:row-start-5 sm:row-end-6">
+          <div className="bg-gray-700 sm:col-start-1 sm:col-end-3 sm:row-start-5 sm:row-end-6 rounded-tr-xl ">
             Div 1
           </div>
-          {/* Div 2 */}
-          <div className="bg-green-500 sm:col-start-4 sm:col-end-6 sm:row-start-1 sm:row-end-2">
-            Div 2
-          </div>
+
           {/* Div 3 */}
-          <div className="bg-blue-500 sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-2">
+          <div className="bg-gray-700 sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-2 rounded-br-xl rounded-tr-xl">
             Div 3
           </div>
         </div>
       </div>
+      <div className="relative h-screen bg-gray-700"></div>
     </>
   );
 }
