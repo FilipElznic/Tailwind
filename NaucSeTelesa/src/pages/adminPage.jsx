@@ -66,35 +66,37 @@ function AdminPage() {
   };
 
   return (
-    <div>
-      {authUser ? (
-        <div>
-          {isAdmin && (
-            <div>
-              <button onClick={fetchAllUsers}>
-                {showUsers ? "Hide Users" : "Show All Users"}
-              </button>
-              {/* Add other admin buttons as needed */}
-            </div>
-          )}
-          {showUsers && users.length > 0 && (
-            <div>
-              <h2>All Users:</h2>
-              <ul>
-                {users.map((user) => (
-                  <li key={user.id}>
-                    User id: {user.id}, name: {user.name}, surname:{" "}
-                    {user.surname}, nickname: {user.nickname}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      ) : (
-        <p>Loading user data...</p>
-      )}
-    </div>
+    <>
+      <div className="">
+        {authUser ? (
+          <div>
+            {isAdmin && (
+              <div>
+                <button onClick={fetchAllUsers}>
+                  {showUsers ? "Hide Users" : "Show All Users"}
+                </button>
+                {/* Add other admin buttons as needed */}
+              </div>
+            )}
+            {showUsers && users.length > 0 && (
+              <div>
+                <h2>All Users:</h2>
+                <ul>
+                  {users.map((user) => (
+                    <li key={user.id}>
+                      User id: {user.id}, name: {user.name}, surname:{" "}
+                      {user.surname}, nickname: {user.nickname}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ) : (
+          <p>Loading user data...</p>
+        )}
+      </div>
+    </>
   );
 }
 
