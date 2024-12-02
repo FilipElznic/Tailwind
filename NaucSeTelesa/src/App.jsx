@@ -5,12 +5,15 @@ import LoginPage from "./pages/loginPage";
 import SuccessPage from "./pages/successPage";
 import { ProtectedRoute, RedirectIfLoggedIn } from "./ProtectedRoute";
 import TailwindTest from "./pages/TailwindTest";
+import UserPage from "./pages/userpage";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/user" element={<UserPage />} />
+          {/* Protect the Success page */}
           <Route path="/tailwind" element={<TailwindTest />} />
           {/* Protect the Success page */}
           <Route

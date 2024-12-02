@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
     "@supabase/supabase-js": "^2.46.1",
     "bootstrap": "^5.3.3",
     "react": "^18.3.1",
