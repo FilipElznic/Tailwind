@@ -1,5 +1,5 @@
-import Navbar from "../Components/navbar";
 import "../App.css";
+import Navbar from "../Components/navbar";
 
 function UserPage() {
   return (
@@ -18,9 +18,11 @@ function UserPage() {
             </div>
           </div>
           <div className="col-start-1 col-end-2 row-start-2 row-end-6 bg-black">
-            <div className="flex flex-col justify-center h-1/2">
-              <h1 className="text-white">Nechte se vnést do světa geometrie</h1>
-              <p className="text-white">
+            <div className="absolute flex flex-col justify-center h-1/2 gap-11 ml-20">
+              <h1 className="text-white text-7xl">
+                Nechte se vnést<br></br> do světa geometrie
+              </h1>
+              <p className="text-white w-1/3 text-2xl">
                 Pokud by se pro stejný účel použil smysluplný text, bylo by
                 těžké hodnotit pouze vzhled, aniž by se pozorovatel nechal svést
                 ke čtení obsahu. Pokud by byl naopak použit nesmyslný, ale
@@ -29,16 +31,11 @@ function UserPage() {
             </div>
           </div>
           <div className="col-start-1 col-end-6 row-start-1 row-end-2 bg-black">
-            Div 3
+            <Navbar />
           </div>
         </div>
       </div>
-      <div className="relative h-screen bg-gray-700">
-        <video className="w-full h-auto" autoPlay loop muted playsInline>
-          <source src="/robot.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <div className="relative h-screen bg-gray-700 justify-center align-items-center"></div>
     </>
   );
 }
