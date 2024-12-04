@@ -17,3 +17,15 @@ p {
     rgba(0, 0, 0, 1) 100%
   );
 }
+.webbg {
+  background: rgb(41, 41, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(41, 41, 41, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+h-screen.w-full {
+  background-color: transparent;
+}

@@ -19,7 +19,7 @@ function UserPage() {
           </div>
           <div className="col-start-1 col-end-2 row-start-2 row-end-6 bg-black">
             <div className="absolute flex flex-col justify-center h-1/2 gap-11 ml-20">
-              <h1 className="text-white text-7xl">
+              <h1 className="text-white text-6xl">
                 Nechte se vnést<br></br> do světa geometrie
               </h1>
               <p className="text-white w-1/3 text-2xl">
@@ -35,8 +35,12 @@ function UserPage() {
           </div>
         </div>
       </div>
-      <div className="relative h-screen bg-black justify-center align-items-center">
+      <div className="relative  webbg justify-center align-items-center">
         <div className="bg-white h-[1px] w-full"></div>
+        <div className="h-screen w-full">1</div>
+        <div className="h-screen w-full">2</div>
+        <div className="h-screen w-full">3</div>
+        <div className="h-screen w-full">4</div>
       </div>
     </>
   );

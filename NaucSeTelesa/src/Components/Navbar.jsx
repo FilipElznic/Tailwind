@@ -38,7 +38,12 @@ function Navbar() {
             isMenuOpen ? "block" : "hidden"
           } absolute top-16 left-0 w-full bg-black lg:static lg:block lg:w-auto`}
         >
-          <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0">
+          <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0 ml-12">
+            <li>
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+                Tělesa
+              </button>
+            </li>
             <li>
               <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
                 Tělesa
@@ -60,8 +65,8 @@ function Navbar() {
 
       {/* Right Side: Prihlaseni */}
       <div>
-        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border border-green-800 ">
-          <p className="text-green-800 text-1xl">Prihlaseni</p>
+        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border border-green-400 mr-12">
+          <p className="text-green-400 text-1xl">Prihlaseni</p>
         </button>
       </div>
     </nav>
