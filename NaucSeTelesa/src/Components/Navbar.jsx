@@ -40,18 +40,18 @@ function Navbar() {
         >
           <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0">
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-60 px-4 py-4 text-xl rounded-full border border-gray-800 ">
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
                 Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-60 px-4 py-4 text-xl rounded-full border border-gray-800 ">
-                Úkoly
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+                Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-60 px-4 py-4 text-xl rounded-full border border-gray-800 ">
-                O nás
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+                Tělesa
               </button>
             </li>
           </ul>
@@ -60,8 +60,8 @@ function Navbar() {
 
       {/* Right Side: Prihlaseni */}
       <div>
-        <button className="bg-black text-white w-32 md:w-40 lg:w-60 px-4 py-4 text-xl rounded-full border border-gray-800 ">
-          O nás
+        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border border-green-800 ">
+          <p className="text-green-800 text-1xl">Prihlaseni</p>
         </button>
       </div>
     </nav>

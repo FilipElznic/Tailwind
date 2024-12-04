@@ -35,7 +35,9 @@ function UserPage() {
           </div>
         </div>
       </div>
-      <div className="relative h-screen bg-gray-700 justify-center align-items-center"></div>
+      <div className="relative h-screen bg-black justify-center align-items-center">
+        <div className="bg-white h-[1px] w-full"></div>
+      </div>
     </>
   );
 }

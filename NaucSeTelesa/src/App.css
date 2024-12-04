@@ -10,15 +10,10 @@ p {
 }
 
 .navbutton {
-  background: rgb(235, 243, 232);
+  background: rgb(20, 20, 20);
   background: linear-gradient(
     270deg,
-    rgba(235, 243, 232, 1) 0%,
-    rgba(92, 96, 92, 1) 0%,
-    rgba(70, 73, 70, 1) 0%,
-    rgba(49, 51, 49, 1) 0%,
-    rgba(42, 44, 42, 1) 0%,
-    rgba(18, 18, 18, 1) 64%,
+    rgba(20, 20, 20, 1) 0%,
     rgba(0, 0, 0, 1) 100%
   );
 }
