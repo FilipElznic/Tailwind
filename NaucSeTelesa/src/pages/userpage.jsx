@@ -1,4 +1,5 @@
 import "../App.css";
+import Footer from "../Components/Footer";
 import Navbar from "../Components/navbar";
 
 function UserPage() {
@@ -40,8 +41,9 @@ function UserPage() {
         <div className="h-screen w-full">1</div>
         <div className="h-screen w-full">2</div>
         <div className="h-screen w-full">3</div>
-        <div className="h-screen w-full">4</div>
+        <div className="h-screen w-full"></div>
       </div>
+      <Footer />
     </>
   );
 }
