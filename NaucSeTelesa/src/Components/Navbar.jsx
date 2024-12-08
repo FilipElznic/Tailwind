@@ -36,26 +36,26 @@ function Navbar() {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } absolute top-16 left-0 w-full bg-black lg:static lg:block lg:w-auto`}
+          } absolute top-16 left-0 w-full bg-black lg:static lg:block lg:w-auto  rounded-full`}
         >
           <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0 ml-12">
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
                 Nevim
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
                 Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
                 Úkoly
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border">
+              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
                 O projektu
               </button>
             </li>

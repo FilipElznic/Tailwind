@@ -5,7 +5,7 @@ import Navbar from "../Components/navbar";
 function UserPage() {
   return (
     <>
-      <div className="relative h-screen bg-color">
+      <div className="relative bg-color">
         {/* Centered Video */}
 
         {/* Grid container */}
@@ -36,9 +36,28 @@ function UserPage() {
           </div>
         </div>
       </div>
-      <div className="relative  webbg justify-center align-items-center">
-        <div className="bg-white h-[1px] w-full"></div>
-        <div className="h-screen w-full">1</div>
+      <div className="webbg border-top">
+        <div className="grid grid-cols-[1fr_0.5fr_1fr] grid-rows-[1fr_1fr] gap-0 h-screen text-white">
+          <div className="col-span-1 row-span-2 flex justify-center items-center">
+            <div>
+              <h1 className="text-6xl m-24">FEATURES</h1>
+              <p className="text-xl m-24">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia
+                inventore reiciendis, voluptate minus optio quasi officiis at
+                exercitationem id qui illo suscipit quisquam impedit! Sequi
+                debitis nisi aut non quia!
+              </p>
+            </div>
+          </div>
+          <div className="col-span-2 row-span-2 flex justify-center items-center">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+
         <div className="h-screen w-full">2</div>
         <div className="h-screen w-full">3</div>
         <div className="h-screen w-full"></div>
