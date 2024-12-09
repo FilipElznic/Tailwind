@@ -1,6 +1,7 @@
 import "../App.css";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/navbar";
+import Spline from "@splinetool/react-spline";
 
 function UserPage() {
   return (
@@ -64,7 +65,27 @@ function UserPage() {
             </div>
           </div>
         </div>
-        <div className="h-screen w-full">3</div>
+        <div className="h-screen w-full flex flex-col sm:flex-row">
+          <div className="flex-1 justify-center items-center">
+            <div className="w-full pl-[8vw]">
+              <Spline scene="https://prod.spline.design/RQpbSMy4Go0dSfFW/scene.splinecode" />
+            </div>
+          </div>
+
+          <div className="flex-1 text-white justify-center items-center w-full">
+            <div>
+              <h1 className="text-8xl m-24">ABOUT</h1>
+              <p className="text-xl m-10">
+                Je-li MUTEX volný proces se stává držitelem MUTEXU
+              </p>
+              <p className="text-2xl m-24">
+                Pokud by se pro starý účel použil smysluplný text, bylo by těžké
+                hodnotit pouze umění, aniž by se posuzoval možná smysl té části
+                obsahu.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="h-screen w-full"></div>
       </div>
       <Footer />

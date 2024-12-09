@@ -2,7 +2,7 @@ import "../App.css";
 
 function Footer() {
   return (
-    <div className="bg-quick p-3 sm:pl-[20vw] sm:pr-[20vw] ">
+    <div className="bg-quick p-3 sm:pl-[20vw] sm:pr-[20vw] border-t border-gray-700">
       <div className="flex flex-col sm:flex-row justify-between items-center pb-3">
         {/* Logo */}
         <div className="flex flex-row  mb-4 sm:mb-0">
@@ -33,7 +33,7 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <hr className="my-6 sm:mx-auto border-gray-700 lg:my-8" />
 
       {/* Footer */}
       <div className="text-center mt-3">
