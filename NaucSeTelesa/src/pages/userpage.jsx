@@ -66,19 +66,19 @@ function UserPage() {
           </div>
         </div>
         <div className="h-screen w-full flex flex-col sm:flex-row">
-          <div className="flex-1 justify-center items-center">
+          <div className="flex-1 ">
             <div className="w-full pl-[8vw]">
-              <Spline scene="https://prod.spline.design/RQpbSMy4Go0dSfFW/scene.splinecode" />
+              <Spline scene="https://prod.spline.design/6IbPWJKA5ZBXbkKa/scene.splinecode" />
             </div>
           </div>
 
           <div className="flex-1 text-white justify-center items-center w-full">
             <div>
-              <h1 className="text-8xl m-24">ABOUT</h1>
-              <p className="text-xl m-10">
+              <h1 className="text-8xl">ABOUT</h1>
+              <p className="text-xl">
                 Je-li MUTEX volný proces se stává držitelem MUTEXU
               </p>
-              <p className="text-2xl m-24">
+              <p className="text-2xl">
                 Pokud by se pro starý účel použil smysluplný text, bylo by těžké
                 hodnotit pouze umění, aniž by se posuzoval možná smysl té části
                 obsahu.
