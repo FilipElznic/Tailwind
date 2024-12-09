@@ -1,6 +1,8 @@
+import "../App.css";
+
 function Footer() {
   return (
-    <div className="bg-black p-3 sm:pl-[20vw] sm:pr-[20vw] ">
+    <div className="bg-quick p-3 sm:pl-[20vw] sm:pr-[20vw] ">
       <div className="flex flex-col sm:flex-row justify-between items-center pb-3">
         {/* Logo */}
         <div className="flex flex-row  mb-4 sm:mb-0">

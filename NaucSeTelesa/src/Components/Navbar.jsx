@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../App.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -8,7 +8,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-black text-white px-4 py-2 flex justify-between items-center mt-5">
+    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center mt-5">
       {/* Left Side: Collapsible Menu */}
       <div className="flex items-center">
         {/* Hamburger Icon */}
@@ -36,7 +36,7 @@ function Navbar() {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } absolute top-16 left-0 w-full bg-black lg:static lg:block lg:w-auto  rounded-full`}
+          } absolute top-16 left-0 w-full bg-quick lg:static lg:block lg:w-auto  rounded-full`}
         >
           <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0 ml-12">
             <li>
@@ -65,8 +65,8 @@ function Navbar() {
 
       {/* Right Side: Prihlaseni */}
       <div>
-        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border border-green-400 mr-12">
-          <p className="text-green-400 text-1xl">Prihlaseni</p>
+        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border mr-12">
+          <p className="text-white text-1xl">Přihlášení</p>
         </button>
       </div>
     </nav>

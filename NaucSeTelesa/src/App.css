@@ -11,11 +11,7 @@ p {
 
 .navbutton {
   background: rgb(20, 20, 20);
-  background: linear-gradient(
-    270deg,
-    rgba(20, 20, 20, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+  background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
 }
 .webbg {
   background: rgb(41, 41, 41);
@@ -28,4 +24,17 @@ p {
 
 h-screen.w-full {
   background-color: transparent;
+}
+
+.bg-quick {
+  background-color: #050017;
+}
+
+.features1 {
+  background: rgb(20, 20, 20);
+  background: linear-gradient(160deg, #10052c 0%, #500d6a 100%);
+}
+.features2 {
+  background: rgb(20, 20, 20);
+  background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
 }
