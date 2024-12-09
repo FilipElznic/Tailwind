@@ -21,7 +21,7 @@ function UserPage() {
           </div>
           <div className="col-start-1 col-end-2 row-start-2 row-end-6 bg-quick">
             <div className="absolute flex flex-col justify-center h-1/2 gap-11 ml-20">
-              <h1 className="text-white text-6xl">
+              <h1 className="text-white text-6xl font-bold">
                 Nechte se vnést<br></br> do světa geometrie
               </h1>
               <p className="text-white w-1/3 text-2xl">
@@ -55,7 +55,7 @@ function UserPage() {
             </div>
             <div className="col-start-1 col-end-3 row-start-1 row-end-5  flex justify-center items-start pt-[20vh] pl-[8vw]">
               <div>
-                <h1 className="text-8xl m-24">FEATURES</h1>
+                <h1 className="text-8xl m-24 font-bold">FEATURES</h1>
                 <p className="text-2xl m-24">
                   Pokud by se pro starý účel použil smysluplný text, bylo by
                   těžké hodnotit pouze umění, aniž by se posuzoval možná smysl
@@ -65,28 +65,32 @@ function UserPage() {
             </div>
           </div>
         </div>
-        <div className="h-screen w-full flex flex-col sm:flex-row">
+        <div className=" w-full flex flex-col sm:flex-row">
           <div className="flex-1 ">
             <div className="w-full pl-[8vw]">
               <Spline scene="https://prod.spline.design/6IbPWJKA5ZBXbkKa/scene.splinecode" />
             </div>
           </div>
 
-          <div className="flex-1 text-white justify-center items-center w-full">
+          <div className="flex-1 text-gray-100 justify-start w-full mr-[10vh]">
             <div>
-              <h1 className="text-8xl">ABOUT</h1>
-              <p className="text-xl">
+              <h1 className="text-8xl font-bold mt-[8vw]">ABOUT</h1>
+              <p className="text-xl text-gray-800 mt-[3vw]">
                 Je-li MUTEX volný proces se stává držitelem MUTEXU
               </p>
-              <p className="text-2xl">
+              <p className="text-2xl text-gray-400">
                 Pokud by se pro starý účel použil smysluplný text, bylo by těžké
                 hodnotit pouze umění, aniž by se posuzoval možná smysl té části
-                obsahu.
+                obsahu. Pokud by se pro starý účel použil smysluplný text, bylo
+                by těžké hodnotit pouze umění, aniž by se posuzoval možná smysl
+                té části obsahu.
               </p>
             </div>
           </div>
         </div>
-        <div className="h-screen w-full"></div>
+        <div className="h-screen w-full">
+          <img src="/galaxy.png"></img>
+        </div>
       </div>
       <Footer />
     </>
