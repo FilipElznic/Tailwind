@@ -66,9 +66,25 @@ function SuccessPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-quick text-white flex flex-col items-center justify-center p-4">
         <h1 className="text-2xl font-bold mb-6">Registrace proběhla úspěšně</h1>
-        {authUser ? (
+        <button
+          onClick={signOutUser}
+          className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-500 hover:scale-105 transform transition-all duration-200 ease-in-out focus:ring-4 focus:ring-blue-300"
+        >
+          Odhlásit se
+        </button>
+
+        <div className="w-[80vw] webbg h-screen"></div>
+      </div>
+    </>
+  );
+}
+
+export default SuccessPage;
+
+/*
+{authUser ? (
           <div className="bg-gray-800 p-6 rounded-lg shadow-md text-center mb-6">
             <p className="mb-2">
               <strong>User ID:</strong> {authUser.id}
@@ -87,15 +103,6 @@ function SuccessPage() {
           Odhlásit se
         </button>
         <AdminPage />
-      </div>
-    </>
-  );
-}
-
-export default SuccessPage;
-
-/*
-
 <
 
 
