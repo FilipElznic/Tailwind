@@ -38,3 +38,7 @@ h-screen.w-full {
   background: rgb(20, 20, 20);
   background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
 }
+
+.formcolor {
+  background-color: #3c0045;
+}
