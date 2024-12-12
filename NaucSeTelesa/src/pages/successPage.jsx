@@ -67,8 +67,8 @@ function SuccessPage() {
 
   return (
     <>
-      <div className="h-screen   text-white   flex flex-col items-center justify-center p-20">
-        <div className="w-full p-5 bg-quick h-full flex flex-col items-center justify-center rounded-3xl">
+      <div className="h-screen  text-white imgbg  flex flex-col items-center justify-center p-20">
+        <div className="w-full p-5 bg-opacity-90 bg-black h-full flex flex-col items-center justify-center rounded-3xl">
           <h2 className="text-xl  mb-6 text-gray-700">
             Registrace proběhla úspěšně, ale ...
           </h2>
