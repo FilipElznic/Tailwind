@@ -42,14 +42,13 @@ h-screen.w-full {
 .formcolor {
   background-color: #3c0045;
 }
-
 .imgbg {
-  background-image: url("robot.png");
+  background-image: url("robot2.png");
   background-repeat: no-repeat;
-  background-color: #0f0e17;
-  background-size: 100%;
+  background-color: rgb(20, 20, 20); /* Ensure transparency */
+  background-size: cover;
 }
 
 .bg-form {
-  background-color: #050017;
+  background-color: rgba(5, 0, 23, 0.9);
 }
