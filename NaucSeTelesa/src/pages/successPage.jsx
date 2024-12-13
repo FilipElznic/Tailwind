@@ -166,7 +166,7 @@ function SuccessPage() {
                   type="submit"
                   className="w-60 py-2 rounded-full bg-purple-700 text-white font-semibold hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
-                  odeslat
+                  Prokračovat
                 </button>
               </form>
             </div>
