@@ -1,6 +1,6 @@
 import "../App.css";
 import Footer from "../Components/Footer";
-import Navbar from "../Components/navbar";
+import Navbar from "../Components/Navbar";
 import Spline from "@splinetool/react-spline";
 
 function UserPage() {
@@ -37,6 +37,7 @@ function UserPage() {
           </div>
         </div>
       </div>
+
       <div className="bg-quick border-top">
         <div className="w-full gap-0 text-white">
           <div className="grid grid-cols-[repeat(2,_1fr)_0.5fr_repeat(2,_1fr)] grid-rows-4 gap-0 h-screen">
@@ -72,7 +73,7 @@ function UserPage() {
             </div>
           </div>
 
-          <div className="flex-1 text-gray-100 justify-start w-full mr-[10vh]">
+          <div className="flex-1 flex flex-col sm:flex-row text-gray-100 justify-start w-full mr-[10vh]">
             <div>
               <h1 className="text-8xl font-bold mt-[8vw]">ABOUT</h1>
               <p className="text-xl text-gray-800 mt-[3vw]">
@@ -92,6 +93,7 @@ function UserPage() {
           <img src="/galaxy.png"></img>
         </div>
       </div>
+
       <Footer />
     </>
   );

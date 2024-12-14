@@ -8,7 +8,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center mt-5">
+    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center">
       {/* Left Side: Collapsible Menu */}
       <div className="flex items-center">
         {/* Hamburger Icon */}
@@ -65,7 +65,7 @@ function Navbar() {
 
       {/* Right Side: Prihlaseni */}
       <div>
-        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border mr-12">
+        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border ">
           <p className="text-white text-1xl">Přihlášení</p>
         </button>
       </div>
