@@ -66,7 +66,10 @@ function Navbar() {
 
       {/* Right Side: Přihlášení */}
       <div>
-        <button className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300">
+        <button
+          onClick={() => (window.location.href = "/")}
+          className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300"
+        >
           <p className="text-white">Přihlášení</p>
         </button>
       </div>
