@@ -16,11 +16,8 @@ function UserPage() {
           hodnotit pouze umění, aniž by se posuzoval možná smysl té části
           obsahu.
         </p>
-        <div>
-          <video autoPlay loop muted playsInline>
-            <source src="/robot.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+        <div style={{ width: "100%", height: "600px" }}>
+          <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
         </div>
         <div className="border-t border-gray-700">
           <h2 className="text-4xl font-bold text-center mt-20">FEATURES</h2>
