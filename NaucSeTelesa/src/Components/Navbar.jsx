@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -8,16 +9,16 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-quick  text-white px-4 py-2 flex justify-between items-center">
+    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center shadow-lg relative">
       {/* Left Side: Collapsible Menu */}
       <div className="flex items-center">
         {/* Hamburger Icon */}
         <button
           onClick={toggleMenu}
-          className="lg:hidden text-white focus:outline-none"
+          className="lg:hidden text-white focus:outline-none transition-transform transform duration-300"
         >
           <svg
-            className="w-6 h-6"
+            className="w-7 h-7"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -32,30 +33,30 @@ function Navbar() {
           </svg>
         </button>
 
-        {/* Menu Items (Hidden on small screens, visible on large screens) */}
+        {/* Slide-In Menu */}
         <div
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } absolute top-16 left-0 w-full bg-quick lg:static lg:block lg:w-auto  rounded-full`}
+          className={`absolute top-16 left-0 w-80 bg-black rounded-3xl transition-all duration-500 ease-in-out ${
+            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 "
+          } lg:static lg:block lg:w-auto lg:opacity-100 lg:scale-100`}
         >
-          <ul className="lg:flex lg:space-x-4 space-y-2 lg:space-y-0 p-4 lg:p-0 ml-12">
+          <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
                 Nevim
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
                 Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
                 Úkoly
               </button>
             </li>
             <li>
-              <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full ">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
                 O projektu
               </button>
             </li>
@@ -63,10 +64,10 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Right Side: Prihlaseni */}
+      {/* Right Side: Přihlášení */}
       <div>
-        <button className="navbutton text-white w-32 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border ">
-          <p className="text-white text-1xl">Přihlášení</p>
+        <button className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300">
+          <p className="text-white">Přihlášení</p>
         </button>
       </div>
     </nav>
