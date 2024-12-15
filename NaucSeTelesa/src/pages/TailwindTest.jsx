@@ -1,6 +1,7 @@
 import Spline from "@splinetool/react-spline";
 import "../App.css";
 import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 function TailwindTest() {
   return (
@@ -33,7 +34,7 @@ function TailwindTest() {
             <div className="features2 rounded-3xl h-56 w-56 shadow-lg"></div>
           </div>
 
-          <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-end ">
+          <div className="flex flex-col items-center gap-5 mt-5 md:flex-row md:justify-end ">
             <div className="features1 rounded-3xl h-56 w-56 shadow-lg"></div>
             <div className="features2 rounded-3xl h-56 w-56 shadow-lg"></div>
             <div className="features1 rounded-3xl h-56 w-56 shadow-lg"></div>
@@ -54,9 +55,10 @@ function TailwindTest() {
           <img src="/splineImg.png" />
         </div>
 
-        <div className="h-screen w-full mt-48">
+        <div className="m-48 w-full mt-48">
           <img src="/galaxy.png"></img>
         </div>
+        <Footer />
       </div>
     </>
   );
