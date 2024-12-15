@@ -1,25 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
 
-.bg-color {
-  background-image: "url('https://cdn.discordapp.com/attachments/793807164291416064/1313238383589593199/file-98MfAgREHjapFFtZ2CMz3j.png?ex=674f680d&is=674e168d&hm=314f8322c7fa3504e814b752605ebe1cfeae1840cc118d3cd104aa069ff6938f&')";
-}
-
-h1,
-p {
-  font-family: "Neucha", cursive;
-}
-
 .navbutton {
   background: rgb(20, 20, 20);
   background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
 }
 .webbg {
   background: rgb(41, 41, 41);
-  background: linear-gradient(
-    0deg,
-    rgba(41, 41, 41, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+  background: linear-gradient(0deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 h-screen.w-full {
@@ -27,14 +14,30 @@ h-screen.w-full {
 }
 
 .bg-quick {
+  background-color: #000000;
+}
+.bg-quick2 {
   background-color: #050017;
 }
 
 .features1 {
+  background: linear-gradient(
+    -27deg,
+    #1b1b1b 0%,
+    #232323 36%,
+    #2a2a2a 66%,
+    #323232 100%
+  );
+}
+.features2 {
+  background: linear-gradient(-27deg, #242424 0%, #515151 57%, #737373 100%);
+}
+
+.features3 {
   background: rgb(20, 20, 20);
   background: linear-gradient(160deg, #10052c 0%, #500d6a 100%);
 }
-.features2 {
+.features4 {
   background: rgb(20, 20, 20);
   background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
 }
@@ -51,4 +54,8 @@ h-screen.w-full {
 
 .bg-form {
   background-color: rgba(5, 0, 23, 0.9);
+}
+
+.bg-footer {
+  background-color: rgb(29, 29, 29);
 }
