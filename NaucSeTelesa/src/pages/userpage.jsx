@@ -7,18 +7,25 @@ function UserPage() {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col justify-center items-center webbg min-h-screen text-white">
-        <h1 className="text-5xl font-bold p-5">
-          Nechte se vnést do světa geometrie
-        </h1>
-        <p className="text-xl p-5">
-          Pokud by se pro starý účel použil smysluplný text, bylo by těžké
-          hodnotit pouze umění, aniž by se posuzoval možná smysl té části
-          obsahu.
-        </p>
-        <div style={{ width: "100%", height: "600px" }}>
-          <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
+      <div className="flex flex-col justify-center items-center webbg min-h-screen text-white ">
+        <div className="md:flex md:flex-row md:justify-between md:items-start md:mt-14">
+          <div className="sm:flex sm:flex-col sm:justify-center sm:items-center  sm:h-[90vh]  ">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold p-5 sm:pr-20">
+              Nechte se vnést <br />
+              do světa geometrie
+            </h1>
+            <p className="text-xl  lg:text-3xl p-5 ">
+              Pokud by se pro starý účel použil smysluplný text, bylo by těžké
+              hodnotit pouze umění, aniž by se posuzoval možná smysl té části
+              obsahu.
+            </p>
+          </div>
+
+          <div style={{ width: "100%", height: "90vh" }}>
+            <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
+          </div>
         </div>
+
         <div className="border-t border-gray-700">
           <h2 className="text-4xl font-bold text-center mt-20">FEATURES</h2>
           <p className="text-xl text-center p-5">
@@ -107,6 +114,8 @@ function UserPage() {
           </p>
           <img src="/splineImg.png" />
         </div>
+
+        <div></div>
       </div>
       <Footer />
     </>
