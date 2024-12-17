@@ -9,7 +9,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center shadow-lg relative">
+    <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center shadow-lg relative lg:mt-3">
       {/* Left Side: Collapsible Menu */}
       <div className="flex items-center">
         {/* Hamburger Icon */}
@@ -41,22 +41,22 @@ function Navbar() {
         >
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
                 Nevim
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
                 Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
                 Úkoly
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
                 O projektu
               </button>
             </li>
@@ -68,7 +68,7 @@ function Navbar() {
       <div>
         <button
           onClick={() => (window.location.href = "/")}
-          className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300"
+          className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300 lg:text-2xl flex justify-center items-center lg:px-10"
         >
           <p className="text-white">Přihlášení</p>
         </button>
