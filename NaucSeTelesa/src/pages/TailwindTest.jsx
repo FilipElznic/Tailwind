@@ -24,7 +24,7 @@ function TailwindTest() {
               <div className="absolute inset-0 z-0">
                 <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
               </div>
-              <div className="relative sm:flex sm:flex-col sm:justify-center sm:h-[90vh] z-10 w-1/4 ">
+              <div className="relative sm:flex sm:flex-col sm:justify-center sm:h-[90vh]  w-1/4 ">
                 <h1 className="text-4xl md:text-2xl lg:text-5xl font-bold p-5 sm:pr-20">
                   Nechte se vnést do světa geometrie
                 </h1>
@@ -58,7 +58,7 @@ function TailwindTest() {
 
       <div className="border-t border-gray-700 webbg text-white ">
         <div className="lg:flex lg:flex-row lg:w-full lg:justify-evenly min-h-screen lg:items-center">
-          <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/3 ">
+          <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
             {/*div pro nadpis a text*/}
             <h2
               className="text-6xl xl:7xl font-bold t md:text-start  p-5
@@ -142,18 +142,21 @@ function TailwindTest() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center items-center flex-col mt-52 text-center">
-          <h1 className="text-4xl font-bold m-5">ABOUT</h1>
-          <p className="text-xl  text-gray-800 m-2">
-            Je-li MUTEX volný proces se stává držitelem MUTEXU
-          </p>
-          <p className="text-xl text-gray-400 m-5 ">
-            Pokud by se pro starý účel použil smysluplný text, bylo by těžké
-            hodnotit pouze umění, aniž by se posuzoval možná smysl té části
-            obsahu. Pokud by se pro starý účel použil smysluplný text, bylo by
-            těžké hodnotit pouze umění, aniž by se posuzoval možná smysl té
-            části obsahu.
-          </p>
+        <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 min-h-screen">
+          <div className="w-full md:w-1/3">
+            <h1 className="text-4xl font-bold m-5 ">ABOUT</h1>
+            <p className="text-xl  text-gray-800 m-2">
+              Je-li MUTEX volný proces se stává držitelem MUTEXU
+            </p>
+            <p className="text-xl text-gray-400 m-5 ">
+              Pokud by se pro starý účel použil smysluplný text, bylo by těžké
+              hodnotit pouze umění, aniž by se posuzoval možná smysl té části
+              obsahu. Pokud by se pro starý účel použil smysluplný text, bylo by
+              těžké hodnotit pouze umění, aniž by se posuzoval možná smysl té
+              části obsahu.
+            </p>
+          </div>
+
           <img src="/splineImg.png" />
         </div>
       </div>
