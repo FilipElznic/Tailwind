@@ -61,7 +61,7 @@ function UserPage() {
           <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
             {/*div pro nadpis a text*/}
             <h2
-              className="text-6xl xl:7xl font-bold t md:text-start  p-5
+              className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold t md:text-start  p-5 md:pb-20
            mt-20"
             >
               FEATURES
@@ -80,8 +80,8 @@ function UserPage() {
                   <img src="/cube.png" alt="Cube Icon" />
                 </div>
                 <div>
-                  <h3 className="">Cube</h3>
-                  <p className="">
+                  <h3>Cube</h3>
+                  <p>
                     Pokud by se pro starý účel použil smysluplný text, bylo by
                     těžké hodnotit pouze umění
                   </p>
@@ -92,8 +92,8 @@ function UserPage() {
                   <img src="/cube.png" alt="Cube Icon" />
                 </div>
                 <div>
-                  <h3 className="">Cube</h3>
-                  <p className="">
+                  <h3>Cube</h3>
+                  <p>
                     Pokud by se pro starý účel použil smysluplný text, bylo by
                     těžké hodnotit pouze umění
                   </p>

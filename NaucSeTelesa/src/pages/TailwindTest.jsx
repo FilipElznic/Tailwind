@@ -61,7 +61,7 @@ function TailwindTest() {
           <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
             {/*div pro nadpis a text*/}
             <h2
-              className="text-6xl xl:7xl font-bold t md:text-start  p-5
+              className="text-6xl xl:7xl font-bold t md:text-start p-5
              mt-20"
             >
               FEATURES
