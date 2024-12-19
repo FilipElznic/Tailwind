@@ -5,6 +5,7 @@ import Navbar from "../Components/Navbar";
 import Spline from "@splinetool/react-spline";
 import Features1 from "../Components/Features1";
 import Features2 from "../Components/Features2";
+import ImgSlider from "../Components/ImgSlider";
 
 function UserPage() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
@@ -63,7 +64,7 @@ function UserPage() {
           <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
             {/*div pro nadpis a text*/}
             <h2
-              className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold t md:text-start  p-5 md:pb-20
+              className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold md:text-start  p-5 md:pb-20
            mt-20"
             >
               FEATURES
@@ -81,50 +82,19 @@ function UserPage() {
               <Features2 />
             </div>
             <div className="flex flex-col items-center gap-5 mt-5 md:flex-row md:justify-end md">
-              <div className="features1 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
-                <div className="flex justify-center items-center w-10">
-                  <img src="/cube.png" alt="Cube Icon" />
-                </div>
-                <div>
-                  <h3 className="">Cube</h3>
-                  <p className="">
-                    Pokud by se pro starý účel použil smysluplný text, bylo by
-                    těžké hodnotit pouze umění
-                  </p>
-                </div>
-              </div>
+              <Features1 />
 
-              <div className="features2 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
-                <div className="flex justify-center items-center w-10">
-                  <img src="/cube.png" alt="Cube Icon" />
-                </div>
-                <div>
-                  <h3 className="">Cube</h3>
-                  <p className="">
-                    Pokud by se pro starý účel použil smysluplný text, bylo by
-                    těžké hodnotit pouze umění
-                  </p>
-                </div>
-              </div>
-              <div className="features1 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
-                <div className="flex justify-center items-center w-10">
-                  <img src="/cube.png" alt="Cube Icon" />
-                </div>
-                <div>
-                  <h3 className="">Cube</h3>
-                  <p className="">
-                    Pokud by se pro starý účel použil smysluplný text, bylo by
-                    těžké hodnotit pouze umění
-                  </p>
-                </div>
-              </div>
+              <Features2 />
+              <Features1 />
             </div>
           </div>
         </div>
 
-        <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 min-h-screen">
+        <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:text-start md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 ">
           <div className="w-full md:w-1/3">
-            <h1 className="text-4xl font-bold m-5 ">ABOUT</h1>
+            <h1 className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold m-5 ">
+              ABOUT
+            </h1>
             <p className="text-xl  text-gray-800 m-2">
               Je-li MUTEX volný proces se stává držitelem MUTEXU
             </p>
@@ -138,6 +108,10 @@ function UserPage() {
           </div>
 
           <img src="/splineImg.png" />
+        </div>
+
+        <div className="h-screen">
+          <ImgSlider />
         </div>
       </div>
 
