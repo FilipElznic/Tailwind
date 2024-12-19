@@ -3,6 +3,8 @@ import "../App.css";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import Spline from "@splinetool/react-spline";
+import Features1 from "../Components/Features1";
+import Features2 from "../Components/Features2";
 
 function UserPage() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
@@ -75,30 +77,8 @@ function UserPage() {
           <div className="md:mr-8">
             {/*div pro karticky*/}
             <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-end">
-              <div className="features1 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
-                <div className="flex justify-center items-center w-10">
-                  <img src="/cube.png" alt="Cube Icon" />
-                </div>
-                <div>
-                  <h3>Cube</h3>
-                  <p>
-                    Pokud by se pro starý účel použil smysluplný text, bylo by
-                    těžké hodnotit pouze umění
-                  </p>
-                </div>
-              </div>
-              <div className="features2 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
-                <div className="flex justify-center items-center w-10">
-                  <img src="/cube.png" alt="Cube Icon" />
-                </div>
-                <div>
-                  <h3>Cube</h3>
-                  <p>
-                    Pokud by se pro starý účel použil smysluplný text, bylo by
-                    těžké hodnotit pouze umění
-                  </p>
-                </div>
-              </div>
+              <Features1 />
+              <Features2 />
             </div>
             <div className="flex flex-col items-center gap-5 mt-5 md:flex-row md:justify-end md">
               <div className="features1 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
