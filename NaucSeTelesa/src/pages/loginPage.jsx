@@ -61,28 +61,86 @@ function LoginPage() {
     };
   }, [navigate]);
 
+  const handleProviderLogin = async (provider) => {
+    const { error } = await supabase.auth.signInWithOAuth({ provider });
+    if (error) {
+      console.error("Error with provider login:", error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-md text-center">
-        <h1 className="text-2xl font-bold mb-6">Přihlášení</h1>
+      <div className="max-w-md w-full bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-lg shadow-lg text-center">
+        <h1 className="text-3xl font-extrabold mb-6 text-gray-100">
+          Přihlášení
+        </h1>
+        <div className="space-y-4">
+          <button
+            onClick={() => handleProviderLogin("google")}
+            className="w-full py-2 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-200"
+          >
+            Přihlásit se přes Google
+          </button>
+          <button
+            onClick={() => handleProviderLogin("discord")}
+            className="w-full py-2 px-4 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition duration-200"
+          >
+            Přihlásit se přes Discord
+          </button>
+        </div>
         <Auth
+          providers={[]}
           supabaseClient={supabase}
           appearance={{
             theme: ThemeSupa,
             variables: {
               default: {
                 colors: {
-                  brand: "#3b82f6", // Tailwind's blue-500
-                  brandAccent: "#2563eb", // Tailwind's blue-600
-                  defaultButtonText: "#fff",
-                  defaultButtonBackground: "#2563eb",
-                  defaultButtonHoverBackground: "#1e40af", // Tailwind's blue-800
+                  brand: "#0f172a",
+                  brandAccent: "#1e3a8a",
+                  defaultButtonText: "#e2e8f0",
+                  defaultButtonBackground: "#1e293b",
+                  defaultButtonHoverBackground: "#111827",
+                  inputBackground: "#1e293b",
+                  inputBorder: "#334155",
+                  inputText: "#e2e8f0",
                 },
               },
             },
           }}
-          providers={["google", "discord"]}
-          localization={{ lang: "cz" }}
+          localization={{
+            lang: "cz",
+            variables: {
+              sign_in: {
+                email_label: "E-mailová adresa",
+                email_input_placeholder: "Zadejte svůj e-mail",
+                password_label: "Heslo",
+                password_input_placeholder: "Zadejte své heslo",
+                button_label: "Přihlásit se",
+                link_text: "Už máte účet? Přihlásit se zde.",
+              },
+              sign_up: {
+                email_label: "E-mailová adresa",
+                email_input_placeholder: "Zadejte svůj e-mail",
+                password_label: "Heslo",
+                password_input_placeholder: "Vytvořte si heslo",
+                button_label: "Zaregistrovat se",
+                link_text: "Nemáte u nás účet? Zaregistrujte se zde.",
+              },
+              forgotten_password: {
+                email_label: "E-mailová adresa",
+                email_input_placeholder: "Zadejte svůj e-mail pro reset hesla",
+                button_label: "Resetovat heslo",
+                link_text: "Zapomenuté heslo?",
+              },
+              magic_link: {
+                email_input_placeholder:
+                  "Zadejte svůj e-mail pro magický odkaz",
+                button_label: "Odeslat odkaz",
+                link_text: "Zpět na přihlášení",
+              },
+            },
+          }}
         />
       </div>
     </div>

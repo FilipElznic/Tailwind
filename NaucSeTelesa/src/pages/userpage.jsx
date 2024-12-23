@@ -110,7 +110,7 @@ function UserPage() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:text-start md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 ">
+        <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:text-start md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 md:pb-20">
           <div className="w-full md:w-1/3">
             <h1 className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold m-5 ">
               ABOUT
