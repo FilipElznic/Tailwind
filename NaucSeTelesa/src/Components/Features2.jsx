@@ -2,7 +2,7 @@ import "../App.css";
 
 function Features2() {
   return (
-    <div className="features2 rounded-3xl h-56 w-56 shadow-lg flex flex-col justify-between p-5">
+    <div className="features2 rounded-3xl h-56 w-56 xl:h-64 xl:w-64 shadow-lg flex flex-col justify-between p-5">
       <div className="flex justify-center items-center w-10">
         <img src="/cube.png" />
       </div>
