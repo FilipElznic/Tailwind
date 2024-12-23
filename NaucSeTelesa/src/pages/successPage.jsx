@@ -97,13 +97,13 @@ function SuccessPage() {
 
   return (
     <>
-      <div className="min-h-screen text-white imgbg flex flex-col items-center justify-center p-20">
-        <div className="w-full p-5 bg-opacity-90 bg-form flex flex-col items-center justify-center rounded-3xl sm:h-[80vh]">
-          <h2 className="text-xl mb-6 text-gray-700">
+      <div className="min-h-screen text-white webbg flex flex-col items-center justify-center  p-5 md:px-20">
+        <div className="w-full p-5 bg-zinc-900  flex flex-col items-center justify-center rounded-3xl h-[90vh] ">
+          <h2 className="text-xl mb-6 text-gray-700 text-center">
             Registrace proběhla úspěšně, ale ...
           </h2>
-          <h1 className="text-6xl font-bold mb-6">
-            Ještě něco o tobě potřebujeme vědět
+          <h1 className="text-2xl md:text-6xl font-bold mb-6 text-center">
+            ještě něco o tobě potřebujeme vědět
           </h1>
           <div className="h-full w-full flex flex-col sm:flex-row">
             <div className="flex-1 flex justify-center items-center">
