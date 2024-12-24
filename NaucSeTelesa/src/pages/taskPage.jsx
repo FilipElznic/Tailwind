@@ -55,3 +55,7 @@ function TaskPage() {
 }
 
 export default TaskPage;
+
+{
+  /* dodelat gradient na main page*/
+}
