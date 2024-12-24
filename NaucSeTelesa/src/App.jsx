@@ -6,6 +6,7 @@ import SuccessPage from "./pages/successPage";
 import { ProtectedRoute, RedirectIfLoggedIn } from "./ProtectedRoute";
 import TailwindTest from "./pages/TailwindTest";
 import UserPage from "./pages/userpage";
+import TaskPage from "./pages/taskPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           {/* Protect the Success page */}
           <Route path="/tailwind" element={<TailwindTest />} />
           {/* Protect the Success page */}
+          <Route path="/tasks" element={<TaskPage />} />
           <Route
             path="/success"
             element={
