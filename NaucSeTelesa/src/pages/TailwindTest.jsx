@@ -1,11 +1,10 @@
 import "../App.css";
-
-import Work from "../Components/Work";
+import ImgSlider from "../Components/ImgSlider";
 
 function TailwindTest() {
   return (
     <>
-      <Work />
+      <ImgSlider />
     </>
   );
 }
