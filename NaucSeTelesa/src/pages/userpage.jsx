@@ -6,6 +6,8 @@ import Spline from "@splinetool/react-spline";
 import Features1 from "../Components/Features1";
 import Features2 from "../Components/Features2";
 import ImgSlider from "../Components/ImgSlider";
+import Overused from "../Components/Overused";
+import Work from "../Components/Work";
 
 function UserPage() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
@@ -18,10 +20,9 @@ function UserPage() {
 
   return (
     <>
-      <Navbar />
-
       {isDesktop ? (
         <div className="hidden lg:block">
+          <Navbar />
           <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white">
             <div className="relative md:flex md:flex-row md:justify-between md:items-start md:mt-14 w-full">
               <div className="absolute inset-0 z-0">
@@ -41,6 +42,7 @@ function UserPage() {
         </div>
       ) : (
         <div className="lg:hidden">
+          <Navbar />
           <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white">
             <div className="sm:flex sm:flex-col sm:justify-center sm:items-center sm:h-[90vh] text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold  sm:pr-20">
@@ -59,26 +61,8 @@ function UserPage() {
         </div>
       )}
 
-      <div className="border-t border-gray-700 min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black text-white ">
-        <div className="flex  flex-col justify-center min-h-screen text-white">
-          <h1 className="text-white text-4xl sm:text-7xl md:text-9xl flex justify-center items-center font-bold p-5">
-            OVERUSER
-          </h1>
-          <div className="flex flex-col">
-            <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-center">
-              <div className="w-56 h-56 md:w-72 md:h-60 lg:w-96  bg-zinc-900 rounded-3xl"></div>
-              <div className="w-56 h-56 md:w-72 md:h-60 lg:w-96 bg-zinc-900 rounded-3xl"></div>
-            </div>
-            <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-center">
-              <div className="w-56 h-56 md:w-72 md:h-60 lg:w-96 bg-zinc-900 rounded-3xl"></div>
-              <div className="md:w-72 md:h-60 lg:w-96  flex flex-col justify-evenly">
-                <div className="w-56 mx-5 mb-5 md:w-full md:h-full h-24 bg-zinc-900 rounded-3xl"></div>
-                <div className="w-56 mx-5 md:w-full md:h-full h-24 bg-zinc-900 rounded-3xl"></div>
-              </div>
-              <div className="w-56 h-56 md:w-72 md:h-60 lg:w-96 m-5 bg-zinc-900 rounded-3xl"></div>
-            </div>
-          </div>
-        </div>
+      <div className="border-t border-gray-700 min-h-screen bg-gradient-to-br from-black via-zinc-900  to-black text-white ">
+        <Overused />
 
         <div className="lg:flex lg:flex-row lg:w-full lg:justify-evenly min-h-screen lg:items-center">
           <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
@@ -111,6 +95,7 @@ function UserPage() {
         </div>
 
         <div className="w-full flex justify-center items-center flex-col mt-52 text-center md:text-start md:flex md:flex-row md:justify-evenly md:items-center md:mt-20 md:pb-20">
+          <img src="/splineImg.png" />
           <div className="w-full md:w-1/3">
             <h1 className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold m-5 ">
               ABOUT
@@ -126,8 +111,10 @@ function UserPage() {
               části obsahu.
             </p>
           </div>
+        </div>
 
-          <img src="/splineImg.png" />
+        <div className="mt-20 pb-20">
+          <Work />
         </div>
       </div>
 
