@@ -18,9 +18,32 @@ function ImgSlider() {
           drobných informací.
         </p>
 
-  const handleNext = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
-  };
+        {/* Formulář */}
+        <form>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium">
+                jméno
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                placeholder="Karel"
+                className="w-full mt-1 px-3 py-2 bg-gray-800 text-white rounded-lg focus:ring focus:ring-green-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium">
+                příjmení
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                placeholder="Novotný"
+                className="w-full mt-1 px-3 py-2 bg-gray-800 text-white rounded-lg focus:ring focus:ring-green-500"
+              />
+            </div>
+          </div>
 
           <div className="mt-4">
             <label htmlFor="nickname" className="block text-sm font-medium">
