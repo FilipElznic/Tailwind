@@ -59,7 +59,7 @@ function UserPage() {
         </div>
       )}
 
-      <div className="border-t border-gray-700 webbg text-white ">
+      <div className="border-t border-gray-700 min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black text-white ">
         <div className="flex  flex-col justify-center min-h-screen text-white">
           <h1 className="text-white text-4xl sm:text-7xl md:text-9xl flex justify-center items-center font-bold p-5">
             OVERUSER

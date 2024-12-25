@@ -2,7 +2,7 @@ import "../App.css";
 
 function Footer() {
   return (
-    <div className="bg-footer p-3 sm:pl-[20vw] sm:pr-[20vw] border-t border-gray-700">
+    <div className="bg-zinc-900  p-3 sm:pl-[20vw] sm:pr-[20vw] border-t border-gray-700">
       <div className="flex flex-col sm:flex-row justify-between items-center pb-3">
         {/* Logo */}
         <div className="flex flex-row  mb-4 sm:mb-0">
