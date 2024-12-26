@@ -1,11 +1,66 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 import "../App.css";
+
+const supabase = createClient(
+  "https://bviuhriolcuvayzbgzum.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2aXVocmlvbGN1dmF5emJnenVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MDgyOTksImV4cCI6MjA0NTA4NDI5OX0.A5c9eHjNu37OaCt9DTCr-aKFHvyG8z1X_dHLpxl7aRc"
+);
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchAuthUser() {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Error fetching session:", error);
+      } else if (session) {
+        setAuthUser(session.user);
+      }
+    }
+    fetchAuthUser();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        if (authUser) {
+          const { data, error } = await supabase
+            .from("user")
+            .select("*")
+            .eq("authid", authUser.id);
+
+          if (error) {
+            console.error("Error fetching data:", error);
+          } else if (data.length > 0) {
+            console.log("User data:", data[0]);
+          }
+        }
+      } catch (error) {
+        console.error("Unexpected error:", error);
+      }
+    }
+    fetchData();
+  }, [authUser]);
+
+  const signOutUser = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error signing out:", error);
+    } else {
+      setAuthUser(null);
+      console.log("User signed out");
+    }
   };
 
   return (
@@ -41,22 +96,22 @@ function Navbar() {
         >
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full  lg:text-2xl lg:px-10">
                 Nevim
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full  lg:text-2xl lg:px-10">
                 Tělesa
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10">
                 Úkoly
               </button>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full hover:bg-gray-800 transition-colors duration-300 lg:text-2xl lg:px-10">
+              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10">
                 O projektu
               </button>
             </li>
@@ -64,14 +119,23 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Right Side: Přihlášení */}
+      {/* Right Side: Přihlášení nebo Odhlášení */}
       <div>
-        <button
-          onClick={() => (window.location.href = "/")}
-          className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300 lg:text-2xl flex justify-center items-center lg:px-10"
-        >
-          <p className="text-white">Přihlášení</p>
-        </button>
+        {authUser ? (
+          <button
+            onClick={signOutUser}
+            className="navbutton  text-red-700 w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full flex justify-center lg:text-2xl items-center lg:px-10"
+          >
+            Odhlásit
+          </button>
+        ) : (
+          <button
+            onClick={() => (window.location.href = "/")}
+            className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300 lg:text-2xl flex justify-center items-center lg:px-10"
+          >
+            <p className="text-white">Přihlášení</p>
+          </button>
+        )}
       </div>
     </nav>
   );
