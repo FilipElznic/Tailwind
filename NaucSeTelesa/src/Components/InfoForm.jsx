@@ -174,12 +174,6 @@ function InfoForm() {
           </div>
         </div>
       )}
-      <button
-        onClick={signOutUser}
-        className="px-6 py-3 bg-opacity-40 bg-gray-900 text-white font-semibold rounded-lg shadow-md hover:bg-gray-900 hover:scale-105 transform transition-all duration-200 ease-in-out focus:ring-4 focus:ring-blue-300"
-      >
-        Odhlásit se
-      </button>
     </div>
   );
 }

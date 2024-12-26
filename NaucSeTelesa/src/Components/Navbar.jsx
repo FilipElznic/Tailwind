@@ -9,11 +9,17 @@ const supabase = createClient(
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [data, setData] = useState([]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const [authUser, setAuthUser] = useState(null);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   useEffect(() => {
     async function fetchAuthUser() {
@@ -43,7 +49,7 @@ function Navbar() {
           if (error) {
             console.error("Error fetching data:", error);
           } else if (data.length > 0) {
-            console.log("User data:", data[0]);
+            setData(data[0]);
           }
         }
       } catch (error) {
@@ -120,14 +126,28 @@ function Navbar() {
       </div>
 
       {/* Right Side: Přihlášení nebo Odhlášení */}
-      <div>
+      <div className="relative">
         {authUser ? (
-          <button
-            onClick={signOutUser}
-            className="navbutton  text-red-700 w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full flex justify-center lg:text-2xl items-center lg:px-10"
-          >
-            Odhlásit
-          </button>
+          <div className="relative">
+            <button
+              onClick={toggleDropdown}
+              className=" text-white px-4 py-2 text-xl border-form lg:text-2xl flex justify-center items-center lg:px-10"
+            >
+              <div className="flex flex-row">
+                <p className="text-white pr-5">{data.name}</p>
+                <img src="https://placehold.co/40x40" />
+              </div>
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-52 bg-zinc-600 rounded-lg shadow-lg flex flex-col justify-start">
+                <button className="text-white p-2">Profil</button>
+                <button className="text-white p-2">Pomoc</button>
+                <button onClick={signOutUser} className="text-white p-2">
+                  Odhlásit se
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
           <button
             onClick={() => (window.location.href = "/")}
