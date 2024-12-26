@@ -68,3 +68,6 @@ h-screen.w-full {
 .bg-footer {
   background-color: rgb(29, 29, 29);
 }
+.test {
+  border-radius: 25% 10%;
+}
