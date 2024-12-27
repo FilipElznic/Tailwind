@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 import "../App.css";
 
-const supabase = createClient(
-  "https://bviuhriolcuvayzbgzum.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2aXVocmlvbGN1dmF5emJnenVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MDgyOTksImV4cCI6MjA0NTA4NDI5OX0.A5c9eHjNu37OaCt9DTCr-aKFHvyG8z1X_dHLpxl7aRc"
-);
+import { supabase } from "../supabaseClient";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authUser, setAuthUser] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,6 +47,7 @@ function Navbar() {
             console.error("Error fetching data:", error);
           } else if (data.length > 0) {
             setData(data[0]);
+            setAvatarUrl(authUser.user_metadata.avatar_url);
           }
         }
       } catch (error) {
@@ -101,11 +99,7 @@ function Navbar() {
           } lg:static lg:block lg:w-auto lg:opacity-100 lg:scale-100`}
         >
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
-            <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full  lg:text-2xl lg:px-10">
-                Nevim
-              </button>
-            </li>
+            <li></li>
             <li>
               <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full  lg:text-2xl lg:px-10">
                 Tělesa
@@ -134,15 +128,19 @@ function Navbar() {
               className=" text-white px-4 py-2 text-xl border-form lg:text-2xl flex justify-center items-center lg:px-10"
             >
               <div className="flex flex-row">
-                <p className="text-white pr-5">{data.name}</p>
-                <img src="https://placehold.co/40x40" />
+                <p className="text-white pr-5">Hi, {data.name}</p>
+                <img
+                  src={avatarUrl}
+                  className="w-10 h-10 object-fit-contain rounded-full"
+                />
               </div>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-52 bg-zinc-600 rounded-lg shadow-lg flex flex-col justify-start">
-                <button className="text-white p-2">Profil</button>
-                <button className="text-white p-2">Pomoc</button>
-                <button onClick={signOutUser} className="text-white p-2">
+              <div className="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg flex flex-col justify-start items-start  text-black font-bold z-20">
+                <p className="text-2xl ">Účet</p>
+                <button className="text-black p-2">Profil</button>
+                <button className="text-black  p-2">Pomoc</button>
+                <button onClick={signOutUser} className="text-red-800 p-2">
                   Odhlásit se
                 </button>
               </div>
