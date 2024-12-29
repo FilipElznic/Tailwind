@@ -1,12 +1,14 @@
 import InfoForm from "../Components/InfoForm";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import Tailwind from "./TailwindTest";
 
 function SuccessPage() {
   return (
     <>
       <Navbar />
       <InfoForm />
+      <Tailwind />
       <Footer />
     </>
   );
