@@ -9,6 +9,7 @@ function InfoForm() {
   const [jmeno, setJmeno] = useState("");
   const [prijmeni, setPrijmeni] = useState("");
   const [prezdivka, setPrezdivka] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     async function fetchAuthUser() {
@@ -21,7 +22,6 @@ function InfoForm() {
         console.error("Error fetching session:", error);
       } else if (session) {
         setAuthUser(session.user);
-        console.log("Authenticated user:", session.user);
       }
     }
     fetchAuthUser();
@@ -33,13 +33,14 @@ function InfoForm() {
         if (authUser) {
           const { data, error } = await supabase
             .from("user")
-            .select("*")
-            .eq("authid", authUser.id);
+            .select("nameSet")
+            .eq("authid", authUser.id)
+            .single(); // Fetch a single row
 
           if (error) {
             console.error("Error fetching data:", error);
-          } else if (data.length > 0) {
-            console.log("User data:", data[0]);
+          } else if (data) {
+            setIsVisible(!data.nameSet); // Show popup if nameSet is false
           }
         }
       } catch (error) {
@@ -75,24 +76,31 @@ function InfoForm() {
     } catch (error) {
       console.error("Unexpected error during form submission:", error);
     }
+    Zavri();
   }
 
-  async function signOutUser() {
+  const Zavri = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
+      // Perform the update query
+      const { data, error } = await supabase
+        .from("user")
+        .update({ nameSet: true })
+        .eq("authid", authUser.id);
+
       if (error) {
-        console.error("Error signing out:", error);
-      } else {
-        navigate("/");
+        console.error("Error updating user:", error.message);
+        return;
       }
-    } catch (error) {
-      console.error("Unexpected error during sign-out:", error);
+
+      console.log("Update successful:", data);
+      setIsVisible(false); // Hide popup after updating
+    } catch (err) {
+      console.error("Unexpected error:", err);
     }
-  }
-  const [isVisible, setIsVisible] = useState(true);
+  };
 
   const handleHide = () => {
-    setIsVisible(false);
+    Zavri(); // Call Zavri to update the database and hide the popup
   };
 
   return (
