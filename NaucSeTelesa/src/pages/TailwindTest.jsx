@@ -1,20 +1,26 @@
 import "../App.css";
+import img1 from "/user1.png";
+import img2 from "/user2.jpg";
+import img3 from "/user3.jpg";
 
 function TailwindTest() {
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center items-center mb-20">
         <h1 className="text-2xl sm:text-4xl md:text-5xl xl:text-7xl font-bold md:mb-7 text-white p-11">
-          Pojďme společně objevovat
+          User page
         </h1>
-        <div className="w-[90vw]">
-          {/* Larger div */}
-          <div className="w-full h-[80vh] bg-zinc-900 rounded-2xl mb-6"></div>
-        </div>
-        {/* Smaller divs */}
-        <div className="w-[90vw] flex flex-col md:flex-row gap-6">
-          <div className="w-full md:w-1/2 h-[60vh] bg-zinc-900 rounded-2xl"></div>
-          <div className="w-full md:w-1/2 h-[60vh] bg-zinc-900 rounded-2xl"></div>
+        <div className="flex flex-col h-full w-5/6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row w-full">
+            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-3/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+          </div>
+          <div className="flex flex-col sm:flex-row w-full">
+            <div className="w-full md:w-2/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-2/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+          </div>
         </div>
       </div>
     </>
