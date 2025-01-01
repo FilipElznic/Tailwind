@@ -1,7 +1,4 @@
 import "../App.css";
-import img1 from "/user1.png";
-import img2 from "/user2.jpg";
-import img3 from "/user3.jpg";
 
 function TailwindTest() {
   return (
@@ -12,14 +9,14 @@ function TailwindTest() {
         </h1>
         <div className="flex flex-col h-full w-5/6 justify-center items-center">
           <div className="flex flex-col sm:flex-row w-full">
-            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
-            <div className="w-full md:w-3/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
-            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-1/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-3/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-1/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
           </div>
           <div className="flex flex-col sm:flex-row w-full">
-            <div className="w-full md:w-2/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
-            <div className="w-full md:w-1/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
-            <div className="w-full md:w-2/5 h-64 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-2/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-1/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
+            <div className="w-full md:w-2/5 h-96 bg-zinc-800 m-2 rounded-3xl"></div>
           </div>
         </div>
       </div>
