@@ -13,11 +13,12 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/user" element={<UserPage />} />
-          {/* Protect the Success page */}
+          <Route path="/prihlaseni" element={<LoginPage />} />
+          <Route path="/uzivatel" element={<SuccessPage />} />
           <Route path="/tailwind" element={<TailwindTest />} />
+          <Route path="/ukoly" element={<TaskPage />} />
+
           {/* Protect the Success page */}
-          <Route path="/tasks" element={<TaskPage />} />
           <Route
             path="/success"
             element={
@@ -27,12 +28,12 @@ function App() {
             }
           />
 
-          {/* Redirect logged-in users from the Login page */}
+          {/* Redirect logged-in users from the root ("/") */}
           <Route
             path="/"
             element={
               <RedirectIfLoggedIn redirectTo="/success">
-                <LoginPage />
+                <UserPage />
               </RedirectIfLoggedIn>
             }
           />

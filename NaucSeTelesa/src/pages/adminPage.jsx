@@ -1,10 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
-
-const supabase = createClient(
-  "https://bviuhriolcuvayzbgzum.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2aXVocmlvbGN1dmF5emJnenVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MDgyOTksImV4cCI6MjA0NTA4NDI5OX0.A5c9eHjNu37OaCt9DTCr-aKFHvyG8z1X_dHLpxl7aRc"
-);
+import { supabase } from "../supabaseClient";
 
 function AdminPage() {
   const [authUser, setAuthUser] = useState(null); // Authenticated user
@@ -42,7 +37,7 @@ function AdminPage() {
         if (error) {
           console.error("Error fetching admin status:", error);
         } else if (data && data.length > 0) {
-          setIsAdmin(data[0].admin); // Set the admin status in state
+          setIsAdmin(data[0].admin);
         }
       }
     }
@@ -54,7 +49,6 @@ function AdminPage() {
   const fetchAllUsers = async () => {
     if (!showUsers) {
       const { data, error } = await supabase.from("user").select("*");
-      console.log("All users:", data);
 
       if (error) {
         console.error("Error fetching users:", error);
@@ -66,37 +60,58 @@ function AdminPage() {
   };
 
   return (
-    <>
-      <div className="">
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">Admin Page</h1>
         {authUser ? (
           <div>
-            {isAdmin && (
+            {isAdmin ? (
               <div>
-                <button onClick={fetchAllUsers}>
+                <button
+                  onClick={fetchAllUsers}
+                  className="bg-zinc-800 hover:bg-zinc-700 text-white py-2 px-4 rounded transition-colors"
+                >
                   {showUsers ? "Hide Users" : "Show All Users"}
                 </button>
-                {/* Add other admin buttons as needed */}
+                {showUsers && users.length > 0 && (
+                  <div className="mt-6">
+                    <h2 className="text-2xl font-semibold mb-4">All Users:</h2>
+                    <ul className="space-y-2">
+                      {users.map((user) => (
+                        <li
+                          key={user.id}
+                          className="bg-zinc-800 p-4 rounded shadow"
+                        >
+                          <p>
+                            <span className="font-bold">User ID:</span>{" "}
+                            {user.id}
+                          </p>
+                          <p>
+                            <span className="font-bold">Name:</span> {user.name}
+                          </p>
+                          <p>
+                            <span className="font-bold">Surname:</span>{" "}
+                            {user.surname}
+                          </p>
+                          <p>
+                            <span className="font-bold">Nickname:</span>{" "}
+                            {user.nickname}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            )}
-            {showUsers && users.length > 0 && (
-              <div>
-                <h2>All Users:</h2>
-                <ul>
-                  {users.map((user) => (
-                    <li key={user.id}>
-                      User id: {user.id}, name: {user.name}, surname:{" "}
-                      {user.surname}, nickname: {user.nickname}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            ) : (
+              <p className="text-lg">You do not have admin access.</p>
             )}
           </div>
         ) : (
-          <p>Loading user data...</p>
+          <p className="text-lg">Loading user data...</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

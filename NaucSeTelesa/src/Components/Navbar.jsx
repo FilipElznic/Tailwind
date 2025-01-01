@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
-
 import { supabase } from "../supabaseClient";
 
 function Navbar() {
@@ -95,25 +95,33 @@ function Navbar() {
         {/* Slide-In Menu */}
         <div
           className={`absolute top-16 left-0 w-80 bg-black rounded-3xl transition-all duration-500 ease-in-out ${
-            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 "
+            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
           } lg:static lg:block lg:w-auto lg:opacity-100 lg:scale-100`}
         >
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
-            <li></li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full  lg:text-2xl lg:px-10">
+              <Link
+                to="/bodies"
+                className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10"
+              >
                 Tělesa
-              </button>
+              </Link>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10">
+              <Link
+                to="/ukoly"
+                className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10"
+              >
                 Úkoly
-              </button>
+              </Link>
             </li>
             <li>
-              <button className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10">
+              <Link
+                to="/about"
+                className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10"
+              >
                 O projektu
-              </button>
+              </Link>
             </li>
           </ul>
         </div>
@@ -125,7 +133,7 @@ function Navbar() {
           <div className="relative">
             <button
               onClick={toggleDropdown}
-              className=" text-white px-4 py-2 text-xl border-form lg:text-2xl flex justify-center items-center lg:px-10"
+              className="text-white px-4 py-2 text-xl border-form lg:text-2xl flex justify-center items-center lg:px-10"
             >
               <div className="flex flex-row">
                 <p className="text-white pr-5">Hi, {data.name}</p>
@@ -136,23 +144,29 @@ function Navbar() {
               </div>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg flex flex-col justify-start items-start  text-black font-bold z-20">
-                <p className="text-2xl ">Účet</p>
-                <button className="text-black p-2">Profil</button>
-                <button className="text-black  p-2">Pomoc</button>
-                <button onClick={signOutUser} className="text-red-800 p-2">
-                  Odhlásit se
-                </button>
+              <div className="absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg flex flex-col justify-start items-start text-black font-bold z-20">
+                <p className="text-2xl">Účet</p>
+                <Link to="/profile" className="text-black p-2">
+                  Profil
+                </Link>
+                <Link to="/help" className="text-black p-2">
+                  Pomoc
+                </Link>
+                <Link to="/" className="text-black p-2">
+                  <button onClick={signOutUser} className="text-red-800 p-2">
+                    Odhlásit se
+                  </button>
+                </Link>
               </div>
             )}
           </div>
         ) : (
-          <button
-            onClick={() => (window.location.href = "/")}
+          <Link
+            to="/prihlaseni"
             className="navbutton text-white w-30 md:w-40 lg:w-50 px-4 py-2 text-xl rounded-full border hover:bg-gray-800 transition-all duration-300 lg:text-2xl flex justify-center items-center lg:px-10"
           >
-            <p className="text-white">Přihlášení</p>
-          </button>
+            Přihlášení
+          </Link>
         )}
       </div>
     </nav>

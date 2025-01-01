@@ -1,14 +1,16 @@
 import InfoForm from "../Components/InfoForm";
-import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Tailwind from "./TailwindTest";
+import Robot from "../Components/Robot";
+import AdminPage from "./AdminPage";
 
 function SuccessPage() {
   return (
     <>
-      <Navbar />
+      <Robot />
       <InfoForm />
       <Tailwind />
+      <AdminPage />
       <Footer />
     </>
   );
@@ -35,7 +37,7 @@ export default SuccessPage;
         >
           Odhlásit se
         </button>
-        <AdminPage />
+        
 <
 
 
