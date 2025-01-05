@@ -21,7 +21,10 @@ function TailwindTest() {
               </div>
             </div>
             <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl">
-              <Spline scene="https://prod.spline.design/Ef9Cq0K7VWxpAvSw/scene.splinecode" />
+              <Spline
+                scene="https://prod.spline.design/wmk8dasdX6HAEyoh/scene.splinecode"
+                className="w-full h-full"
+              />
             </div>
           </div>
           <div className="flex flex-col sm:flex-row w-full">
