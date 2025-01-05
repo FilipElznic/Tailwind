@@ -1,16 +1,16 @@
 import InfoForm from "../Components/InfoForm";
 import Footer from "../Components/Footer";
 import Tailwind from "./TailwindTest";
-import Robot from "../Components/Robot";
-import AdminPage from "./AdminPage";
+import Features from "../Components/Features";
+import Navbar from "../Components/Navbar";
 
 function SuccessPage() {
   return (
     <>
-      <Robot />
+      <Navbar />
       <InfoForm />
       <Tailwind />
-      <AdminPage />
+      <Features />
       <Footer />
     </>
   );

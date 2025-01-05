@@ -1,4 +1,5 @@
 import "../App.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -12,24 +13,24 @@ function Footer() {
         {/* Navigation Buttons */}
         <ul className="flex flex-row space-x-4  sm:space-y-0 items-center">
           <li>
-            <a href="/" className="text-white px-2 hover:underline">
+            <Link to="/" className="text-white px-2 hover:underline">
               Domů
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="text-white px-2 hover:underline">
+            <Link to="/telesa" className="text-white px-2 hover:underline">
               Tělesa
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="text-white px-2 hover:underline">
+            <Link to="/ukoly" className="text-white px-2 hover:underline">
               Úkoly
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/" className="text-white px-2 hover:underline">
+            <Link to="/oprojektu" className="text-white px-2 hover:underline">
               O projektu
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

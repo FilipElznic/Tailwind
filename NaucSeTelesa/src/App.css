@@ -93,3 +93,13 @@ h-screen.w-full {
 .cross::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+.userid {
+  color: #4e4d4d;
+}
+.useremail {
+  color: #cac5c5;
+}
+.usergradient {
+  background: linear-gradient(60deg, #0e0e0e, #232323);
+}
