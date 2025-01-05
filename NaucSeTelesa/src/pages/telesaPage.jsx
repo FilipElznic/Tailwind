@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
+import katex from "katex"; // Import KaTeX
+import "katex/dist/katex.min.css"; // Import KaTeX CSS
 
 function TelesaPage() {
   const [bodies, setBodies] = useState([]);
@@ -48,18 +50,56 @@ function TelesaPage() {
               )}
               <p className="text-gray-300 mb-4">{body.description}</p>
               <div className="text-sm text-gray-400 space-y-2">
-                <h3 className="text-lg text-pink-500">{body.volume_name}</h3>
-                <p>Formula: {body.volume_formula}</p>
-                <h3 className="text-lg text-indigo-500">{body.surface_name}</h3>
-                <p>Formula: {body.surface_formula}</p>
-              </div>
-              <div className="text-sm text-gray-400 space-y-2">
-                <h3 className="text-lg text-pink-500">{body.area_name}</h3>
-                <p>Formula: {body.area_formula}</p>
-                <h3 className="text-lg text-indigo-500">
-                  {body.perimeter_name}
-                </h3>
-                <p>Formula: {body.perimeter_formula}</p>
+                {body.volume_name && (
+                  <>
+                    <h3 className="text-lg text-pink-500">
+                      {body.volume_name}
+                    </h3>
+                    <p
+                      className="formula"
+                      dangerouslySetInnerHTML={{
+                        __html: katex.renderToString(body.volume_formula),
+                      }}
+                    />
+                  </>
+                )}
+                {body.surface_name && (
+                  <>
+                    <h3 className="text-lg text-indigo-500">
+                      {body.surface_name}
+                    </h3>
+                    <p
+                      className="formula"
+                      dangerouslySetInnerHTML={{
+                        __html: katex.renderToString(body.surface_formula),
+                      }}
+                    />
+                  </>
+                )}
+                {body.area_name && (
+                  <>
+                    <h3 className="text-lg text-pink-500">{body.area_name}</h3>
+                    <p
+                      className="formula"
+                      dangerouslySetInnerHTML={{
+                        __html: katex.renderToString(body.area_formula),
+                      }}
+                    />
+                  </>
+                )}
+                {body.perimeter_name && (
+                  <>
+                    <h3 className="text-lg text-indigo-500">
+                      {body.perimeter_name}
+                    </h3>
+                    <p
+                      className="formula"
+                      dangerouslySetInnerHTML={{
+                        __html: katex.renderToString(body.perimeter_formula),
+                      }}
+                    />
+                  </>
+                )}
               </div>
             </li>
           ))}
