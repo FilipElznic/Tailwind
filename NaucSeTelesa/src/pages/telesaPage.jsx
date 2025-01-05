@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import katex from "katex"; // Import KaTeX
 import "katex/dist/katex.min.css"; // Import KaTeX CSS
+import "../App.css";
 
 function TelesaPage() {
   const [bodies, setBodies] = useState([]);
@@ -25,7 +26,7 @@ function TelesaPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black text-white flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black text-white flex flex-col items-center p-6 ">
       <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500">
         Geometric Bodies
       </h1>
@@ -56,7 +57,7 @@ function TelesaPage() {
                       {body.volume_name}
                     </h3>
                     <p
-                      className="formula"
+                      className="formula text-xl"
                       dangerouslySetInnerHTML={{
                         __html: katex.renderToString(body.volume_formula),
                       }}
@@ -69,7 +70,7 @@ function TelesaPage() {
                       {body.surface_name}
                     </h3>
                     <p
-                      className="formula"
+                      className="formula text-xl"
                       dangerouslySetInnerHTML={{
                         __html: katex.renderToString(body.surface_formula),
                       }}
@@ -80,7 +81,7 @@ function TelesaPage() {
                   <>
                     <h3 className="text-lg text-pink-500">{body.area_name}</h3>
                     <p
-                      className="formula"
+                      className="formula text-xl"
                       dangerouslySetInnerHTML={{
                         __html: katex.renderToString(body.area_formula),
                       }}
@@ -89,11 +90,23 @@ function TelesaPage() {
                 )}
                 {body.perimeter_name && (
                   <>
-                    <h3 className="text-lg text-indigo-500">
+                    <h3
+                      className={`text-lg ${
+                        body.perimeter_formula &&
+                        body.perimeter_formula.length < 15
+                          ? "text-2xl"
+                          : ""
+                      }`}
+                    >
                       {body.perimeter_name}
                     </h3>
                     <p
-                      className="formula"
+                      className={`formula ${
+                        body.perimeter_formula &&
+                        body.perimeter_formula.length < 15
+                          ? "text-2xl"
+                          : ""
+                      }`}
                       dangerouslySetInnerHTML={{
                         __html: katex.renderToString(body.perimeter_formula),
                       }}
