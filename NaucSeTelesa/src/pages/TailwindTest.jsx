@@ -1,7 +1,49 @@
 import "../App.css";
 import Spline from "@splinetool/react-spline";
+import { supabase } from "../supabaseClient";
+import { useEffect, useState } from "react";
 
 function TailwindTest() {
+  const [authUser, setAuthUser] = useState(null);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    async function fetchAuthUser() {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Error fetching session:", error);
+      } else if (session) {
+        setAuthUser(session.user);
+      }
+    }
+    fetchAuthUser();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        if (authUser) {
+          const { data, error } = await supabase
+            .from("user")
+            .select("*")
+            .eq("authid", authUser.id);
+
+          if (error) {
+            console.error("Error fetching data:", error);
+          } else if (data.length > 0) {
+            setData(data[0]);
+            console.log(data[0]);
+          }
+        }
+      } catch (error) {
+        console.error("Unexpected error:", error);
+      }
+    }
+    fetchData();
+  }, [authUser]);
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center items-center mb-20">
@@ -13,18 +55,15 @@ function TailwindTest() {
             <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
             <div className="w-full md:w-3/5 h-96 usergradient m-2 rounded-3xl">
               <div className="flex flex-col h-full justify-center text-white p-11">
-                <h1 className="text-7xl p-5">Filip Elznic</h1>
-                <p className="text-2xl userid px-2">
-                  c8ced2c4-ae24-4701-8140-503916ff1c24
-                </p>
-                <p className="text-3xl useremail p-2">elznicfilip@gmail.com</p>
+                <h1 className="text-7xl p-5">
+                  {data.name} {data.surname}
+                </h1>
+                <p className="text-2xl userid px-2">{data.authid}</p>
+                <p className="text-3xl useremail p-2">{authUser.email}</p>
               </div>
             </div>
             <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl">
-              <Spline
-                scene="https://prod.spline.design/wmk8dasdX6HAEyoh/scene.splinecode"
-                className="w-full h-full"
-              />
+              <Spline scene="https://prod.spline.design/i4RPN7ynugvjhc24/scene.splinecode" />
             </div>
           </div>
           <div className="flex flex-col sm:flex-row w-full">
