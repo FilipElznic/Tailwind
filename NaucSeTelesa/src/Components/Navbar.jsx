@@ -101,7 +101,7 @@ function Navbar() {
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
             <li>
               <Link
-                to="/bodies"
+                to="/telesa"
                 className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10"
               >
                 Tělesa

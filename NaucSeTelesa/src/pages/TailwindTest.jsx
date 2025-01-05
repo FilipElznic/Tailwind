@@ -1,5 +1,4 @@
 import "../App.css";
-import AdminPage from "./AdminPage";
 
 function TailwindTest() {
   return (
