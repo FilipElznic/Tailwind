@@ -53,6 +53,14 @@ function TelesaPage() {
                 <h3 className="text-lg text-indigo-500">{body.surface_name}</h3>
                 <p>Formula: {body.surface_formula}</p>
               </div>
+              <div className="text-sm text-gray-400 space-y-2">
+                <h3 className="text-lg text-pink-500">{body.area_name}</h3>
+                <p>Formula: {body.area_formula}</p>
+                <h3 className="text-lg text-indigo-500">
+                  {body.perimeter_name}
+                </h3>
+                <p>Formula: {body.perimeter_formula}</p>
+              </div>
             </li>
           ))}
         </ul>
