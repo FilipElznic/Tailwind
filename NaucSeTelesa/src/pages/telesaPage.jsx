@@ -8,7 +8,7 @@ function TelesaPage() {
   useEffect(() => {
     const fetchBodies = async () => {
       setLoading(true);
-      const { data, error } = await supabase.rpc("fetch_geometric_bodies");
+      const { data, error } = await supabase.rpc("fetch_geometric_bodies2");
 
       if (error) {
         console.error("Error fetching geometric bodies:", error);
