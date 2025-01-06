@@ -57,21 +57,28 @@ function TailwindTest() {
         <div className="flex flex-col sm:flex-row w-full">
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl justify-center items-center flex flex-col">
             <div className="w-full h-5/6 justify-center items-center flex flex-col">
-              <IoShieldSharp className="w-2/3 h-5/6 relative" />
-              <p className="text-8xl text-black absolute ">
-                {data ? Math.floor(data.xp / 100) : "Načítám data ..."}
+              <IoShieldSharp className="w-2/3 h-5/6 relative text-zinc-900 drop-shadow-white-glow" />
+
+              <p className="text-7xl text-black absolute mb-7 ">
+                {data ? (
+                  <p className="userlvl">{Math.floor(data.xp / 100)}</p>
+                ) : (
+                  "Načítám data ..."
+                )}
               </p>
             </div>
 
             <p className="text-2xl text-white mb-3">Úroveň</p>
           </div>
 
-          <div className="w-full md:w-3/5 h-96 usergradient m-2 rounded-3xl">
+          <div className="w-full md:w-3/5 h-96  usergradient m-2 rounded-3xl">
             <div className="flex flex-col h-full justify-center text-white p-11">
               {data ? (
                 <>
                   <h1 className="text-7xl p-5">
-                    {data.name} {data.surname}
+                    <p className="userlvl">
+                      {data.name} {data.surname}
+                    </p>
                   </h1>
                   <p className="text-2xl userid px-2">{data.authid}</p>
                   {authUser ? (
@@ -87,7 +94,7 @@ function TailwindTest() {
                     </div>
                     <div className="h-8 w-3/5 bg-black rounded-3xl relative border flex items-center">
                       <div
-                        className="h-6 bg-white rounded-3xl flex items-center justify-center text-white ml-1 mr-1"
+                        className="h-6 userlvl1 rounded-3xl flex items-center justify-center text-white ml-1 mr-1"
                         style={{ width: `${((data.xp % 100) / 100) * 100}%` }}
                       ></div>
                     </div>
@@ -113,7 +120,7 @@ function TailwindTest() {
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
           <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
             <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
-              <p className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold text-zinc-600">
+              <p className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold userlvl">
                 Ochutnejte pilulku geometrie
               </p>
               <h1 className="md:text-2xl  text-white">Začít objevovat</h1>

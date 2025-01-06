@@ -103,3 +103,13 @@ h-screen.w-full {
 .usergradient {
   background: linear-gradient(60deg, #0e0e0e, #232323);
 }
+.userlvl {
+  background: linear-gradient(to right, #dba1db, #36d6f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.userlvl1 {
+  background: linear-gradient(to left, #dba1db, #36d6f7);
+}
