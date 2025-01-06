@@ -89,10 +89,10 @@ function TailwindTest() {
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
           <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
             <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
-              <h1 className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold">
-                Začít objevovat,
-              </h1>
-              <p className="md:text-xl userid">Ochutnejte pilulku geometrie</p>
+              <p className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold text-zinc-600">
+                Ochutnejte pilulku geometrie
+              </p>
+              <h1 className="md:text-2xl  text-white">Začít objevovat</h1>
             </div>
           </div>
         </div>
