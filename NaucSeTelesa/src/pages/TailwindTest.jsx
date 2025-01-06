@@ -19,7 +19,6 @@ function TailwindTest() {
         console.error("Error fetching session:", error);
       } else if (session) {
         setAuthUser(session.user);
-        console.log(session.user);
       }
     }
     fetchAuthUser();
@@ -39,7 +38,6 @@ function TailwindTest() {
             console.error("Error fetching data:", error);
           } else if (data.length > 0) {
             setData(data[0]);
-            console.log(data[0]);
           }
         }
       } catch (error) {
@@ -52,7 +50,7 @@ function TailwindTest() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center mb-20 text-white">
       <h1 className="text-2xl sm:text-4xl md:text-5xl xl:text-7xl font-bold md:mb-7 text-white p-11">
-        Můj účet
+        Osobní stránka
       </h1>
       <div className="flex flex-col h-full w-5/6 justify-center items-center">
         <div className="flex flex-col sm:flex-row w-full">
@@ -90,8 +88,12 @@ function TailwindTest() {
           </div>
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
           <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
-            <h1 className="text-4xl">Začít objevovat</h1>
-            <p className="text-xl">Ochutnejte pilulku geometrie</p>
+            <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
+              <h1 className="text-xl md:text-5xl lg:text-6xl pb-2">
+                Začít objevovat,
+              </h1>
+              <p className="md:text-xl userid">Ochutnejte pilulku geometrie</p>
+            </div>
           </div>
         </div>
       </div>
