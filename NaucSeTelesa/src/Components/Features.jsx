@@ -6,7 +6,7 @@ function Features() {
     <div className="lg:flex lg:flex-row lg:w-full lg:justify-evenly min-h-screen lg:items-center text-white">
       <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
         <h2
-          className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold md:text-start  p-5 md:pb-20
+          className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold md:text-start  p-5 md:pb-20 userlvl
            "
         >
           FEATURES
