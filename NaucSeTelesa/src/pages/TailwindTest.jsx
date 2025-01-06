@@ -2,6 +2,7 @@ import "../App.css";
 import Spline from "@splinetool/react-spline";
 import { supabase } from "../supabaseClient";
 import { useEffect, useState } from "react";
+import { IoShieldSharp } from "react-icons/io5";
 
 function TailwindTest() {
   const [authUser, setAuthUser] = useState(null);
@@ -54,7 +55,17 @@ function TailwindTest() {
       </h1>
       <div className="flex flex-col h-full w-5/6 justify-center items-center">
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
+          <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl justify-center items-center flex flex-col">
+            <div className="w-full h-5/6 justify-center items-center flex flex-col">
+              <IoShieldSharp className="w-2/3 h-5/6 relative" />
+              <p className="text-8xl text-black absolute ">
+                {data ? Math.floor(data.xp / 100) : "Načítám data ..."}
+              </p>
+            </div>
+
+            <p className="text-2xl text-white mb-3">Úroveň</p>
+          </div>
+
           <div className="w-full md:w-3/5 h-96 usergradient m-2 rounded-3xl">
             <div className="flex flex-col h-full justify-center text-white p-11">
               {data ? (
@@ -63,18 +74,28 @@ function TailwindTest() {
                     {data.name} {data.surname}
                   </h1>
                   <p className="text-2xl userid px-2">{data.authid}</p>
+                  {authUser ? (
+                    <>
+                      <p className="text-3xl useremail p-2">{authUser.email}</p>
+                    </>
+                  ) : (
+                    <p className="text-xl">Načítám data ...</p>
+                  )}
+                  <div className="flex flex-col">
+                    <div className="w-3/5 flex justify-end">
+                      <p className="text-xl mr-2">{data.xp % 100} %</p>
+                    </div>
+                    <div className="h-8 w-3/5 bg-black rounded-3xl relative border flex items-center">
+                      <div
+                        className="h-6 bg-white rounded-3xl flex items-center justify-center text-white ml-1 mr-1"
+                        style={{ width: `${((data.xp % 100) / 100) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
                 </>
               ) : (
                 <p className="text-xl">Načítám data ...</p>
               )}
-              {authUser ? (
-                <p className="text-3xl useremail p-2">{authUser.email}</p>
-              ) : (
-                <p className="text-xl">Načítám data ...</p>
-              )}
-              <div className="h-3 w-full  bg-black">
-                <div className="h-3 bg-primary" style={{ width: "45%" }}></div>
-              </div>
             </div>
           </div>
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl">
