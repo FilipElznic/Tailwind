@@ -55,7 +55,7 @@ function TailwindTest() {
       </h1>
       <div className="flex flex-col h-full w-5/6 justify-center items-center">
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl justify-center items-center flex flex-col">
+          <div className="w-full md:w-1/5 h-80 usergradient m-2 rounded-3xl justify-center items-center flex flex-col">
             <div className="w-full h-5/6 justify-center items-center flex flex-col">
               <IoShieldSharp className="w-2/3 h-5/6 relative text-zinc-900 drop-shadow-white-glow" />
 
@@ -71,7 +71,7 @@ function TailwindTest() {
             <p className="text-2xl text-white mb-3">Úroveň</p>
           </div>
 
-          <div className="w-full md:w-3/5 h-96  usergradient m-2 rounded-3xl">
+          <div className="w-full md:w-3/5 h-80  usergradient m-2 rounded-3xl">
             <div className="flex flex-col h-full justify-center text-white p-11">
               {data ? (
                 <>
@@ -105,20 +105,20 @@ function TailwindTest() {
               )}
             </div>
           </div>
-          <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl">
+          <div className="w-full md:w-1/5 h-80  usergradient m-2 rounded-3xl">
             <Spline scene="https://prod.spline.design/i4RPN7ynugvjhc24/scene.splinecode" />
           </div>
         </div>
         <div className="flex flex-col sm:flex-row w-full">
-          <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
+          <div className="w-full md:w-2/5 h-80 usergradient m-2 rounded-3xl">
             <img
               src="/userimg.png"
               alt="telesa"
               className="w-full h-full object-cover rounded-3xl"
             />
           </div>
-          <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
-          <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
+          <div className="w-full md:w-1/5 h-80 usergradient m-2 rounded-3xl"></div>
+          <div className="w-full md:w-2/5 h-80 usergradient m-2 rounded-3xl">
             <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
               <p className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold userlvl">
                 Ochutnejte pilulku geometrie
