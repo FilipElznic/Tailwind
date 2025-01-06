@@ -60,17 +60,17 @@ function TailwindTest() {
               {data ? (
                 <>
                   <h1 className="text-7xl p-5">
-                    Hi, {data.name} {data.surname}
+                    {data.name} {data.surname}
                   </h1>
                   <p className="text-2xl userid px-2">{data.authid}</p>
                 </>
               ) : (
-                <p className="text-xl">Loading user data...</p>
+                <p className="text-xl">Načítám data ...</p>
               )}
               {authUser ? (
                 <p className="text-3xl useremail p-2">{authUser.email}</p>
               ) : (
-                <p className="text-xl">Loading auth user...</p>
+                <p className="text-xl">Načítám data ...</p>
               )}
             </div>
           </div>
@@ -89,7 +89,7 @@ function TailwindTest() {
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl"></div>
           <div className="w-full md:w-2/5 h-96 usergradient m-2 rounded-3xl">
             <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
-              <h1 className="text-xl md:text-5xl lg:text-6xl pb-2">
+              <h1 className="text-xl md:text-5xl lg:text-6xl pb-2 text-center font-semibold">
                 Začít objevovat,
               </h1>
               <p className="md:text-xl userid">Ochutnejte pilulku geometrie</p>
