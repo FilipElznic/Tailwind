@@ -72,6 +72,9 @@ function TailwindTest() {
               ) : (
                 <p className="text-xl">Načítám data ...</p>
               )}
+              <div className="h-3 w-full  bg-black">
+                <div className="h-3 bg-primary" style={{ width: "45%" }}></div>
+              </div>
             </div>
           </div>
           <div className="w-full md:w-1/5 h-96 usergradient m-2 rounded-3xl">
