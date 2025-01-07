@@ -60,13 +60,13 @@ function TailwindTest() {
             <div className="w-full h-5/6 justify-center items-center flex flex-col">
               <IoShieldSharp className="w-2/3 h-5/6 relative text-zinc-900 drop-shadow-white-glow" />
 
-              <p className="text-7xl text-black absolute mb-7 ">
+              <div className="text-7xl text-black absolute mb-7 ">
                 {data ? (
                   <p className="userlvl">{Math.floor(data.xp / 100)}</p>
                 ) : (
                   <p className="text-sm">Načítám data ...</p>
                 )}
-              </p>
+              </div>
             </div>
 
             <p className="text-2xl text-white mb-3">Úroveň</p>
@@ -113,17 +113,19 @@ function TailwindTest() {
         </div>
         <div className="flex flex-col sm:flex-row w-full">
           <div className="w-full md:w-2/5 h-80 usergradient m-2 rounded-3xl relative hover:scale-105 transition-transform duration-300 cursor-pointer">
-            <img
-              src="/userimg.png"
-              alt="telesa"
-              className="w-full h-full object-cover rounded-3xl"
-            />
-            <h1 className="absolute inset-0 flex flex-col items-center justify-center usertask text-stroke text-xl md:text-5xl lg:text-6xl text-center p-2 rounded-md font-semibold">
-              Pojďte vyzkoušet svoje znalosti
-              <p className="md:text-xl mt-3 text-white">
-                Začít objevovat tělesa
-              </p>
-            </h1>
+            <Link to={"/ukoly"}>
+              <img
+                src="/userimg.png"
+                alt="telesa"
+                className="w-full h-full object-cover rounded-3xl"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center usertask text-stroke text-xl md:text-5xl lg:text-6xl text-center p-2 rounded-md font-semibold">
+                <h1>Pojďte vyzkoušet svoje znalosti</h1>
+                <p className="md:text-xl mt-3 text-white">
+                  Začít objevovat tělesa
+                </p>
+              </div>
+            </Link>
           </div>
 
           <div className="w-full md:w-1/5 h-80 usergradient m-2 rounded-3xl"></div>
