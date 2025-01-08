@@ -125,9 +125,7 @@ function TailwindTest() {
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center usertask text-stroke text-xl md:text-5xl lg:text-6xl text-center p-2 rounded-md font-semibold">
                 <h1>Pojďte vyzkoušet svoje znalosti</h1>
-                <p className="md:text-xl mt-3 text-white">
-                  Začít objevovat tělesa
-                </p>
+                <p className="md:text-xl mt-3 text-white">Začít plnit úkoly</p>
               </div>
             </Link>
           </div>

@@ -3,6 +3,7 @@ import Tailwind from "./TailwindTest";
 import Features from "../Components/Features";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Imgprofile from "../components/Imgprofile";
 
 function SuccessPage() {
   return (
@@ -11,6 +12,7 @@ function SuccessPage() {
       <InfoForm />
       <Tailwind />
       <Features />
+      <Imgprofile />
       <Footer />
     </>
   );
