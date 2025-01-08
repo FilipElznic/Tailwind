@@ -1,10 +1,8 @@
 import "../App.css";
 import { supabase } from "../supabaseClient";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function InfoForm() {
-  const navigate = useNavigate();
   const [authUser, setAuthUser] = useState(null);
   const [jmeno, setJmeno] = useState("");
   const [prijmeni, setPrijmeni] = useState("");
@@ -21,7 +19,17 @@ function InfoForm() {
       if (error) {
         console.error("Error fetching session:", error);
       } else if (session) {
-        setAuthUser(session.user);
+        const user = session.user;
+        setAuthUser(user);
+
+        // Pre-fill name and surname if the provider is Google
+        if (user.app_metadata.provider === "google") {
+          const fullName = user.user_metadata.full_name || "";
+          const nameParts = fullName.split(" ");
+          setJmeno(nameParts[0] || ""); // First name
+          setPrijmeni(nameParts.slice(1).join(" ") || ""); // Last name
+        }
+        console.log("Authenticated user:", session.user);
       }
     }
     fetchAuthUser();
@@ -55,6 +63,11 @@ function InfoForm() {
 
     if (!authUser) {
       console.error("No authenticated user found.");
+      return;
+    }
+
+    if (authUser.app_metadata.provider !== "google") {
+      console.error("User provider is not Google.");
       return;
     }
 
