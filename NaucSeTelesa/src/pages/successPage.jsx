@@ -1,8 +1,8 @@
 import InfoForm from "../Components/InfoForm";
-import Footer from "../Components/Footer";
 import Tailwind from "./TailwindTest";
 import Features from "../Components/Features";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function SuccessPage() {
   return (
