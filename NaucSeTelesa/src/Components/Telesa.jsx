@@ -26,7 +26,7 @@ function Telesa() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-800 to-black text-white flex flex-col items-center p-6 ">
+    <div className="min-h-screen bg-gradient-to-br text-white bg-black flex flex-col items-center p-6 ">
       <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500">
         Geometric Bodies
       </h1>
