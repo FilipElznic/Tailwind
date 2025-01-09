@@ -2,7 +2,7 @@ function Overused() {
   return (
     <div className="flex  flex-col justify-center min-h-screen text-white">
       <h1 className="text-white text-3xl sm:text-5xl md:text-7xl flex justify-center items-center font-bold p-5 userlvl">
-        Jak to funguje ..?
+        Jak to funguje...?
       </h1>
       <div className="flex flex-col">
         <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-center">
