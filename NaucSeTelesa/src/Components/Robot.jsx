@@ -47,7 +47,7 @@ function Robot() {
                 hodnotit pouze umění.
               </p>
             </div>
-            <div className="w-full h-[90v">
+            <div className="w-full h-[90v]">
               <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
             </div>
           </div>
