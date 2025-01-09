@@ -22,12 +22,12 @@ function Robot() {
                 <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
               </div>
               <div className="relative sm:flex sm:flex-col sm:justify-center sm:h-[90vh]  w-1/4 ">
-                <h1 className="text-4xl md:text-2xl lg:text-5xl font-bold p-5 sm:pr-20">
+                <h1 className="text-4xl md:text-2xl lg:text-5xl font-bold p-5 sm:pr-20 userlvl">
                   Nechte se vnést do světa geometrie
                 </h1>
-                <p className="text-xl lg:text-3xl p-5">
-                  Pokud by se pro starý účel použil smysluplný text, bylo by
-                  těžké hodnotit pouze umění.
+                <p className="text-xl lg:text-2xl p-5">
+                  Poznejte tvary geometrie z nové perspektivy a ovládněte jejich
+                  tajemství.
                 </p>
               </div>
             </div>
