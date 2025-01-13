@@ -3,7 +3,7 @@ import { supabase } from "../supabaseClient";
 import { useGlobalData } from "../Global";
 
 function ProfilePic() {
-  const { authUser, userData, setUserData } = useGlobalData(); // Assuming setUserData is available in context
+  const { authUser, userData } = useGlobalData(); // Assuming setUserData is available in context
   const [selectedFile, setSelectedFile] = useState(null); // State for storing the selected file
   const [profilePictureUrl, setProfilePictureUrl] = useState(null); // State for the public URL
 
@@ -90,32 +90,45 @@ function ProfilePic() {
       } else {
         setProfilePictureUrl(publicUrlData.publicUrl); // Set the public URL
         // Update the global context with the new URL
-        setUserData((prevData) => ({
-          ...prevData,
-          img: publicUrlData.publicUrl,
-        }));
       }
     }
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-white">
-      <h1>Upload Profile Picture</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
+      <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+        Upload Profile Picture
+      </h1>
 
       {/* Display the current profile picture */}
       {profilePictureUrl ? (
         <img
           src={profilePictureUrl}
           alt="Profile Picture"
-          className="rounded-full w-32 h-32 mb-4"
+          className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
         />
       ) : (
-        <p>No profile picture uploaded.</p>
+        <p className="mb-6 text-gray-400 italic">
+          No profile picture uploaded.
+        </p>
       )}
 
       {/* File input and upload button */}
-      <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-      <button onClick={uploadProfilePicture}>Upload</button>
+      <label className="relative cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all">
+        Choose File
+        <input
+          type="file"
+          onChange={(e) => setSelectedFile(e.target.files[0])}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        />
+      </label>
+
+      <button
+        onClick={uploadProfilePicture}
+        className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all"
+      >
+        Upload
+      </button>
     </div>
   );
 }

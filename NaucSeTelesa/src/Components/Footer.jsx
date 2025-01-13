@@ -2,6 +2,8 @@ import "../App.css";
 import { Link } from "react-router-dom";
 
 function Footer() {
+  const getCurrentYear = () => new Date().getFullYear();
+
   return (
     <div className="bg-zinc-900  p-3 sm:pl-[20vw] sm:pr-[20vw] border-t border-gray-700">
       <div className="flex flex-col sm:flex-row justify-between items-center pb-3">
@@ -38,7 +40,9 @@ function Footer() {
 
       {/* Footer */}
       <div className="text-center mt-3">
-        <p className="text-white">© 2025 Filip Elznic. All Rights Reserved</p>
+        <p className="text-white">
+          &copy; {getCurrentYear()} Filip Elznic. All rights reserved.
+        </p>
       </div>
     </div>
   );

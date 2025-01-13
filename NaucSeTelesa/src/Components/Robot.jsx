@@ -16,7 +16,16 @@ function Robot() {
       {isDesktop ? (
         <div className="hidden lg:block">
           <Navbar />
-          <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white">
+          <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white relative">
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50">
+              <iframe
+                src="https://lottie.host/embed/8a69b819-9ee1-41e8-8360-9ecd4b0eee27/QYOR6xDR47.lottie"
+                width="100px"
+                height="100px"
+                style={{ border: "none" }}
+                title="Lottie Animation"
+              ></iframe>
+            </div>
             <div className="relative md:flex md:flex-row md:justify-between md:items-start md:mt-14 w-full">
               <div className="absolute inset-0 z-0">
                 <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
@@ -37,6 +46,15 @@ function Robot() {
         <div className="lg:hidden">
           <Navbar />
           <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white">
+            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50">
+              <iframe
+                src="https://lottie.host/embed/201e4d38-1bcf-4ede-9774-d02af3ec27f4/Yp7gkvwJiX.lottie"
+                width="100px"
+                height="100px"
+                style={{ border: "none" }}
+                title="Lottie Animation"
+              ></iframe>
+            </div>
             <div className="sm:flex sm:flex-col sm:justify-center sm:items-center sm:h-[90vh] text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold  sm:pr-20">
                 Nechte se vnést <br />

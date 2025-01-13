@@ -26,6 +26,8 @@ function Navbar() {
     } else {
       console.log("User signed out");
     }
+
+    window.location.reload();
   };
 
   // Update the avatar URL when user data changes
