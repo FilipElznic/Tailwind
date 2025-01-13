@@ -10,41 +10,44 @@ import TaskPage from "./pages/taskPage";
 import TelesaPage from "./pages/telesaPage";
 import AboutPage from "./pages/aboutPage";
 import ProfilePic from "./Components/ProfilePic";
+import { GlobalProvider } from "./Global"; // Používáme pojmenovaný export
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/prihlaseni" element={<LoginPage />} />
-          <Route path="/uzivatel" element={<SuccessPage />} />
-          <Route path="/tailwind" element={<TailwindTest />} />
-          <Route path="/ukoly" element={<TaskPage />} />
-          <Route path="/telesa" element={<TelesaPage />} />
-          <Route path="/projekt" element={<AboutPage />} />
-          <Route path="/pic" element={<ProfilePic />} />
+      <GlobalProvider>
+        <Router>
+          <Routes>
+            <Route path="/prihlaseni" element={<LoginPage />} />
+            <Route path="/uzivatel" element={<SuccessPage />} />
+            <Route path="/tailwind" element={<TailwindTest />} />
+            <Route path="/ukoly" element={<TaskPage />} />
+            <Route path="/telesa" element={<TelesaPage />} />
+            <Route path="/projekt" element={<AboutPage />} />
+            <Route path="/pic" element={<ProfilePic />} />
 
-          {/* Protect the Success page */}
-          <Route
-            path="/success"
-            element={
-              <ProtectedRoute redirectTo="/">
-                <SuccessPage />
-              </ProtectedRoute>
-            }
-          />
+            {/* Protect the Success page */}
+            <Route
+              path="/success"
+              element={
+                <ProtectedRoute redirectTo="/">
+                  <SuccessPage />
+                </ProtectedRoute>
+              }
+            />
 
-          {/* Redirect logged-in users from the root ("/") */}
-          <Route
-            path="/"
-            element={
-              <RedirectIfLoggedIn redirectTo="/success">
-                <UserPage />
-              </RedirectIfLoggedIn>
-            }
-          />
-        </Routes>
-      </Router>
+            {/* Redirect logged-in users from the root ("/") */}
+            <Route
+              path="/"
+              element={
+                <RedirectIfLoggedIn redirectTo="/success">
+                  <UserPage />
+                </RedirectIfLoggedIn>
+              }
+            />
+          </Routes>
+        </Router>
+      </GlobalProvider>
     </AuthProvider>
   );
 }
