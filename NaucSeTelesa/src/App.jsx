@@ -9,6 +9,7 @@ import UserPage from "./pages/userpage";
 import TaskPage from "./pages/taskPage";
 import TelesaPage from "./pages/telesaPage";
 import AboutPage from "./pages/aboutPage";
+import ProfilePic from "./Components/ProfilePic";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/ukoly" element={<TaskPage />} />
           <Route path="/telesa" element={<TelesaPage />} />
           <Route path="/projekt" element={<AboutPage />} />
+          <Route path="/pic" element={<ProfilePic />} />
 
           {/* Protect the Success page */}
           <Route
