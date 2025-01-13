@@ -8,6 +8,7 @@ import TailwindTest from "./pages/TailwindTest";
 import UserPage from "./pages/userpage";
 import TaskPage from "./pages/taskPage";
 import TelesaPage from "./pages/telesaPage";
+import AboutPage from "./pages/aboutPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/tailwind" element={<TailwindTest />} />
           <Route path="/ukoly" element={<TaskPage />} />
           <Route path="/telesa" element={<TelesaPage />} />
+          <Route path="/projekt" element={<AboutPage />} />
 
           {/* Protect the Success page */}
           <Route

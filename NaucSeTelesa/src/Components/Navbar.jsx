@@ -117,7 +117,7 @@ function Navbar() {
             </li>
             <li>
               <Link
-                to="/about"
+                to="/projekt"
                 className="navbutton w-full text-white text-xl px-4 py-2 rounded-full lg:text-2xl lg:px-10"
               >
                 O projektu
@@ -136,7 +136,13 @@ function Navbar() {
               className="text-white px-4 py-2 text-xl border-form lg:text-2xl flex justify-center items-center lg:px-10"
             >
               <div className="flex flex-row">
-                <p className="text-white pr-5">Hi, {data.name}</p>
+                <p className="text-white pr-5">
+                  Zdravím,
+                  {data.name && data.surname
+                    ? " " + data.name + " " + data.surname
+                    : authUser.email}
+                  !
+                </p>
                 <img
                   src={avatarUrl}
                   className="w-10 h-10 object-fit-contain rounded-full"
