@@ -38,7 +38,7 @@ function Footer() {
 
       {/* Footer */}
       <div className="text-center mt-3">
-        <p className="text-white">© 2024 Filip Elznic. All Rights Reserved</p>
+        <p className="text-white">© 2025 Filip Elznic. All Rights Reserved</p>
       </div>
     </div>
   );

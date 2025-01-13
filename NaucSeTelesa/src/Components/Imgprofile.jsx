@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient"; // Adjust the import based on your setup
+import { useGlobalData } from "../Global"; // Import global context
 
 const ImgProfile = () => {
-  const [authUser, setAuthUser] = useState(null);
-  const [data, setData] = useState(null);
-  const [profileImage, setProfileImage] = useState(null);
+  const { authUser, userData } = useGlobalData(); // Use context to get authUser and userData
+  const [profileImage, setProfileImage] = useState(userData?.img || null);
 
-  // Fetch authenticated user session
-  useEffect(() => {
-    async function fetchAuthUser() {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error) {
-        console.error("Error fetching session:", error);
-      } else if (session) {
-        setAuthUser(session.user);
-      }
-    }
-    fetchAuthUser();
-  }, []);
-
-  // Fetch user data from the database
+  // Fetch user data from the database if authUser changes
   useEffect(() => {
     async function fetchData() {
       try {
@@ -36,8 +19,8 @@ const ImgProfile = () => {
           if (error) {
             console.error("Error fetching data:", error);
           } else if (data.length > 0) {
-            setData(data[0]);
-            setProfileImage(data[0].img); // Set the current profile image
+            const userData = data[0];
+            setProfileImage(userData.img); // Set the profile image from the user data
           }
         }
       } catch (error) {
@@ -84,7 +67,7 @@ const ImgProfile = () => {
 
   return (
     <div>
-      {/* Existing code... */}
+      {/* Upload profile picture */}
       <input
         type="file"
         accept="image/*"

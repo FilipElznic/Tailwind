@@ -1,39 +1,27 @@
 import "../App.css";
-import { supabase } from "../supabaseClient";
 import { useEffect, useState } from "react";
+import { useGlobalData } from "../Global.jsx"; // Import the global context hook
+import { supabase } from "../supabaseClient";
 
 function InfoForm() {
-  const [authUser, setAuthUser] = useState(null);
+  const { authUser, userData, loading } = useGlobalData(); // Access data from context
   const [jmeno, setJmeno] = useState("");
   const [prijmeni, setPrijmeni] = useState("");
   const [prezdivka, setPrezdivka] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
+  // Check if user is available and pre-fill name and surname from userData
   useEffect(() => {
-    async function fetchAuthUser() {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error) {
-        console.error("Error fetching session:", error);
-      } else if (session) {
-        const user = session.user;
-        setAuthUser(user);
-
-        // Pre-fill name and surname if the provider is Google
-        if (user.app_metadata.provider === "google") {
-          const fullName = user.user_metadata.full_name || "";
-          const nameParts = fullName.split(" ");
-          setJmeno(nameParts[0] || ""); // First name
-          setPrijmeni(nameParts.slice(1).join(" ") || ""); // Last name
-        }
-        console.log("Authenticated user:", session.user);
+    if (authUser && userData) {
+      // Pre-fill name and surname if the provider is Google
+      if (authUser.app_metadata.provider === "google") {
+        const fullName = userData.name || "";
+        const nameParts = fullName.split(" ");
+        setJmeno(nameParts[0] || ""); // First name
+        setPrijmeni(nameParts.slice(1).join(" ") || ""); // Last name
       }
     }
-    fetchAuthUser();
-  }, []);
+  }, [authUser, userData]);
 
   useEffect(() => {
     async function fetchData() {
@@ -115,6 +103,10 @@ function InfoForm() {
   const handleHide = () => {
     Zavri(); // Call Zavri to update the database and hide the popup
   };
+
+  if (loading) {
+    return <p>Loading...</p>; // You can display a loading state while data is fetching
+  }
 
   return (
     <>

@@ -1,53 +1,12 @@
 import "../App.css";
 import Spline from "@splinetool/react-spline";
-import { supabase } from "../supabaseClient";
-import { useEffect, useState } from "react";
 import { IoShieldSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useGlobalData } from "../Global"; // Import the custom hook
 
 function TailwindTest() {
-  const [authUser, setAuthUser] = useState(null);
-  const [data, setData] = useState(null);
-
-  // Fetch authenticated user session
-  useEffect(() => {
-    async function fetchAuthUser() {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error) {
-        console.error("Error fetching session:", error);
-      } else if (session) {
-        setAuthUser(session.user);
-      }
-    }
-    fetchAuthUser();
-  }, []);
-
-  // Fetch user data from the database
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        if (authUser) {
-          const { data, error } = await supabase
-            .from("user")
-            .select("*")
-            .eq("authid", authUser.id);
-
-          if (error) {
-            console.error("Error fetching data:", error);
-          } else if (data.length > 0) {
-            setData(data[0]);
-          }
-        }
-      } catch (error) {
-        console.error("Unexpected error:", error);
-      }
-    }
-    fetchData();
-  }, [authUser]);
+  // Access the global context
+  const { authUser, userData, loading } = useGlobalData();
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center mb-20 text-white ">
@@ -60,9 +19,9 @@ function TailwindTest() {
             <div className="w-full h-5/6 justify-center items-center flex flex-col">
               <IoShieldSharp className="w-2/3 h-5/6 relative text-zinc-900 drop-shadow-white-glow" />
 
-              <div className="text-7xl text-black absolute mb-7 ">
-                {data ? (
-                  <p className="userlvl">{Math.floor(data.xp / 100)}</p>
+              <div className="text-7xl text-black absolute mb-7">
+                {userData ? (
+                  <p className="userlvl">{Math.floor(userData.xp / 100)}</p>
                 ) : (
                   <p className="text-sm">Načítám data ...</p>
                 )}
@@ -74,15 +33,15 @@ function TailwindTest() {
 
           <div className="w-full lg:w-3/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300 text-center lg:text-start  justify-center lg:justify-start">
             <div className="flex flex-col h-full justify-center text-white p-11">
-              {data ? (
+              {userData ? (
                 <>
                   <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-7xl p-5">
                     <p className="userlvl typing-animation">
-                      {data.name} {data.surname}
+                      {userData.name} {userData.surname}
                     </p>
                   </h1>
                   <p className="text-md lg:text-2xl userid px-2">
-                    {data.authid}
+                    {userData.authid}
                   </p>
                   {authUser ? (
                     <p className="text-sm sm:text-md md:text-3xl useremail p-2">
@@ -93,13 +52,13 @@ function TailwindTest() {
                   )}
                   <div className="flex flex-col">
                     <div className="w-full lg:w-3/5 flex justify-end">
-                      <p className="text-xl ">{data.xp % 100} %</p>
+                      <p className="text-xl ">{userData.xp % 100} %</p>
                     </div>
                     <div className="h-8 w-full lg:w-3/5 bg-black rounded-3xl relative border flex items-center">
                       <div
                         className="h-6 userlvl1 rounded-3xl flex items-center justify-center text-white ml-1 mr-1"
                         style={{
-                          width: `${((data.xp % 100) / 100) * 100}%`,
+                          width: `${((userData.xp % 100) / 100) * 100}%`,
                           transition: "width 1s ease-in-out",
                         }}
                       ></div>
@@ -111,10 +70,12 @@ function TailwindTest() {
               )}
             </div>
           </div>
+
           <div className="w-full lg:w-1/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300">
             <Spline scene="https://prod.spline.design/i4RPN7ynugvjhc24/scene.splinecode" />
           </div>
         </div>
+
         <div className="flex flex-col lg:flex-row w-full">
           <div className="w-full lg:w-2/5 h-80 usergradient m-2 rounded-3xl relative hover:scale-105 transition-transform duration-300 cursor-pointer">
             <Link to={"/ukoly"}>

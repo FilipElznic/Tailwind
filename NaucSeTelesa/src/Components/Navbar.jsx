@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGlobalData } from "../Global"; // Import global context
 import "../App.css";
 import { supabase } from "../supabaseClient";
 
 function Navbar() {
+  const { authUser, userData } = useGlobalData(); // Use context to get authUser and userData
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [authUser, setAuthUser] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [data, setData] = useState([]);
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState(userData?.img || ""); // Initialize avatar URL
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,54 +18,22 @@ function Navbar() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  useEffect(() => {
-    async function fetchAuthUser() {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error) {
-        console.error("Error fetching session:", error);
-      } else if (session) {
-        setAuthUser(session.user);
-      }
-    }
-    fetchAuthUser();
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        if (authUser) {
-          const { data, error } = await supabase
-            .from("user")
-            .select("*")
-            .eq("authid", authUser.id);
-
-          if (error) {
-            console.error("Error fetching data:", error);
-          } else if (data.length > 0) {
-            setData(data[0]);
-            setAvatarUrl(authUser.user_metadata.avatar_url);
-          }
-        }
-      } catch (error) {
-        console.error("Unexpected error:", error);
-      }
-    }
-    fetchData();
-  }, [authUser]);
-
+  // Handle sign out
   const signOutUser = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.error("Error signing out:", error);
     } else {
-      setAuthUser(null);
       console.log("User signed out");
     }
   };
+
+  // Update the avatar URL when user data changes
+  useEffect(() => {
+    if (userData) {
+      setAvatarUrl(userData.img); // Ensure the avatar URL is updated
+    }
+  }, [userData]);
 
   return (
     <nav className="bg-quick text-white px-4 py-2 flex justify-between items-center shadow-lg relative lg:mt-3">
@@ -127,7 +95,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Right Side: Přihlášení nebo Odhlášení */}
+      {/* Right Side: Login or Logout */}
       <div className="relative">
         {authUser ? (
           <div className="relative">
@@ -138,19 +106,20 @@ function Navbar() {
               <div className="flex flex-row">
                 <p className="text-white pr-5">
                   Zdravím,
-                  {data.name && data.surname
-                    ? " " + data.name + " " + data.surname
+                  {userData?.name && userData?.surname
+                    ? ` ${userData.name} ${userData.surname}`
                     : authUser.email}
                   !
                 </p>
                 <img
-                  src={avatarUrl}
+                  src={avatarUrl || "/default-avatar.jpg"} // Use default image if avatarUrl is empty
                   className="w-10 h-10 object-fit-contain rounded-full"
+                  alt="Avatar"
                 />
               </div>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-52 usergradient text-white rounded-lg shadow-lg flex flex-col justify-start items-start  font-bold z-20">
+              <div className="absolute right-0 mt-2 w-52 usergradient text-white rounded-lg shadow-lg flex flex-col justify-start items-start font-bold z-20">
                 <Link to="/profile" className=" p-2">
                   <p className="text-2xl">Účet</p>
                   Profil

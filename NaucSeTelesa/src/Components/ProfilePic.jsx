@@ -1,74 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { supabase } from "../supabaseClient";
+import { useGlobalData } from "../Global";
 
 function ProfilePic() {
-  // State pro uložení aktuálně přihlášeného uživatele
-  const [authUser, setAuthUser] = useState(null);
+  const { authUser, userData } = useGlobalData(); // Přístup k uživatelským datům přes kontext
+  const [selectedFile, setSelectedFile] = useState(null); // State pro uložení vybraného souboru
+  const [profilePictureUrl, setProfilePictureUrl] = useState(null); // State pro URL veřejného obrázku
 
-  // State pro uložení vybraného souboru
-  const [selectedFile, setSelectedFile] = useState(null);
+  // Pokud má uživatel uložený obrázek, nastavíme jeho URL
+  if (userData?.img && !profilePictureUrl) {
+    const { data: publicUrlData, error } = supabase.storage
+      .from("profile-pictures")
+      .getPublicUrl(userData.img);
 
-  // State pro uložení dat uživatele z databáze
-  const [userData, setUserData] = useState(null);
-
-  // State pro URL veřejného obrázku (profilového obrázku)
-  const [profilePictureUrl, setProfilePictureUrl] = useState(null);
-
-  // Načtení aktuálně přihlášeného uživatele
-  useEffect(() => {
-    async function fetchAuthUser() {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-
-      if (error) {
-        console.error("Chyba při načítání session:", error);
-      } else if (session) {
-        setAuthUser(session.user); // Uložení přihlášeného uživatele
-        console.log("Přihlášený uživatel:", session.user);
-      }
+    if (error) {
+      console.error("Chyba při získávání veřejné URL:", error);
+    } else {
+      setProfilePictureUrl(publicUrlData.publicUrl);
     }
-    fetchAuthUser();
-  }, []);
-
-  // Načtení dat uživatele z databáze na základě jeho `authid`
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        if (authUser) {
-          const { data, error } = await supabase
-            .from("user") // Název tabulky v databázi
-            .select("*")
-            .eq("authid", authUser.id) // Hledáme záznam s odpovídajícím `authid`
-            .single(); // Očekáváme jeden záznam
-
-          if (error) {
-            console.error("Chyba při načítání dat uživatele:", error);
-          } else {
-            setUserData(data); // Uložení dat uživatele
-            console.log("Data uživatele:", data);
-
-            // Pokud má uživatel uložený obrázek, získáme jeho veřejnou URL
-            if (data.img) {
-              const { data: publicUrlData, error: urlError } = supabase.storage
-                .from("profile-pictures") // Název bucketu
-                .getPublicUrl(data.img); // Získání veřejné URL
-
-              if (urlError) {
-                console.error("Chyba při získávání veřejné URL:", urlError);
-              } else {
-                setProfilePictureUrl(publicUrlData.publicUrl); // Nastavení veřejné URL
-              }
-            }
-          }
-        }
-      } catch (error) {
-        console.error("Neočekávaná chyba:", error);
-      }
-    }
-    fetchUserData();
-  }, [authUser]);
+  }
 
   // Funkce pro upload profilového obrázku
   async function uploadProfilePicture() {
@@ -89,7 +39,7 @@ function ProfilePic() {
     const { data: existingFiles, error: listError } = await supabase.storage
       .from("profile-pictures")
       .list(`user-${authUser.id}`, {
-        search: selectedFile.name, // Hledáme soubor podle názvu
+        search: selectedFile.name,
       });
 
     if (listError) {
@@ -108,8 +58,8 @@ function ProfilePic() {
       const { data, error } = await supabase.storage
         .from("profile-pictures")
         .upload(filePath, selectedFile, {
-          cacheControl: "3600", // Cache kontrola
-          upsert: false, // Zabránění přepsání existujícího souboru
+          cacheControl: "3600",
+          upsert: false,
         });
 
       if (error) {
@@ -123,8 +73,8 @@ function ProfilePic() {
     // Aktualizace odkazu na obrázek v tabulce `user`
     const { error: dbError } = await supabase
       .from("user")
-      .update({ img: filePath }) // Uložení cesty k souboru do sloupce `img`
-      .eq("authid", authUser.id); // Hledáme záznam podle ID přihlášeného uživatele
+      .update({ img: filePath })
+      .eq("authid", authUser.id);
 
     if (dbError) {
       console.error(
@@ -134,7 +84,6 @@ function ProfilePic() {
     } else {
       console.log("Uživatelský profil úspěšně aktualizován s URL obrázku.");
 
-      // Nastavení veřejné URL pro nahraný nebo existující obrázek
       const { data: publicUrlData, error: urlError } = supabase.storage
         .from("profile-pictures")
         .getPublicUrl(filePath);
@@ -142,7 +91,7 @@ function ProfilePic() {
       if (urlError) {
         console.error("Chyba při získávání veřejné URL:", urlError);
       } else {
-        setProfilePictureUrl(publicUrlData.publicUrl); // Aktualizace URL obrázku
+        setProfilePictureUrl(publicUrlData.publicUrl);
       }
     }
   }
