@@ -1,5 +1,10 @@
 import Features1 from "./Features1";
 import Features2 from "./Features2";
+import { BiBrain } from "react-icons/bi";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { GiProgression } from "react-icons/gi";
+import { GiCube } from "react-icons/gi";
+import { BiRectangle } from "react-icons/bi";
 
 function Features() {
   return (
@@ -9,7 +14,7 @@ function Features() {
           className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold md:text-start  p-5 md:pb-20 userlvl
            "
         >
-          FEATURES
+          FUNKCE WEBU
         </h2>
         <p className="text-xl xl:2xl  md:text-start p-5 ">
           Pokud by se pro starý účel použil smysluplný text, bylo by těžké
@@ -20,14 +25,33 @@ function Features() {
       <div className="md:mr-8">
         {/*div pro karticky*/}
         <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-end">
-          <Features1 />
-          <Features2 />
+          <Features1
+            name="3D modely"
+            text="vám pomůžou si lépe vizualizovat jakékoliv geometrické těleso"
+            icon={<GiCube />}
+          />
+          <Features2
+            name="2D modely"
+            text="vám umožní snadno pochopit tvary a vlastnosti geometrických útvarů"
+            icon={<BiRectangle />}
+          />
         </div>
         <div className="flex flex-col items-center gap-5 mt-5 md:flex-row md:justify-end md">
-          <Features1 />
-
-          <Features2 />
-          <Features1 />
+          <Features1
+            name="Interaktivní učení"
+            text="promění geometrii ve zábavný zážitek díky dynamickým prvkům"
+            icon={<BiBrain />}
+          />
+          <Features2
+            name="Následné procvičování"
+            text="vám pomůže upevnit znalosti prostřednictvím úkolů a kvízů"
+            icon={<FaChalkboardTeacher />}
+          />
+          <Features1
+            name="Sledování progresu"
+            text="získávejte XP za splněné úkoly a sledujte svůj pokrok"
+            icon={<GiProgression />}
+          />
         </div>
       </div>
     </div>
