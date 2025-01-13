@@ -17,7 +17,7 @@ function Robot() {
         <div className="hidden lg:block">
           <Navbar />
           <div className="flex flex-col justify-center items-center bg-black min-h-screen text-white relative">
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50">
+            <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2 z-50">
               <iframe
                 src="https://lottie.host/embed/8a69b819-9ee1-41e8-8360-9ecd4b0eee27/QYOR6xDR47.lottie"
                 width="100px"
