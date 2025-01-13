@@ -20,7 +20,8 @@ const ImgProfile = () => {
             console.error("Error fetching data:", error);
           } else if (data.length > 0) {
             const userData = data[0];
-            setProfileImage(userData.img); // Set the profile image from the user data
+            setProfileImage(userData.img);
+            // Set the profile image from the user data
           }
         }
       } catch (error) {

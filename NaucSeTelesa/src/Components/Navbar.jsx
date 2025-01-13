@@ -31,7 +31,10 @@ function Navbar() {
   // Update the avatar URL when user data changes
   useEffect(() => {
     if (userData) {
-      setAvatarUrl(userData.img); // Ensure the avatar URL is updated
+      setAvatarUrl(
+        "https://bviuhriolcuvayzbgzum.supabase.co/storage/v1/object/public/profile-pictures/" +
+          userData.img
+      ); // Ensure the avatar URL is updated
     }
   }, [userData]);
 
@@ -112,7 +115,7 @@ function Navbar() {
                   !
                 </p>
                 <img
-                  src={avatarUrl || "/default-avatar.jpg"} // Use default image if avatarUrl is empty
+                  src={avatarUrl || "/default-avatar.jpg"} // Use the public URL from context
                   className="w-10 h-10 object-fit-contain rounded-full"
                   alt="Avatar"
                 />

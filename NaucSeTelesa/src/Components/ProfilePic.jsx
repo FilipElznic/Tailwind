@@ -3,39 +3,39 @@ import { supabase } from "../supabaseClient";
 import { useGlobalData } from "../Global";
 
 function ProfilePic() {
-  const { authUser, userData } = useGlobalData(); // Přístup k uživatelským datům přes kontext
-  const [selectedFile, setSelectedFile] = useState(null); // State pro uložení vybraného souboru
-  const [profilePictureUrl, setProfilePictureUrl] = useState(null); // State pro URL veřejného obrázku
+  const { authUser, userData, setUserData } = useGlobalData(); // Assuming setUserData is available in context
+  const [selectedFile, setSelectedFile] = useState(null); // State for storing the selected file
+  const [profilePictureUrl, setProfilePictureUrl] = useState(null); // State for the public URL
 
-  // Pokud má uživatel uložený obrázek, nastavíme jeho URL
+  // If the user already has a profile picture, fetch the public URL
   if (userData?.img && !profilePictureUrl) {
     const { data: publicUrlData, error } = supabase.storage
       .from("profile-pictures")
-      .getPublicUrl(userData.img);
+      .getPublicUrl(userData.img); // Get the public URL
 
     if (error) {
-      console.error("Chyba při získávání veřejné URL:", error);
+      console.error("Error fetching public URL:", error);
     } else {
-      setProfilePictureUrl(publicUrlData.publicUrl);
+      setProfilePictureUrl(publicUrlData.publicUrl); // Set the public URL
     }
   }
 
-  // Funkce pro upload profilového obrázku
+  // Upload the profile picture
   async function uploadProfilePicture() {
     if (!selectedFile) {
-      console.error("Žádný soubor nebyl vybrán.");
+      console.error("No file selected.");
       return;
     }
 
     if (!authUser) {
-      console.error("Uživatel není přihlášen.");
+      console.error("User is not authenticated.");
       return;
     }
 
-    // Cesta k souboru: user-{authUser.id}/{název souboru}
+    // Define the path where the file will be stored
     const filePath = `user-${authUser.id}/${selectedFile.name}`;
 
-    // Kontrola, zda soubor už v bucketu existuje
+    // Check if the file already exists in the bucket
     const { data: existingFiles, error: listError } = await supabase.storage
       .from("profile-pictures")
       .list(`user-${authUser.id}`, {
@@ -43,18 +43,17 @@ function ProfilePic() {
       });
 
     if (listError) {
-      console.error("Chyba při kontrole existence souboru:", listError.message);
+      console.error("Error checking file existence:", listError.message);
       return;
     }
 
-    // Pokud soubor již existuje, přeskočíme upload
+    // If the file doesn't exist, upload it
     if (
       existingFiles &&
       existingFiles.some((file) => file.name === selectedFile.name)
     ) {
-      console.log("Soubor již existuje. Přeskakuji upload...");
+      console.log("File already exists. Skipping upload...");
     } else {
-      // Upload souboru do bucketu
       const { data, error } = await supabase.storage
         .from("profile-pictures")
         .upload(filePath, selectedFile, {
@@ -63,57 +62,60 @@ function ProfilePic() {
         });
 
       if (error) {
-        console.error("Chyba při uploadu souboru:", error.message);
+        console.error("Error uploading file:", error.message);
         return;
       }
 
-      console.log("Soubor úspěšně nahrán:", data.path);
+      console.log("File successfully uploaded:", data.path);
     }
 
-    // Aktualizace odkazu na obrázek v tabulce `user`
+    // Update the user's profile with the image path
     const { error: dbError } = await supabase
       .from("user")
       .update({ img: filePath })
       .eq("authid", authUser.id);
 
     if (dbError) {
-      console.error(
-        "Chyba při aktualizaci uživatelského profilu:",
-        dbError.message
-      );
+      console.error("Error updating user profile:", dbError.message);
     } else {
-      console.log("Uživatelský profil úspěšně aktualizován s URL obrázku.");
+      console.log("User profile successfully updated with image URL.");
 
+      // Fetch the public URL of the uploaded image
       const { data: publicUrlData, error: urlError } = supabase.storage
         .from("profile-pictures")
         .getPublicUrl(filePath);
 
       if (urlError) {
-        console.error("Chyba při získávání veřejné URL:", urlError);
+        console.error("Error fetching public URL:", urlError);
       } else {
-        setProfilePictureUrl(publicUrlData.publicUrl);
+        setProfilePictureUrl(publicUrlData.publicUrl); // Set the public URL
+        // Update the global context with the new URL
+        setUserData((prevData) => ({
+          ...prevData,
+          img: publicUrlData.publicUrl,
+        }));
       }
     }
   }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-white">
-      <h1>Nahrát profilový obrázek</h1>
+      <h1>Upload Profile Picture</h1>
 
-      {/* Zobrazení profilového obrázku, pokud existuje */}
+      {/* Display the current profile picture */}
       {profilePictureUrl ? (
         <img
           src={profilePictureUrl}
-          alt="Profilový obrázek"
+          alt="Profile Picture"
           className="rounded-full w-32 h-32 mb-4"
         />
       ) : (
-        <p>Žádný profilový obrázek nebyl nahrán</p>
+        <p>No profile picture uploaded.</p>
       )}
 
-      {/* Input pro výběr souboru a tlačítko pro upload */}
+      {/* File input and upload button */}
       <input type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-      <button onClick={uploadProfilePicture}>Nahrát</button>
+      <button onClick={uploadProfilePicture}>Upload</button>
     </div>
   );
 }
