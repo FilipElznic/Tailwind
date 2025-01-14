@@ -20,12 +20,11 @@ function Overused() {
           <div className="w-2/3 h-60 md:w-72 md:h-60 lg:w-96 bg-zinc-900 rounded-3xl">
             <div className="w-full h-full flex flex-col justify-center items-center text-center">
               <h1 className="text-xl md:text-2xl lg:text-3xl mb-2 userlvl">
-                Vyzkoušejte svoje znalosti
+                Ponořte se do interaktivního účení
               </h1>
               <p>
-                Začněte s praktickými úkoly, které vám umožní lépe pochopit
-                vlastnosti geometrických těles, zlepšíte své prostorové vnímání
-                .
+                Poznávání geometrických tvarů hravě, interaktivně a hlavně
+                smysluplně. To je myšlenka této webové aplikace.
               </p>
             </div>
           </div>
@@ -34,11 +33,11 @@ function Overused() {
           <div className="w-2/3 h-60 md:w-72 md:h-60 lg:w-96 bg-zinc-900 rounded-3xl lg:ml-4">
             <div className="w-full h-full flex flex-col justify-center items-center text-center ">
               <h1 className="text-xl md:text-2xl lg:text-3xl mb-2 userlvl">
-                Sledujte svůj pokrok a soutěžte s ostatnímif
+                Vyzkoušejte svoje znalosti
               </h1>
               <p>
-                Získejte body za splněné úkoly, zlepšujte své dovednosti a
-                soutěžte s ostatními uživateli.
+                Ponořte se do fascinujícího světa 3D geometrie, kde každé těleso
+                odhaluje nové možnosti pro učení a vizualizaci.
               </p>
             </div>
           </div>

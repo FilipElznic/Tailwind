@@ -18,15 +18,58 @@ function App() {
       <GlobalProvider>
         <Router>
           <Routes>
+            {/* Public route for login */}
             <Route path="/prihlaseni" element={<LoginPage />} />
-            <Route path="/uzivatel" element={<SuccessPage />} />
-            <Route path="/tailwind" element={<TailwindTest />} />
-            <Route path="/ukoly" element={<TaskPage />} />
-            <Route path="/telesa" element={<TelesaPage />} />
-            <Route path="/projekt" element={<AboutPage />} />
-            <Route path="/pic" element={<ProfilePic />} />
 
-            {/* Protect the Success page */}
+            {/* Protected routes */}
+            <Route
+              path="/uzivatel"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <SuccessPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tailwind"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <TailwindTest />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/ukoly"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <TaskPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/telesa"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <TelesaPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/projekt"
+              element={
+                <ProtectedRoute redirectTo="/">
+                  <AboutPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pic"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <ProfilePic />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/success"
               element={

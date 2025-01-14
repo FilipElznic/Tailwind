@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGlobalData } from "../Global"; // Import global context
 import "../App.css";
 import { supabase } from "../supabaseClient";
+import { FaHome } from "react-icons/fa";
 
 function Navbar() {
   const { authUser, userData } = useGlobalData(); // Use context to get authUser and userData
@@ -72,6 +73,15 @@ function Navbar() {
           } lg:static lg:block lg:w-auto lg:opacity-100 lg:scale-100`}
         >
           <ul className="lg:flex lg:space-x-6 space-y-3 lg:space-y-0 p-6 lg:p-0">
+            <li className="flex items-center justify-center">
+              <Link
+                to="/success"
+                className="navbutton flex items-center justify-center text-white text-xl rounded-3xl  lg:text-2xl mx-4"
+              >
+                <FaHome />
+              </Link>
+            </li>
+
             <li>
               <Link
                 to="/telesa"
