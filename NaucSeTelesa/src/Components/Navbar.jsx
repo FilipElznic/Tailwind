@@ -65,7 +65,6 @@ function Navbar() {
           </svg>
         </button>
 
-        {/* Slide-In Menu */}
         <div
           className={`absolute top-16 left-0 w-80 bg-black rounded-3xl transition-all duration-500 ease-in-out ${
             isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -119,11 +118,8 @@ function Navbar() {
             >
               <div className="flex flex-row">
                 <p className="text-white pr-5">
-                  Zdravím,
-                  {userData?.name && userData?.surname
-                    ? ` ${userData.name} ${userData.surname}`
-                    : authUser.email}
-                  !
+                  Dobrý den,
+                  {userData?.name ? ` ${userData.name} ` : authUser.email}
                 </p>
                 <img
                   src={avatarUrl || "/default-avatar.jpg"} // Use the public URL from context

@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
 import { supabase } from "./supabaseClient";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const checkSession = async () => {
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
         data: { session },
       } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
+      setLoading(false); // Stop loading after session check
     };
     checkSession();
 
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, supabase }}>
+    <AuthContext.Provider value={{ user, loading, supabase }}>
       {children}
     </AuthContext.Provider>
   );

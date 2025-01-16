@@ -14,7 +14,7 @@ function UserPage() {
         <Overused />
         <Project />
 
-        <div className="mt-20 pb-20">
+        <div className="md:mt-20 md:pb-20">
           <Work />
         </div>
       </div>

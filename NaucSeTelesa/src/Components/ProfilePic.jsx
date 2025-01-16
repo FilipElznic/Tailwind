@@ -95,11 +95,7 @@ function ProfilePic() {
   }
 
   return (
-    <>
-      <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-        Upload Profile Picture
-      </h1>
-
+    <div className="flex flex-col items-center justify-center">
       {/* Display the current profile picture */}
       {profilePictureUrl ? (
         <img
@@ -109,27 +105,29 @@ function ProfilePic() {
         />
       ) : (
         <p className="mb-6 text-gray-400 italic">
-          No profile picture uploaded.
+          Přidejte si prosím profilový obrázek.
         </p>
       )}
 
-      {/* File input and upload button */}
-      <label className="relative cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all">
-        Choose File
-        <input
-          type="file"
-          onChange={(e) => setSelectedFile(e.target.files[0])}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-        />
-      </label>
+      <div className="w-full flex flex-row justify-center ">
+        <label className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg relative m-2">
+          Vybrat obrázek
+          <input
+            type="file"
+            onChange={(e) => setSelectedFile(e.target.files[0])}
+            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          />
+        </label>
 
-      <button
-        onClick={uploadProfilePicture}
-        className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all"
-      >
-        Upload
-      </button>
-    </>
+        <button
+          onClick={uploadProfilePicture}
+          className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg m-2"
+        >
+          Nahrát obrázek
+        </button>
+      </div>
+      {/* File input and upload button */}
+    </div>
   );
 }
 
