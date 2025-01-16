@@ -9,8 +9,8 @@ import UserPage from "./pages/userpage";
 import TaskPage from "./pages/taskPage";
 import TelesaPage from "./pages/telesaPage";
 import AboutPage from "./pages/aboutPage";
-import ProfilePic from "./Components/ProfilePic";
 import { GlobalProvider } from "./Global"; // Používáme pojmenovaný export
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -63,10 +63,10 @@ function App() {
               }
             />
             <Route
-              path="/pic"
+              path="/profil"
               element={
                 <ProtectedRoute redirectTo="/prihlaseni">
-                  <ProfilePic />
+                  <Profile />
                 </ProtectedRoute>
               }
             />

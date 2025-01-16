@@ -27,7 +27,6 @@ function Navbar() {
     } else {
       console.log("User signed out");
     }
-
     window.location.reload();
   };
 
@@ -135,14 +134,14 @@ function Navbar() {
             </button>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-52 usergradient text-white rounded-lg shadow-lg flex flex-col justify-start items-start font-bold z-20">
-                <Link to="/profile" className=" p-2">
+                <Link to="/profil" className="p-2">
                   <p className="text-2xl">Účet</p>
                   Profil
                 </Link>
-                <Link to="/help" className=" p-2">
+                <Link to="/help" className="p-2">
                   Pomoc
                 </Link>
-                <Link to="/" className=" p-2">
+                <Link to="/" className="p-2">
                   <button onClick={signOutUser} className="text-red-800 p-2">
                     Odhlásit se
                   </button>

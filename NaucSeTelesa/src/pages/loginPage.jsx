@@ -66,9 +66,6 @@ function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-lg shadow-lg text-center">
-        <h1 className="text-3xl font-extrabold mb-6 text-gray-100">
-          Přihlášení
-        </h1>
         <div className="space-y-4">
           <button
             onClick={() => handleProviderLogin("google")}

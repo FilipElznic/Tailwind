@@ -95,7 +95,7 @@ function ProfilePic() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
+    <>
       <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
         Upload Profile Picture
       </h1>
@@ -129,7 +129,7 @@ function ProfilePic() {
       >
         Upload
       </button>
-    </div>
+    </>
   );
 }
 
