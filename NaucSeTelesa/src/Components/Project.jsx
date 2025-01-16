@@ -27,14 +27,14 @@ function Project() {
           className="w-full h-96 md:w-1/2"
         />
       )}
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-full">
         <h1 className="text-2xl sm:text-6xl md:text-7xl xl:text-8xl font-bold m-5 userlvl">
           O Projektu
         </h1>
         <p className="text-xl  text-gray-800 m-2">
           Tento projekt je součástí ročníkové práce 3. ročníku
         </p>
-        <p className="text-xl text-gray-400 m-5">
+        <p className="text-xl text-gray-400 m-5 md:w-2/3 w-full">
           Cílem tohoto projektu je vytvořit interaktivní webovou aplikaci, která
           umožní uživatelům učit se o různých geometrických tělesech zábavnou a
           poutavou formou. Aplikace obsahuje interaktivní modely, které
