@@ -1,22 +1,24 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import { useGlobalData } from "../Global";
+import { FaFileAlt } from "react-icons/fa";
 
 function ProfilePic() {
-  const { authUser, userData } = useGlobalData(); // Assuming setUserData is available in context
-  const [selectedFile, setSelectedFile] = useState(null); // State for storing the selected file
-  const [profilePictureUrl, setProfilePictureUrl] = useState(null); // State for the public URL
+  const { authUser, userData } = useGlobalData();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [profilePictureUrl, setProfilePictureUrl] = useState(null);
+  const [isFileSelected, setIsFileSelected] = useState(false); // Track if a file is selected
 
   // If the user already has a profile picture, fetch the public URL
   if (userData?.img && !profilePictureUrl) {
     const { data: publicUrlData, error } = supabase.storage
       .from("profile-pictures")
-      .getPublicUrl(userData.img); // Get the public URL
+      .getPublicUrl(userData.img);
 
     if (error) {
       console.error("Error fetching public URL:", error);
     } else {
-      setProfilePictureUrl(publicUrlData.publicUrl); // Set the public URL
+      setProfilePictureUrl(publicUrlData.publicUrl);
     }
   }
 
@@ -32,10 +34,8 @@ function ProfilePic() {
       return;
     }
 
-    // Define the path where the file will be stored
     const filePath = `user-${authUser.id}/${selectedFile.name}`;
 
-    // Check if the file already exists in the bucket
     const { data: existingFiles, error: listError } = await supabase.storage
       .from("profile-pictures")
       .list(`user-${authUser.id}`, {
@@ -47,7 +47,6 @@ function ProfilePic() {
       return;
     }
 
-    // If the file doesn't exist, upload it
     if (
       existingFiles &&
       existingFiles.some((file) => file.name === selectedFile.name)
@@ -69,7 +68,6 @@ function ProfilePic() {
       console.log("File successfully uploaded:", data.path);
     }
 
-    // Update the user's profile with the image path
     const { error: dbError } = await supabase
       .from("user")
       .update({ img: filePath })
@@ -80,7 +78,6 @@ function ProfilePic() {
     } else {
       console.log("User profile successfully updated with image URL.");
 
-      // Fetch the public URL of the uploaded image
       const { data: publicUrlData, error: urlError } = supabase.storage
         .from("profile-pictures")
         .getPublicUrl(filePath);
@@ -88,45 +85,53 @@ function ProfilePic() {
       if (urlError) {
         console.error("Error fetching public URL:", urlError);
       } else {
-        setProfilePictureUrl(publicUrlData.publicUrl); // Set the public URL
-        // Update the global context with the new URL
+        setProfilePictureUrl(publicUrlData.publicUrl);
+        setIsFileSelected(false); // Reset the state after upload
       }
     }
   }
 
   return (
     <div className="flex flex-col items-center justify-center">
-      {/* Display the current profile picture */}
-      {profilePictureUrl ? (
+      {!isFileSelected && profilePictureUrl ? (
         <img
           src={profilePictureUrl}
           alt="Profile Picture"
           className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
         />
+      ) : isFileSelected && selectedFile ? (
+        <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 w-64">
+          <FaFileAlt className="text-gray-500 text-3xl mb-4" />
+          <span className="text-gray-700 text-sm">{selectedFile.name}</span>
+        </div>
       ) : (
         <p className="mb-6 text-gray-400 italic">
           Přidejte si prosím profilový obrázek.
         </p>
       )}
 
-      <div className="w-full flex flex-row justify-center ">
+      <div className="w-full flex flex-row justify-center">
         <label className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg relative m-2">
           Vybrat obrázek
           <input
             type="file"
-            onChange={(e) => setSelectedFile(e.target.files[0])}
+            onChange={(e) => {
+              setSelectedFile(e.target.files[0]);
+              setIsFileSelected(true); // Show file details when a file is selected
+            }}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
         </label>
 
-        <button
-          onClick={uploadProfilePicture}
-          className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg m-2"
-        >
-          Nahrát obrázek
-        </button>
+        {isFileSelected && (
+          <button
+            onClick={uploadProfilePicture}
+            className="mt-4 bg-gradient-to-r from-blue-400 to-purple-500 text-white py-2 px-6 rounded-lg m-2"
+          >
+            Uložit
+          </button>
+        )}
       </div>
-      {/* File input and upload button */}
     </div>
   );
 }
