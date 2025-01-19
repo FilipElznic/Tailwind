@@ -74,7 +74,7 @@ function Navbar() {
             <li className="flex items-center justify-center">
               <Link
                 to="/success"
-                className="navbutton flex items-center justify-center text-white text-xl rounded-3xl  lg:text-2xl mx-4"
+                className=" flex items-center justify-center text-white text-xl rounded-3xl  lg:text-2xl mx-4"
               >
                 <FaHome />
               </Link>
