@@ -1,9 +1,8 @@
 import InfoForm from "../Components/InfoForm";
 import Tailwind from "./TailwindTest";
-
+import Features from "../Components/Features";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import Imgprofile from "../components/Imgprofile";
 
 function SuccessPage() {
   return (
@@ -11,8 +10,7 @@ function SuccessPage() {
       <Navbar />
       <InfoForm />
       <Tailwind />
-
-      <Imgprofile />
+      <Features />
       <Footer />
     </>
   );

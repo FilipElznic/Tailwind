@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "../supabaseClient";
 import { useGlobalData } from "../Global";
 import { FaFileAlt } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 function ProfilePic() {
   const { authUser, userData } = useGlobalData();
@@ -10,6 +11,7 @@ function ProfilePic() {
   const [isFileSelected, setIsFileSelected] = useState(false); // Track if a file is selected
 
   // Default image if the user does not have one
+  const defaultImage = "path/to/default/image.png";
 
   // If the user already has a profile picture, fetch the public URL
   if (userData?.img && !profilePictureUrl) {
@@ -36,24 +38,23 @@ function ProfilePic() {
       return;
     }
 
-    const filePath = `user-${authUser.id}/${authUser.id}-${Date.now()}.png`;
+    const filePath = `user-${authUser.id}/${authUser.id}-${uuidv4()}.png`;
 
     // Step 1: If user already has a profile picture, delete the old one
-    if (userData?.img && userData.img !== "guest.png") {
-      const { error: deleteError } = await supabase.storage
-        .from("profile-pictures")
-        .remove([userData.img]);
-
-      if (deleteError) {
-        console.error("Error deleting old file:", deleteError.message);
-        return;
-      }
+    console.log("Attempting to delete file:", userData.img);
+    console.log("From bucket: profile-pictures");
+    const { error: deleteError } = await supabase.storage
+      .from("profile-pictures")
+      .remove([userData.img]);
+    if (deleteError) {
+      console.error("Error deleting old file:", deleteError.message);
+    } else {
       console.log("Old file deleted successfully.");
-    }
+    } // Verify deletion by attempting to fetch the file const { data: verifyData, error: verifyError } = await supabase.storage .from("profile-pictures") .list("", { prefix: `user-${authUser.id}/` }); if (verifyError) { console.error("Error verifying file deletion:", verifyError.message); } else { const fileExists = verifyData.some(file => file.name === userData.img); if (fileExists) { console.error("File still exists after supposed deletion."); } else { console.log("File deletion verified, file does not exist."); }
 
     // Step 2: Upload the new profile picture
     const { data, error: uploadError } = await supabase.storage
-      .from("profile-pictures")
+      .from("profile-pictures") // Ensure bucket name is correct
       .upload(filePath, selectedFile, {
         cacheControl: "3600",
         upsert: true, // Prevent overwriting existing files with the same name
@@ -81,7 +82,7 @@ function ProfilePic() {
 
     // Fetch the new image public URL
     const { data: publicUrlData, error: urlError } = supabase.storage
-      .from("profile-pictures")
+      .from("profile-pictures") // Ensure bucket name is correct
       .getPublicUrl(filePath);
 
     if (urlError) {
@@ -96,7 +97,7 @@ function ProfilePic() {
     <div className="flex flex-col items-center justify-center">
       {!isFileSelected && profilePictureUrl ? (
         <img
-          src={profilePictureUrl} // Use default image if no profile picture
+          src={profilePictureUrl || defaultImage} // Use default image if no profile picture
           alt="Profile Picture"
           className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
         />
@@ -120,6 +121,7 @@ function ProfilePic() {
               setSelectedFile(e.target.files[0]);
               setIsFileSelected(true); // Show file details when a file is selected
             }}
+            accept="image/jpeg, image/png" // Restrict the file types to JPG, JPEG, PNG
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
         </label>

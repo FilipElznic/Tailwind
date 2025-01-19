@@ -1,6 +1,6 @@
 import "../App.css";
 import { useEffect, useState } from "react";
-import { useGlobalData } from "../Global.jsx"; // Import the global context hook
+import { useGlobalData } from "../Global"; // Import the global context hook
 import { supabase } from "../supabaseClient";
 
 function InfoForm() {
@@ -8,18 +8,21 @@ function InfoForm() {
   const [jmeno, setJmeno] = useState("");
   const [prijmeni, setPrijmeni] = useState("");
   const [prezdivka, setPrezdivka] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Check if user is available and pre-fill name and surname from userData
   useEffect(() => {
     if (authUser && userData) {
-      // Pre-fill name and surname if the provider is Google
       if (authUser.app_metadata.provider === "google") {
         const fullName = userData.name || "";
         const nameParts = fullName.split(" ");
         setJmeno(nameParts[0] || ""); // First name
         setPrijmeni(nameParts.slice(1).join(" ") || ""); // Last name
+      } else {
+        setJmeno(userData.firstName || ""); // Pre-fill with existing first name
+        setPrijmeni(userData.lastName || ""); // Pre-fill with existing last name
       }
+      setPrezdivka(userData.nickname || ""); // Pre-fill nickname if available
     }
   }, [authUser, userData]);
 
@@ -54,11 +57,6 @@ function InfoForm() {
       return;
     }
 
-    if (authUser.app_metadata.provider !== "google") {
-      console.error("User provider is not Google.");
-      return;
-    }
-
     try {
       const { data, error } = await supabase
         .from("user")
@@ -73,6 +71,7 @@ function InfoForm() {
         console.error("Error updating data:", error);
       } else {
         console.log("Data updated successfully:", data);
+        window.location.href = "/";
       }
     } catch (error) {
       console.error("Unexpected error during form submission:", error);
@@ -82,7 +81,6 @@ function InfoForm() {
 
   const Zavri = async () => {
     try {
-      // Perform the update query
       const { data, error } = await supabase
         .from("user")
         .update({ nameSet: true })
