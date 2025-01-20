@@ -10,8 +10,7 @@ function ProfilePic() {
   const [profilePictureUrl, setProfilePictureUrl] = useState(null);
   const [isFileSelected, setIsFileSelected] = useState(false); // Track if a file is selected
 
-  // Default image if the user does not have one
-  const defaultImage = "path/to/default/image.png";
+
 
   // If the user already has a profile picture, fetch the public URL
   if (userData?.img && !profilePictureUrl) {
