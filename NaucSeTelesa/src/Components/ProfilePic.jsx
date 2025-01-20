@@ -96,7 +96,7 @@ function ProfilePic() {
     <div className="flex flex-col items-center justify-center">
       {!isFileSelected && profilePictureUrl ? (
         <img
-          src={profilePictureUrl || defaultImage} // Use default image if no profile picture
+          src={profilePictureUrl } 
           alt="Profile Picture"
           className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
         />
