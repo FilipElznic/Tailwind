@@ -131,8 +131,10 @@ function Navbar() {
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-52 usergradient text-white rounded-lg shadow-lg flex flex-col justify-start items-start font-bold z-20">
                 <Link to="/profil" className="p-2">
-                  <p className="text-2xl">Účet</p>
-                  Profil
+                  <div className="w-40 border-b-2">
+                    <p className="text-2xl ">Účet</p>
+                  </div>
+                  <p className="pt-2">Profil</p>
                 </Link>
                 <Link to="/help" className="p-2">
                   Pomoc
