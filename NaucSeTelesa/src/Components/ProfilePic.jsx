@@ -10,8 +10,6 @@ function ProfilePic() {
   const [profilePictureUrl, setProfilePictureUrl] = useState(null);
   const [isFileSelected, setIsFileSelected] = useState(false); // Track if a file is selected
 
-
-
   // If the user already has a profile picture, fetch the public URL
   if (userData?.img && !profilePictureUrl) {
     const { data: publicUrlData, error } = supabase.storage
@@ -96,7 +94,7 @@ function ProfilePic() {
     <div className="flex flex-col items-center justify-center">
       {!isFileSelected && profilePictureUrl ? (
         <img
-          src={profilePictureUrl } 
+          src={profilePictureUrl}
           alt="Profile Picture"
           className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
         />
