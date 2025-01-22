@@ -33,7 +33,7 @@ function Telesa() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
           {bodies.map((body, index) => (
             <li
               key={index}
@@ -104,7 +104,7 @@ function Telesa() {
                       className={`formula ${
                         body.perimeter_formula &&
                         body.perimeter_formula.length < 15
-                          ? "text-2xl"
+                          ? "text-xl"
                           : ""
                       }`}
                       dangerouslySetInnerHTML={{

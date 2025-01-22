@@ -96,7 +96,7 @@ function ProfilePic() {
         <img
           src={profilePictureUrl}
           alt="Profile Picture"
-          className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all"
+          className="rounded-full w-32 h-32 mb-6 shadow-lg border-4 border-blue-500 hover:border-purple-600 transition-all object-cover"
         />
       ) : isFileSelected && selectedFile ? (
         <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 w-64">

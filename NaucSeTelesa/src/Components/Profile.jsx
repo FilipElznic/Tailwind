@@ -93,9 +93,9 @@ function Profile() {
     <>
       <Navbar />
       <div className="min-h-screen flex flex-col items-center justify-center bgplanet text-white px-4">
-        <div className="bg-gray-800 text-white p-6 rounded-lg w-full sm:w-3/5 md:w-2/5 lg:w-1/3 relative">
+        <div className="bg-black text-white p-6 rounded-lg w-full sm:w-3/5 md:w-2/5 lg:w-1/3 bg-opacity-40 border-2 border-gray-700">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold">Profil</h2>
+            <h2 className="text-xl md:text-2xl font-semibold">Profil</h2>
 
             <IoMdClose
               className="cursor-pointer"
@@ -104,7 +104,7 @@ function Profile() {
           </div>
           <ProfilePic />
 
-          <div className="w-full flex flex-col justify-center ">
+          <div className="w-full flex flex-col justify-center text-center ">
             {["name", "surname", "nickname"].map((field) => (
               <div className="my-4" key={field}>
                 <label>
@@ -118,7 +118,7 @@ function Profile() {
                       type="text"
                       value={formData[field]}
                       onChange={(e) => handleInputChange(field, e.target.value)}
-                      className="w-3/5 lg:w-2/3 p-2 rounded-3xl bg-gray-700 border-none text-white mr-2"
+                      className="w-3/5 lg:w-2/3 p-2 rounded-3xl bg-opacity-10 bg-gray-600 border-2 text-white mr-2"
                       readOnly={!editing[field]}
                     />
                     <FaRegEdit
@@ -130,7 +130,7 @@ function Profile() {
               </div>
             ))}
             <button
-              className="w-full p-2 rounded-md bg-gray-600 text-white mt-4"
+              className="w-full p-2 rounded-md userlvl2 text-white mt-4"
               onClick={handleSaveChanges}
             >
               Uložit změny

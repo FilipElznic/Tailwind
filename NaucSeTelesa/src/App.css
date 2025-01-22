@@ -113,6 +113,9 @@ h-screen.w-full {
 .userlvl1 {
   background: linear-gradient(to left, #dba1db, #36d6f7);
 }
+.userlvl2 {
+  background: linear-gradient(to left, #ad17ad, #87c5d2);
+}
 
 .usertask {
   color: rgba(255, 255, 255);
@@ -163,4 +166,5 @@ h-screen.w-full {
   background-repeat: no-repeat;
   background-color: rgb(20, 20, 20); /* Ensure transparency */
   background-size: cover;
+  background-position: center;
 }

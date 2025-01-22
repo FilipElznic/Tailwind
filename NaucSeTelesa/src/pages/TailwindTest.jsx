@@ -3,10 +3,21 @@ import Spline from "@splinetool/react-spline";
 import { IoShieldSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useGlobalData } from "../Global"; // Import the custom hook
+import { useEffect, useState } from "react";
 
 function TailwindTest() {
   // Access the global context
-  const { authUser, userData, loading } = useGlobalData();
+  const { authUser, userData } = useGlobalData();
+  const [avatarUrl, setAvatarUrl] = useState(userData?.img || ""); // Initialize avatar URL
+
+  useEffect(() => {
+    if (userData) {
+      setAvatarUrl(
+        "https://bviuhriolcuvayzbgzum.supabase.co/storage/v1/object/public/profile-pictures/" +
+          userData.img
+      ); // Ensure the avatar URL is updated
+    }
+  }, [userData]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center mb-20 text-white ">
@@ -91,10 +102,20 @@ function TailwindTest() {
             </Link>
           </div>
 
-          <div className="w-full lg:w-1/5 h-80 usergradient m-2 rounded-3xl"></div>
+          <div className="w-full lg:w-1/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300">
+            <Link to={"/profil"}>
+              <div className="w-full h-full flex flex-col justify-center items-center">
+                <img
+                  src={avatarUrl}
+                  className="object-fit rounded-full"
+                  alt="Avatar"
+                />
+              </div>
+            </Link>
+          </div>
 
           <div className="w-full lg:w-2/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300">
-            <Link to={"/telesa"} className=" ">
+            <Link to={"/telesa"}>
               <div className="h-full w-full flex flex-col justify-center items-center text-white p-11">
                 <h1 className="text-xl md:text-5xl lg:text-5xl pb-2 w-full text-center font-semibold userlvl">
                   Nechte se vnést do světa geometrie
