@@ -136,7 +136,7 @@ function Navbar() {
                   </div>
                   <p className="pt-2">Profil</p>
                 </Link>
-                <Link to="/help" className="p-2">
+                <Link to="/pomoc" className="p-2">
                   Pomoc
                 </Link>
                 <Link to="/" className="p-2">

@@ -11,6 +11,7 @@ import TelesaPage from "./pages/telesaPage";
 import AboutPage from "./pages/aboutPage";
 import { GlobalProvider } from "./Global"; // Používáme pojmenovaný export
 import Profile from "./Components/Profile";
+import PomocPage from "./pages/pomocPage";
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
               element={
                 <ProtectedRoute redirectTo="/prihlaseni">
                   <SuccessPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/pomoc"
+              element={
+                <ProtectedRoute redirectTo="/prihlaseni">
+                  <PomocPage />
                 </ProtectedRoute>
               }
             />
