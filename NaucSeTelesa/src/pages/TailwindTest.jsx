@@ -9,6 +9,7 @@ function TailwindTest() {
   // Access the global context
   const { authUser, userData } = useGlobalData();
   const [avatarUrl, setAvatarUrl] = useState(userData?.img || ""); // Initialize avatar URL
+  const [isSplineLoading, setIsSplineLoading] = useState(true); // Loading state for Spline
 
   useEffect(() => {
     if (userData) {
@@ -18,6 +19,9 @@ function TailwindTest() {
       ); // Ensure the avatar URL is updated
     }
   }, [userData]);
+  const handleSplineLoad = () => {
+    setIsSplineLoading(false); // Hide loader when Spline finishes loading
+  };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center mb-20 text-white ">
@@ -82,8 +86,16 @@ function TailwindTest() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300">
-            <Spline scene="https://prod.spline.design/i4RPN7ynugvjhc24/scene.splinecode" />
+          <div className="w-full lg:w-1/5 h-80 usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300 relative">
+            {isSplineLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-transparent rounded-3xl z-10">
+                <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+            <Spline
+              scene="https://prod.spline.design/i4RPN7ynugvjhc24/scene.splinecode"
+              onLoad={handleSplineLoad}
+            />
           </div>
         </div>
 

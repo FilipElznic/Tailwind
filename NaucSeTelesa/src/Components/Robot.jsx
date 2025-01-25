@@ -4,12 +4,17 @@ import Spline from "@splinetool/react-spline";
 
 function Robot() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [isSplineLoading, setIsSplineLoading] = useState(true); // Loading state for Spline
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleSplineLoad = () => {
+    setIsSplineLoading(false); // Hide loader when Spline finishes loading
+  };
 
   return (
     <>
@@ -28,7 +33,15 @@ function Robot() {
             </div>
             <div className="relative md:flex md:flex-row md:justify-between md:items-start md:mt-14 w-full">
               <div className="absolute inset-0 z-0">
-                <Spline scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode" />
+                {isSplineLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-transparent rounded-3xl z-10">
+                    <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+                <Spline
+                  scene="https://prod.spline.design/jRwjRE4UBf9SZJJd/scene.splinecode"
+                  onLoad={handleSplineLoad}
+                />
               </div>
               <div className="relative sm:flex sm:flex-col sm:justify-center sm:h-[90vh]  w-1/4 ">
                 <h1 className="text-4xl md:text-2xl lg:text-5xl font-bold p-5 sm:pr-20 userlvl">
