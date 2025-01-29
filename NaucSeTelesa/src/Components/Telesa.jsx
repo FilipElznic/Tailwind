@@ -37,93 +37,111 @@ function Telesa() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-6">
-      <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500">
-        Geometric Bodies
+      <h1 className="text-9xl font-bold my-28 text-transparent bg-clip-text userlvl ">
+        Geometrická tělesa
       </h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+        <ul className="flex flex-col gap-6 w-full max-w-6xl">
           {bodies.map((body, index) => (
             <li
               key={index}
-              className="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+              className="usergradient rounded-lg p-8 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
               onClick={() => handleBodyClick(body)}
             >
-              <h2 className="text-xl font-bold mb-4 text-purple-400">
-                {body.geometric_body_name}
-              </h2>
-              {body.image_url && (
-                <img
-                  src={body.image_url}
-                  alt={body.geometric_body_name}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
-              )}
-              <p className="text-gray-300 mb-4">{body.description}</p>
-              <div className="text-sm text-gray-400 space-y-2">
-                {body.volume_name && (
-                  <>
-                    <h3 className="text-lg text-pink-500">
-                      {body.volume_name}
-                    </h3>
-                    <p
-                      className="formula text-xl"
-                      dangerouslySetInnerHTML={{
-                        __html: katex.renderToString(body.volume_formula),
-                      }}
+              <div className="flex flex-col md:flex-row w-full justify-between items-center h-full">
+                <div className="md:w-2/3">
+                  <h2 className="text-2xl font-bold mb-6 text-purple-400">
+                    {body.geometric_body_name}
+                  </h2>
+                  <p className="text-gray-300 mb-6 text-lg md:w-2/3">
+                    {body.description}
+                  </p>
+                  <div className="text-sm text-gray-400 space-y-4">
+                    <div className="flex flex-col md:flex-row md:justify-evenly w-full">
+                      {body.volume_name && (
+                        <div className="flex flex-col">
+                          <h3 className="text-xl text-pink-500">
+                            {body.volume_name}
+                          </h3>
+                          <p
+                            className="formula text-2xl"
+                            dangerouslySetInnerHTML={{
+                              __html: katex.renderToString(body.volume_formula),
+                            }}
+                          />
+                        </div>
+                      )}
+                      {body.surface_name && (
+                        <div className="flex flex-col">
+                          <h3 className="text-xl text-indigo-500">
+                            {body.surface_name}
+                          </h3>
+                          <p
+                            className="formula text-2xl"
+                            dangerouslySetInnerHTML={{
+                              __html: katex.renderToString(
+                                body.surface_formula
+                              ),
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-col md:flex-row md:justify-evenly w-full">
+                      {body.area_name && (
+                        <div className="flex flex-col">
+                          <h3 className="text-xl text-pink-500">
+                            {body.area_name}
+                          </h3>
+                          <p
+                            className="formula text-2xl"
+                            dangerouslySetInnerHTML={{
+                              __html: katex.renderToString(body.area_formula),
+                            }}
+                          />
+                        </div>
+                      )}
+                      {body.perimeter_name && (
+                        <div className="flex flex-col">
+                          <h3
+                            className={`text-xl ${
+                              body.perimeter_formula &&
+                              body.perimeter_formula.length < 15
+                                ? "text-3xl"
+                                : ""
+                            }`}
+                          >
+                            {body.perimeter_name}
+                          </h3>
+                          <p
+                            className={`formula ${
+                              body.perimeter_formula &&
+                              body.perimeter_formula.length < 15
+                                ? "text-2xl"
+                                : ""
+                            }`}
+                            dangerouslySetInnerHTML={{
+                              __html: katex.renderToString(
+                                body.perimeter_formula
+                              ),
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-1/3">
+                  {body.image_url && (
+                    <img
+                      src={body.image_url}
+                      alt={body.geometric_body_name}
+                      className="w-full h-56 object-cover rounded-md mb-4"
                     />
-                  </>
-                )}
-                {body.surface_name && (
-                  <>
-                    <h3 className="text-lg text-indigo-500">
-                      {body.surface_name}
-                    </h3>
-                    <p
-                      className="formula text-xl"
-                      dangerouslySetInnerHTML={{
-                        __html: katex.renderToString(body.surface_formula),
-                      }}
-                    />
-                  </>
-                )}
-                {body.area_name && (
-                  <>
-                    <h3 className="text-lg text-pink-500">{body.area_name}</h3>
-                    <p
-                      className="formula text-xl"
-                      dangerouslySetInnerHTML={{
-                        __html: katex.renderToString(body.area_formula),
-                      }}
-                    />
-                  </>
-                )}
-                {body.perimeter_name && (
-                  <>
-                    <h3
-                      className={`text-lg ${
-                        body.perimeter_formula &&
-                        body.perimeter_formula.length < 15
-                          ? "text-2xl"
-                          : ""
-                      }`}
-                    >
-                      {body.perimeter_name}
-                    </h3>
-                    <p
-                      className={`formula ${
-                        body.perimeter_formula &&
-                        body.perimeter_formula.length < 15
-                          ? "text-xl"
-                          : ""
-                      }`}
-                      dangerouslySetInnerHTML={{
-                        __html: katex.renderToString(body.perimeter_formula),
-                      }}
-                    />
-                  </>
-                )}
+                  )}
+                </div>
               </div>
             </li>
           ))}

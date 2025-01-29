@@ -17,10 +17,6 @@ html {
   background: linear-gradient(0deg, rgb(29, 29, 29) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
-h-screen.w-full {
-  background-color: transparent;
-}
-
 .bg-quick {
   background-color: #000000;
 }
@@ -48,16 +44,6 @@ h-screen.w-full {
 .features4 {
   background: rgb(20, 20, 20);
   background: linear-gradient(160deg, #1e0a52 0%, #6d1490 100%);
-}
-
-.formcolor {
-  background-color: #3c0045;
-}
-.imgbg {
-  background-image: url("robot2.png");
-  background-repeat: no-repeat;
-  background-color: rgb(20, 20, 20); /* Ensure transparency */
-  background-size: cover;
 }
 
 .bg-form {
