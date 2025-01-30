@@ -9,6 +9,7 @@ function Telesa() {
   const [bodies, setBodies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBody, setSelectedBody] = useState(null);
+  const [isSplineLoading, setIsSplineLoading] = useState(true); // Loading state for Spline
 
   useEffect(() => {
     const fetchBodies = async () => {
@@ -35,6 +36,10 @@ function Telesa() {
     setSelectedBody(null);
   };
 
+  const handleSplineLoad = () => {
+    setIsSplineLoading(false); // Hide loader when Spline finishes loading
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-6">
       <h1 className="text-9xl font-bold my-28 text-transparent bg-clip-text userlvl ">
@@ -59,7 +64,7 @@ function Telesa() {
                     {body.description}
                   </p>
                   <div className="text-sm text-gray-400 space-y-4">
-                    <div className="flex flex-col md:flex-row md:justify-evenly w-full">
+                    <div className="flex flex-col md:flex-row md:justify-evenly md:w-2/3">
                       {body.volume_name && (
                         <div className="flex flex-col">
                           <h3 className="text-xl text-pink-500">
@@ -89,7 +94,7 @@ function Telesa() {
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-col md:flex-row md:justify-evenly w-full">
+                    <div className="flex flex-col md:flex-row md:justify-evenly md:w-2/3">
                       {body.area_name && (
                         <div className="flex flex-col">
                           <h3 className="text-xl text-pink-500">
@@ -150,21 +155,29 @@ function Telesa() {
 
       {selectedBody && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-4xl relative">
+          <div className="usergradient rounded-lg p-6 w-full max-w-4xl relative">
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-white text-2xl"
             >
               &times;
             </button>
-            <h2 className="text-xl font-bold mb-4 text-purple-400">
+            <h2 className="text-xl font-bold mb-4 userlvl text-center">
               {selectedBody.geometric_body_name}
             </h2>
             {selectedBody.spline_url ? (
-              <Spline
-                scene={selectedBody.spline_url}
-                className="w-full h-96 rounded-md mb-4"
-              />
+              <div className="relative">
+                {isSplineLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-transparent rounded-3xl z-10">
+                    <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+                <Spline
+                  scene={selectedBody.spline_url}
+                  className="w-full h-96 rounded-md mb-4"
+                  onLoad={handleSplineLoad}
+                />
+              </div>
             ) : (
               <img
                 src={selectedBody.image_url}
@@ -172,7 +185,9 @@ function Telesa() {
                 className="w-full h-96 object-cover rounded-md mb-4"
               />
             )}
-            <p className="text-gray-300 mb-4">{selectedBody.description}</p>
+            <p className="text-gray-300 mb-4 text-center">
+              {selectedBody.description}
+            </p>
           </div>
         </div>
       )}
