@@ -42,7 +42,7 @@ function Telesa() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center p-6">
-      <h1 className="text-9xl font-bold my-28 text-transparent bg-clip-text userlvl ">
+      <h1 className="text-2xl md:text-5xl lg:text-9xl font-bold my-28 text-transparent bg-clip-text userlvl ">
         Geometrická tělesa
       </h1>
       {loading ? (
@@ -138,12 +138,12 @@ function Telesa() {
                     </div>
                   </div>
                 </div>
-                <div className="md:w-1/3">
+                <div className="md:w-1/3 flex justify-center items-center">
                   {body.image_url && (
                     <img
                       src={body.image_url}
                       alt={body.geometric_body_name}
-                      className="w-full h-56 object-cover rounded-md mb-4"
+                      className="w-56 h-56 object-fit rounded-md mb-4"
                     />
                   )}
                 </div>
@@ -182,7 +182,7 @@ function Telesa() {
               <img
                 src={selectedBody.image_url}
                 alt={selectedBody.geometric_body_name}
-                className="w-full h-96 object-cover rounded-md mb-4"
+                className="w-96 h-96 object-fit rounded-md mb-4"
               />
             )}
             <p className="text-gray-300 mb-4 text-center">

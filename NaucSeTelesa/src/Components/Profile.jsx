@@ -93,10 +93,15 @@ function Profile() {
     <>
       <Navbar />
       <div className="min-h-screen flex flex-col items-center justify-center bgplanet text-white px-4">
-        <div className="bg-black text-white p-6 rounded-lg w-full sm:w-3/5 md:w-2/5 lg:w-1/3 bg-opacity-40 border-2 border-gray-700">
+        <div
+          className="bg-black text-white p-6 rounded-lg w-full sm:w-3/5 md:w-2/5 lg:w-1/3 bg-opacity-40 border-2 border-gray-700 backdrop-blur-sm"
+          style={{
+            backdropFilter: "blur(10px)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+          }}
+        >
           <div className="flex justify-between items-center">
             <h2 className="text-xl md:text-2xl font-semibold">Profil</h2>
-
             <IoMdClose
               className="cursor-pointer"
               onClick={() => (window.location.href = "/")}
@@ -104,7 +109,7 @@ function Profile() {
           </div>
           <ProfilePic />
 
-          <div className="w-full flex flex-col justify-center text-center ">
+          <div className="w-full flex flex-col justify-center text-center">
             {["name", "surname", "nickname"].map((field) => (
               <div className="my-4" key={field}>
                 <label>
