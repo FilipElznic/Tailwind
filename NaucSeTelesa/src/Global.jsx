@@ -1,68 +1,115 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
 
-// Vytvoření kontextu
 const GlobalContext = createContext();
 
-// Poskytovatel kontextu
 export function GlobalProvider({ children }) {
-  const [authUser, setAuthUser] = useState(null); // Přihlášený uživatel
-  const [userData, setUserData] = useState(null); // Data uživatele z databáze
-  const [loading, setLoading] = useState(true); // Stav načítání
+  const [authUser, setAuthUser] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Funkce pro načtení přihlášeného uživatele
+  // Fetch authenticated user
   useEffect(() => {
-    async function fetchAuthUser() {
+    const fetchAuthUser = async () => {
       const {
         data: { session },
         error,
       } = await supabase.auth.getSession();
 
       if (error) {
-        console.error("Chyba při načítání session:", error);
+        console.error("Session error:", error);
       } else if (session) {
-        setAuthUser(session.user); // Uložení přihlášeného uživatele
-        console.log("Přihlášený uživatel:", session.user);
+        setAuthUser(session.user);
       }
-    }
+    };
+
     fetchAuthUser();
   }, []);
 
-  // Funkce pro načtení dat uživatele z databáze
+  // Handle auth state changes
   useEffect(() => {
-    async function fetchUserData() {
-      if (authUser) {
-        try {
-          const { data, error } = await supabase
-            .from("user") // Název tabulky v databázi
-            .select("*")
-            .eq("authid", authUser.id) // Hledáme záznam s odpovídajícím `authid`
-            .single(); // Očekáváme jeden záznam
-
-          if (error) {
-            console.error("Chyba při načítání dat uživatele:", error);
-          } else {
-            setUserData(data); // Uložení dat uživatele
-            console.log("Data uživatele:", data);
-          }
-        } catch (error) {
-          console.error("Neočekávaná chyba:", error);
-        }
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setAuthUser(session?.user || null);
       }
-      setLoading(false); // Načítání dokončeno
-    }
+    );
+
+    return () => authListener?.subscription.unsubscribe();
+  }, []);
+
+  // Fetch user data from 'user' table
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!authUser) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Use double quotes for table name to avoid SQL keyword conflict
+        const { data, error } = await supabase
+          .from("user") // Important: use double quotes
+          .select("*")
+          .eq("authid", authUser.id)
+          .single();
+
+        if (error && error.code !== "PGRST116") throw error;
+
+        // Create new user if doesn't exist
+        if (!data) {
+          const { data: newUser } = await supabase
+            .from('"user"')
+            .insert([
+              {
+                authid: authUser.id,
+                email: authUser.email,
+                xp: 0,
+                created_at: new Date().toISOString(),
+              },
+            ])
+            .select()
+            .single();
+
+          setUserData(newUser);
+        } else {
+          setUserData(data);
+        }
+      } catch (error) {
+        console.error("User data error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchUserData();
   }, [authUser]);
 
-  // Poskytované hodnoty kontextu
-  const value = { authUser, userData, loading };
+  // Function to refresh user data
+  const refreshUserData = async () => {
+    if (!authUser) return;
+
+    const { data, error } = await supabase
+      .from("user")
+      .select("*")
+      .eq("authid", authUser.id)
+      .single();
+
+    if (error) console.error("Refresh error:", error);
+    else setUserData(data);
+  };
+
+  const value = {
+    authUser,
+    userData,
+    loading,
+    refreshUserData,
+  };
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
   );
 }
 
-// Vlastní hook pro použití kontextu
 export function useGlobalData() {
   return useContext(GlobalContext);
 }

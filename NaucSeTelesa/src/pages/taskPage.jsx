@@ -6,9 +6,8 @@ import { useGlobalData } from "../Global";
 
 function TaskPage() {
   const [tasks, setTasks] = useState([]);
-  const [userXp, setUserXp] = useState(0); // XP pro aktuálního uživatele
-  const [selectedAnswers, setSelectedAnswers] = useState({}); // Sledování odpovědí
-  const { authUser, userData } = useGlobalData();
+  const [selectedAnswers, setSelectedAnswers] = useState({}); // Track selected answers by task ID
+  const { authUser, userData, refreshUserData } = useGlobalData();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -17,7 +16,6 @@ function TaskPage() {
         console.error("Error fetching tasks:", error);
       } else {
         setTasks(data);
-        console.log("Tasks fetched:", data);
       }
     };
 
@@ -25,27 +23,35 @@ function TaskPage() {
   }, []);
 
   const handleAnswerClick = async (taskId, answer) => {
+    // Prevent multiple submissions
+    if (selectedAnswers[taskId]) return;
+
     const task = tasks.find((t) => t.id === taskId);
     const isCorrect = task.correctanswer === answer;
 
-    // Aktualizace vybrané odpovědi pro barvení
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [taskId]: isCorrect ? "correct" : "wrong",
-    }));
+    // Update selected answer
+    setSelectedAnswers((prev) => ({ ...prev, [taskId]: answer }));
 
     if (isCorrect) {
-      // Přidání XP uživateli
-      const xpToAdd = task.xp;
-      const { error } = await supabase
-        .from("user")
-        .update({ xp: userXp + xpToAdd })
-        .eq("id", userData.id); // Zde použij ID aktuálního uživatele
+      try {
+        await supabase.rpc("increment_user_xp", {
+          user_id: userData.id,
+          xp_amount: task.xp,
+        });
+        await refreshUserData();
+      } catch (error) {
+        console.error("XP update error:", error);
+      }
+
+      const { error } = await supabase.from("finishedtasks").insert({
+        iduser: userData.id,
+        idtask: taskId,
+      });
+
       if (error) {
-        console.error("Error updating XP:", error);
+        console.error("Error inserting into finishedtasks:", error);
       } else {
-        setUserXp(userXp + xpToAdd);
-        console.log(`Added ${xpToAdd} XP to user`);
+        console.log("Task successfully added to finishedtasks.");
       }
     }
   };
@@ -58,37 +64,49 @@ function TaskPage() {
           Task Page
         </h1>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
-          {tasks.map((task) => (
-            <li
-              key={task.id}
-              className="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl"
-            >
-              <h2 className="text-xl font-bold mb-4 text-purple-400">
-                {task.name}
-              </h2>
-              <p className="text-gray-300 mb-2">{task.description}</p>
-              <div className="text-sm text-gray-400 space-y-2">
-                {["answera", "answerb", "answerc"].map((option) => (
-                  <button
-                    key={option}
-                    className={`block w-full py-2 px-4 rounded-lg ${
-                      selectedAnswers[task.id] === "correct" &&
-                      task.correctanswer === task[option]
-                        ? "bg-green-500"
-                        : selectedAnswers[task.id] === "wrong" &&
-                          task.correctanswer !== task[option]
-                        ? "bg-red-500"
-                        : "bg-gray-700"
-                    }`}
-                    onClick={() => handleAnswerClick(task.id, task[option])}
-                  >
-                    {task[option]}
-                  </button>
-                ))}
-              </div>
-              <p className="text-yellow-400 mt-4">XP: {task.xp}</p>
-            </li>
-          ))}
+          {tasks.map((task) => {
+            const selectedAnswer = selectedAnswers[task.id];
+            const correctAnswer = task.correctanswer;
+
+            return (
+              <li
+                key={task.id}
+                className="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+              >
+                <h2 className="text-xl font-bold mb-4 text-purple-400">
+                  {task.name}
+                </h2>
+                <p className="text-gray-300 mb-2">{task.description}</p>
+                <div className="text-sm text-gray-400 space-y-2">
+                  {["answera", "answerb", "answerc"].map((option) => {
+                    const answerText = task[option];
+                    const isCorrect = answerText === correctAnswer;
+                    const isSelected = answerText === selectedAnswer;
+
+                    return (
+                      <button
+                        key={option}
+                        className={`block w-full py-2 px-4 rounded-lg transition-colors ${
+                          selectedAnswer
+                            ? isCorrect
+                              ? "bg-green-500"
+                              : isSelected
+                              ? "bg-red-500"
+                              : "bg-gray-700 opacity-50"
+                            : "bg-gray-700 hover:bg-gray-600"
+                        }`}
+                        onClick={() => handleAnswerClick(task.id, answerText)}
+                        disabled={!!selectedAnswer}
+                      >
+                        {answerText}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="text-yellow-400 mt-4">XP: {task.xp}</p>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <Footer />
