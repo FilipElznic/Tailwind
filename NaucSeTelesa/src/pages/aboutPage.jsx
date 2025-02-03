@@ -12,7 +12,7 @@ function AboutPage() {
           About Page soon
         </h1>
 
-        <Spline scene="https://prod.spline.design/MuYbbeDm6sukZPDN/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/F8qrqEGlMo2fjGHw/scene.splinecode" />
       </div>
       <Footer />
     </>
