@@ -5,8 +5,6 @@ import { useGlobalData } from "../Global"; // Import global context
 function Leaderboard() {
   const [users, setUsers] = useState([]);
   const { userData } = useGlobalData();
-  const [userRank, setUserRank] = useState(null);
-  const [isUserInTop10, setIsUserInTop10] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -19,18 +17,11 @@ function Leaderboard() {
         console.error("Error fetching users:", error);
       } else {
         setUsers(data.slice(0, 10)); // Only store top 10 users
-
-        // Find the current user's rank in the full list
-        const rank = data.findIndex((user) => user.id === userData.id);
-        if (rank !== -1) {
-          setUserRank(rank + 1); // Ranks start from 1
-          setIsUserInTop10(rank < 10); // Check if the user is in the top 10
-        }
       }
     };
 
     fetchUsers();
-  }, [userData.id]);
+  }, [userData]);
 
   return (
     <div className="min-h-screen bg-transparent text-white p-8 font-sans">
@@ -60,12 +51,6 @@ function Leaderboard() {
           </div>
         ))}
       </div>
-
-      {userRank && !isUserInTop10 && (
-        <div className="text-center mt-6 text-lg font-semibold text-gray-300">
-          {`You are currently ranked #${userRank} (Outside Top 10)`}
-        </div>
-      )}
     </div>
   );
 }
