@@ -3,7 +3,7 @@ import Tailwind from "./TailwindTest";
 import Features from "../Components/Features";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import Leaderboard from "../Components/Leaderboard";
+import LeaderboardW from "../Components/LeaderboardW";
 
 function SuccessPage() {
   return (
@@ -12,12 +12,7 @@ function SuccessPage() {
       <InfoForm />
       <Tailwind />
       <Features />
-
-      <div className="w-full flex flex-col md:flex-row">
-        <div className="w-full bg-white"></div>
-        <div className="w-full "></div>
-      </div>
-
+      <LeaderboardW />
       <Footer />
     </>
   );
