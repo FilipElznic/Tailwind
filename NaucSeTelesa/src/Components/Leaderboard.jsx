@@ -26,9 +26,6 @@ function Leaderboard() {
 
   return (
     <div className="usergradient rounded-3xl w-full  text-white p-8 font-sans">
-      <h1 className="text-4xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-        Leaderboard
-      </h1>
       <div className="max-w-sm mx-auto">
         <div className="grid grid-cols-3 gap-4 p-4 bg-transparent rounded-lg shadow-lg">
           <div className="text-lg font-semibold text-purple-400">Rank</div>
