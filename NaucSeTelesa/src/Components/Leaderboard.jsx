@@ -26,31 +26,33 @@ function Leaderboard() {
 
   return (
     <div className="usergradient rounded-3xl w-full  text-white p-8 font-sans">
-      <div className="max-w-sm mx-auto">
+      <div className="min-w-3xl mx-auto">
         <div className="grid grid-cols-3 gap-4 p-4 bg-transparent rounded-lg shadow-lg">
-          <div className="text-lg font-semibold text-purple-400">Rank</div>
-          <div className="text-lg font-semibold text-purple-400">Username</div>
+          <div className="text-lg font-semibold text-purple-400">Místo</div>
+          <div className="text-lg font-semibold text-purple-400">Uživatel</div>
           <div className="text-lg text-right font-semibold text-purple-400">
-            XP
+            Úroveň
           </div>
         </div>
 
         {/* Scrollable leaderboard container with hidden scrollbar */}
-        <div className="h-64 overflow-y-auto no-scrollbar">
+        <div className="h-96 overflow-y-auto no-scrollbar ">
           {users.map((user, index) => (
             <div
               key={user.id}
               className={`grid grid-cols-3 gap-4 p-4 rounded-lg shadow-lg mt-2 transition-all duration-300 
               ${
                 user.id === userData.id
-                  ? "bg-purple-600 text-white font-bold"
-                  : "bg-gray-800 hover:bg-gray-700"
+                  ? "userlvl2 text-white font-bold"
+                  : "bg-zinc-800 hover:bg-gray-700"
               }
             `}
             >
               <div className="text-lg font-medium">{`#${index + 1}`}</div>
               <div className="text-lg font-medium">{`${user.name} ${user.surname}`}</div>
-              <div className="text-lg font-medium text-right">{user.xp}</div>
+              <div className="text-lg font-medium text-right">
+                {Math.floor(user.xp / 100)}
+              </div>
             </div>
           ))}
         </div>

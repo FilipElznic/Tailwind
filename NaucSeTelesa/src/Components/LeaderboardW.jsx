@@ -3,23 +3,18 @@ import Leaderboard from "./Leaderboard";
 function LeaderboardW() {
   return (
     <>
-      <div className="flex flex-col h-full w-full justify-center items-center min-w-screen">
-        <div className="w-5/6">
-          <div className="flex flex-col lg:flex-row w-full h-full">
-            <div className="w-full lg:w-3/5 h-full usergradient m-2 rounded-3xl relative hover:scale-105 transition-transform duration-300 ">
-              <h1 className="font-bold text-3xl md:text-4xl lg:text-6xl p-10 userlvl">
-                Žebříček uživatelů
-              </h1>
-              <p className="text-xl md:text-2xl text-white w-full md:w-2/3 my-10 p-5 mb-16">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
-                enim cumque fugit repellat commodi, quod, praesentium, veniam
-                saepe a ea temporibus ratione?
-              </p>
-            </div>
-
-            <div className="w-full lg:w-2/5 h-full usergradient m-2 rounded-3xl hover:scale-105 transition-transform duration-300">
-              <Leaderboard />
-            </div>
+      <div className="flex flex-col min-h-screen m-4">
+        <div className="w-full flex justify-center items-center">
+          <h2
+            className="text-2xl sm:text-6xl md:text-7xl xl:text-9xl font-bold md:text-start text-center md:pb-20 userlvl
+           "
+          >
+            Žebříček uživatelů
+          </h2>
+        </div>
+        <div className="flex w-full justify-center">
+          <div className="flex justify-center w-3/4">
+            <Leaderboard />
           </div>
         </div>
       </div>
@@ -28,3 +23,20 @@ function LeaderboardW() {
 }
 
 export default LeaderboardW;
+
+/*
+
+   <div className="lg:flex lg:flex-row lg:w-full lg:justify-evenly mb-24 lg:items-center text-white">
+        <div className="md:full md:flex md:flex-col md:justify-center md:items-center md:mt-20 lg:flex lg:flex-col lg:items-start lg:w-1/4 ">
+        
+        </div>
+        <div className="md:mr-8">
+        
+          <div className="flex flex-col items-center gap-5 mt-10 md:flex-row md:justify-end">
+            <Leaderboard />
+          </div>
+        </div>
+      </div>
+
+
+*/
